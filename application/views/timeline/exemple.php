@@ -13,6 +13,14 @@
 				<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
 				<span class="commentaire_texte"> Ah ouais, t'es vraiment un mec stylé ! </span>
 			</div>
+			<div class="commentaire">
+				<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg" alt="..." class="img-rounded" width="30">
+				<span class="commentaire_texte"> Ouais, c'est trop vrai ! </span>
+			</div>
+			<div class="commentaire">
+				<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
+				<span class="commentaire_texte"> Arretez, je suis gêné !</span>
+			</div>
 		</div>	
 
 
@@ -28,17 +36,24 @@
 		<h2>Test 2</h2>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="40">
-				<span class="point_texte"> Baptiste a gagné un point Moustache <span class="glyphicon glyphicon-thumbs-up pull-right">7</span>	</span> <br>
+				<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg" alt="..." class="img-rounded" width="40">
+				<span class="point_texte"> Thomas a gagné un point Moustache <span class="glyphicon glyphicon-thumbs-up pull-right">7</span>	</span> <br>
 
 
 			</div>
 			<div class="panel-body">
 				<div class="commentaire_2">
-				<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="32">
-				<span class="commentaire_texte"> Ah ouais, t'es vraiment un mec stylé ! </span>
+					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="32">
+					<span class="commentaire_texte2"> Putain, les deux développeurs sont quand même bien stylé ! </span>
+				</div>
+				<br>
+
+				<div class="commentaire_2">
+					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="32">
+					<span class="commentaire_texte2"> En plus, t'as 7 likes ! </span>
+				</div>
 			</div>
-			</div>
+
 		</div> 
 
 		<br><br><br><br>
