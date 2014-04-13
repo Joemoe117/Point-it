@@ -1,0 +1,45 @@
+
+/** GENERAL **/
+body{
+	background: rgb(7,105,173);
+}
+
+h1, h2, h3, h4, h5, h6{
+	color: rgb(7,105,173);
+	font-family: 'Sniglet', cursive;	
+}
+
+
+/** HEADER **/
+.header{
+	background: rgb(38,38,38);
+	border-bottom: 1px solid grey;
+	color: white;
+	padding: 13px;	
+	margin-bottom: 15px;
+}
+
+
+/** MAIN **/
+.main{
+	background: white;
+	border: 1px solid grey;
+	border-radius: 7px;
+	padding: 25px;
+}
+
+
+
+/** FOOTER **/
+.footer{
+	background: rgb(38,38,38);
+	color: white;
+	padding: 5px;
+	margin-top: 15px;
+}
+
+.footer_titre{
+	font-family: 'Sniglet', cursive;
+	font-size: 1.2em;
+}
+

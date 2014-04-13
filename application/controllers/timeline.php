@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Profil extends CI_Controller {
+class Timeline extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -22,7 +22,6 @@ class Profil extends CI_Controller {
 		$this->load->view('template/header.php');
 
 		// TODO
-		$this->load->view('profil/exemple.php');
 
 
 		$this->load->view('template/footer.php');
