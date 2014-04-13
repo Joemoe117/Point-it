@@ -28,9 +28,9 @@
 
     <div class="header">
         <div class="container">
-            <a href=""><span class="glyphicon glyphicon-home"></span> Accueil</a>
-            <a href=""><span class="glyphicon glyphicon-user"></span> Profil</a>
-            <a href="" class="pull-right"><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
+            <a class="menu" href=""><span class="glyphicon glyphicon-home"></span> Accueil</a>
+            <a class="menu" href=""><span class="glyphicon glyphicon-user"></span> Profil</a>
+            <a class="menu pull-right" href=""><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
         </div>
     </div>
 

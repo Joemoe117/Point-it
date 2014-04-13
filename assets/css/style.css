@@ -1,7 +1,8 @@
 
 /** GENERAL **/
 body{
-	background: rgb(7,105,173);
+	/*background: rgb(7,105,173);*/
+	background-image:linear-gradient(rgb(7,105,173), white);
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -12,12 +13,31 @@ h1, h2, h3, h4, h5, h6{
 
 /** HEADER **/
 .header{
-	background: rgb(38,38,38);
+	background-image:linear-gradient(rgb(38,38,38), rgb(10,10,10));
 	border-bottom: 1px solid grey;
 	color: white;
 	padding: 13px;	
 	margin-bottom: 15px;
 }
+
+.menu{
+	font-size: 1.2em;
+	margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /** MAIN **/
@@ -51,12 +71,30 @@ h1, h2, h3, h4, h5, h6{
 	vertical-align: top;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /** FOOTER **/
 .footer{
-	background: rgb(38,38,38);
+	background-image:linear-gradient(rgb(38,38,38), rgb(20,20,20));
 	color: white;
 	padding: 5px;
 	margin-top: 15px;
+	padding-bottom: 15px;
 }
 
 .footer_titre{
