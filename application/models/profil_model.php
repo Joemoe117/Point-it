@@ -22,7 +22,7 @@ class Profil_model extends CI_Model{
 	public function getOne($id){
 	
 		return $this->db->select('*')
-					->from($this->table)
+					->from("profil")
 					->where('id', (int) $id)
 					->get()
 					->result();

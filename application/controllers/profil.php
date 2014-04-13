@@ -5,7 +5,7 @@ class Profil extends CI_Controller {
 
 	public function __construct()	{
 		parent::__construct();
-		
+		session_start();
 		
 
 		// Chargement des models
@@ -37,6 +37,22 @@ class Profil extends CI_Controller {
 
 		// TODO
 		$this->load->view('profil/exemple.php');
+
+
+		
+	}
+
+	public function get($id){
+
+		$res = $this->profil_model->getOne($id);
+
+		foreach ($res as $value){
+			$data['id'] 	= $value->id;
+			$data['nom'] 	= $value->nom;
+		}
+
+		$this->load->view('profil/exemple.php', $data);
+
 
 
 		$this->load->view('template/footer.php');
