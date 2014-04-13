@@ -20,6 +20,7 @@
 							<div class="footer_titre"> Technologies utilisées </div>
 							<img src="http://hamedinfo.com/images/jquery_logo.gif" width="80">
 							<img src="http://marcmalignan.com/img/logos/bootstrap.png" width="80">
+							<img src="http://www.matthewfarmer.net/assets/github_logo-3a39ffd6fcf6f63f799b59e5aad34680.png" width="80">
 						</div>
 					</div>
 				</div>
