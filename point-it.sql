@@ -2,10 +2,10 @@
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 13, 2014 at 09:11 PM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Client: localhost
+-- Généré le: Dim 13 Avril 2014 à 21:45
+-- Version du serveur: 5.6.12-log
+-- Version de PHP: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,92 +17,90 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `point-it`
+-- Base de données: `point-it`
 --
-CREATE DATABASE IF NOT EXISTS `point-it` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `point-it` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `point-it`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commentaire`
+-- Structure de la table `commentaires`
 --
 
-CREATE TABLE IF NOT EXISTS `commentaire` (
+CREATE TABLE IF NOT EXISTS `commentaires` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `point` int(11) NOT NULL,
-  `profil` int(11) NOT NULL,
-  `texte` text NOT NULL,
+  `id_point` int(11) NOT NULL,
+  `id_profil` int(11) NOT NULL,
+  `texte` text COLLATE utf8_bin NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`),
+  KEY `id_point` (`id_point`),
+  KEY `id_profil` (`id_profil`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `point`
+-- Structure de la table `points`
 --
 
-CREATE TABLE IF NOT EXISTS `point` (
+CREATE TABLE IF NOT EXISTS `points` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` int(11) NOT NULL,
-  `profil` int(11) NOT NULL,
-  `texte` text NOT NULL,
+  `id_type` int(11) NOT NULL,
+  `id_profil` int(11) NOT NULL,
+  `texte` text COLLATE utf8_bin NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `point`
---
-
-INSERT INTO `point` (`id`, `type`, `profil`, `texte`, `date`) VALUES
-(1, 1, 1, 'Baptiste a créé ce magnifique site', '2014-04-13 21:10:03'),
-(2, 1, 2, 'Thomas a aidé à créer ce magnifique site', '2014-04-13 21:09:49');
+  PRIMARY KEY (`id`),
+  KEY `id_type` (`id_type`),
+  KEY `id_profil` (`id_profil`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profil`
+-- Structure de la table `profils`
 --
 
-CREATE TABLE IF NOT EXISTS `profil` (
+CREATE TABLE IF NOT EXISTS `profils` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(24) NOT NULL,
-  `password` varchar(24) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `nom` varchar(24) COLLATE utf8_bin NOT NULL,
+  `password` varchar(24) COLLATE utf8_bin NOT NULL,
+  `image` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `profil`
---
-
-INSERT INTO `profil` (`id`, `nom`, `password`, `image`) VALUES
-(1, 'Baptiste', 'boutdumonde', 'http://localhost/Point-it/assets/images/profil.jpg'),
-(2, 'Thomas', 'carrelage', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type_point`
+-- Structure de la table `type_point`
 --
 
 CREATE TABLE IF NOT EXISTS `type_point` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
-  `description` text NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `nom` varchar(50) COLLATE utf8_bin NOT NULL,
+  `description` text COLLATE utf8_bin NOT NULL,
+  `image` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
--- Dumping data for table `type_point`
+-- Contraintes pour les tables exportées
 --
 
-INSERT INTO `type_point` (`id`, `nom`, `description`, `image`) VALUES
-(1, 'Moustache', 'à remplir', ''),
-(2, 'Vietnam', 'à remplir aussi =)', '');
+--
+-- Contraintes pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`id_point`) REFERENCES `points` (`id`),
+  ADD CONSTRAINT `commentaires_ibfk_2` FOREIGN KEY (`id_profil`) REFERENCES `profils` (`id`);
+
+--
+-- Contraintes pour la table `points`
+--
+ALTER TABLE `points`
+  ADD CONSTRAINT `points_ibfk_1` FOREIGN KEY (`id_type`) REFERENCES `type_point` (`id`),
+  ADD CONSTRAINT `points_ibfk_2` FOREIGN KEY (`id_profil`) REFERENCES `profils` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
