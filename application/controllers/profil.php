@@ -2,6 +2,20 @@
 
 class Profil extends CI_Controller {
 
+
+	public function __construct()	{
+		parent::__construct();
+		
+		
+
+		// Chargement des models
+		$this->load->model('profil_model');
+
+		// Chargement header
+		$this->load->view('template/header.php');
+	}
+
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -19,7 +33,7 @@ class Profil extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('template/header.php');
+		
 
 		// TODO
 		$this->load->view('profil/exemple.php');

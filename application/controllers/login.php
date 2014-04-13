@@ -28,12 +28,23 @@ class Login extends CI_Controller {
 		$this->load->view('template/footer.php');
 	}
 
+
+	/**
+	*	@return 	Affiche le profil d'un utilisateur
+	*	@param 		id 		l'id de la personne à récupérer
+	*
+	*/
+	public function get($id){
+
+	}
+
+
 	/**
 	*	@return 	permet de logger l'utilisateur
 	*	@param  	login 	le login de l'utilisateur
 	*	@param  	password le mot de passe de l'utilisateur
 	*/
-	public function __login(){
+	public function _login(){
 
 	}
 
@@ -42,7 +53,7 @@ class Login extends CI_Controller {
 	*	@return 	déconnecte l'utilisateur
 	*
 	*/
-	public function __logout(){
+	public function _logout(){
 		
 	}
 }

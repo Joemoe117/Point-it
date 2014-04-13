@@ -1,12 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/* Modèle qui gère l'accès à la BDD pour obtenir les infos d'une personnes */
+/* Modèle qui gère l'accès à la BDD pour obtenir les infos d'un membre */
+class Profil_model extends CI_Model{
 
-class Profil_Model extends CI_Model
-{
-	protected $table = 'membre, point';
-
-	
 	/**
 	*	function 	getAllProfil
 	*	@return		Recupere tous les membres
@@ -14,8 +10,8 @@ class Profil_Model extends CI_Model
 	*/
 	public function getAll(){
 		return $this->db->select('*')
-					->from("membre")
-					->order_by("membre_pseudo")
+					->from("profil")
+					->order_by("nom")
 					->get()
 					->result();
 	}
@@ -27,11 +23,9 @@ class Profil_Model extends CI_Model
 	
 		return $this->db->select('*')
 					->from($this->table)
-					->where('membre_id', (int) $id)
-					->join('distribution', 'membre_id = distribution_membre_id')
+					->where('id', (int) $id)
 					->get()
 					->result();
-	
 	}
 	
 
