@@ -42,7 +42,7 @@ class Login extends CI_Controller {
 	*	@return 	déconnecte l'utilisateur
 	*
 	*/
-	public function __login(){
+	public function __logout(){
 		
 	}
 }
