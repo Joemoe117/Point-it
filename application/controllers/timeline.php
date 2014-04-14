@@ -10,7 +10,8 @@ class Timeline extends CI_Controller {
 		
 
 		// Chargement des models
-		//$this->load->model('profil_model');
+		$this->load->model('profil_model');
+		$this->load->model('point_model');
 
 		// Chargement header
 		$this->load->view('template/header.php');
@@ -33,7 +34,15 @@ class Timeline extends CI_Controller {
 	public function retrieve(){
 
 
-		$this->load->view('timeline/exemple.php');
+		/* Génération du formulaire */
+		$res = $this->point_model->getAllType();
+
+		foreach ($res as $value){
+			$data['point_id'][] 	= $value->id;
+			$data['point_nom'][]	= $value->nom;
+		}
+
+		$this->load->view('timeline/exemple.php', $data	);
 
 		$this->load->view('template/footer.php');
 	}

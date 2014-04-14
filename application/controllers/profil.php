@@ -42,13 +42,18 @@ class Profil extends CI_Controller {
 		
 	}
 
+	/**
+	*	Affiche la timeline d'une personne
+	*
+	*
+	*/
 	public function get($id){
 
 		$res = $this->profil_model->getOne($id);
 
 		foreach ($res as $value){
-			$data['id'] 	= $value->id;
-			$data['nom'] 	= $value->nom;
+			$data['id'][] 	= $value->id;
+			$data['nom'][]	= $value->nom;
 		}
 
 		$this->load->view('profil/exemple.php', $data);
@@ -57,6 +62,7 @@ class Profil extends CI_Controller {
 
 		$this->load->view('template/footer.php');
 	}
+
 }
 
 /* End of file welcome.php */

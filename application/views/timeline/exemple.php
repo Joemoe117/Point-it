@@ -1,9 +1,10 @@
-<div class="container main">
 
+
+
+<div class="container main">
 	<div class="col-md-8">
 		<h1>Timeline</h1>
-
-
+		
 		<h2>Test 1</h2>
 		<div class="point">
 		<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="60">
@@ -121,6 +122,16 @@
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">Point</label>
+
+				    <!-- Génération de la dropdown des points -->
+				    <select class="form-control">
+						<?php foreach ($point_nom as $value){ ?>
+							<option > <?=$value?></option>
+						<?php } ?>
+					</select>
+
+
+
 				    <select class="form-control">
 					  <option>Point Moustache</option>
 					  <option>Point Vietnam</option>
