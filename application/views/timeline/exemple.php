@@ -22,11 +22,41 @@
 				<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
 				<span class="commentaire_texte"> Arretez, je suis gêné !</span>
 			</div>
-		</div>	
+		</div>
 
 
 
+		<div id="button" >test</div>
+		<div id="test" style="display:none">
+			<div class="point">
+			<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="60">
+			<span class="point_texte"> Baptiste a gagné un point Moustache </span> <br>
+				
+				<div class="commentaire">
+					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
+					<span class="commentaire_texte"> Ah ouais, t'es vraiment un mec stylé ! </span>
+				</div>
+				<div class="commentaire">
+					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg" alt="..." class="img-rounded" width="30">
+					<span class="commentaire_texte"> Ouais, c'est trop vrai ! </span>
+				</div>
+				<div class="commentaire">
+					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
+					<span class="commentaire_texte"> Arretez, je suis gêné !</span>
+				</div>
+			</div>
+		</div>
 
+		<script>
+		// Préparation d'un effet kikoo
+		$(function() {
+			$( "#button" ).click(function() {
+				var options = {};
+				$( "#test" ).show( "slide", options, 700 );
+				});
+			$( "#effect" ).hide();
+		});
+		</script>
 
 
 
