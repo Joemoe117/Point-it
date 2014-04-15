@@ -3,7 +3,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="footer_titre"> Point-it </div>
-						Point-it est le fils spirituel, un projet plutôt stylé qui a démarré en 2012.
+						Point-it est le fils spirituel de Pointbook, un projet plutôt stylé qui a démarré en 2012.
 					</div>
 					<div class="col-md-4">
 						<div class="footer_titre"> Crédits </div>

@@ -80,10 +80,16 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
+.form_connexion{
+	background: rgb(38,38,38);
+	border-radius: 10px;
+	padding: 20px;
+}
 
 
-
-
+.blanc{
+	color: white;
+}
 
 
 
