@@ -39,7 +39,7 @@ class Timeline extends CI_Controller {
 		$data['form_profil'] = $this->profil_model->getAll();
 			
 
-		$this->load->view('timeline/exemple.php', $data	);
+		$this->load->view('timeline/view_timeline.php', $data	);
 
 		$this->load->view('template/footer.php');
 	}

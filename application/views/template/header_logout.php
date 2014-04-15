@@ -28,11 +28,7 @@
 
     <div class="header">
         <div class="container">
-            <a class="menu active" href="<?php echo site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> Accueil</a>
-            <a class="menu" href=""><span class="glyphicon glyphicon-user"></span> Profil</a>
-            <a class="menu" href=""><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>
-            <a class="menu pull-right" href="<?php echo site_url("login/logout"); ?>"><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
+            <h1>Point-it</h1>
+            <p>Le nouveau Pointbook est là !</p>
         </div>
     </div>
-
-

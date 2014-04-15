@@ -4,6 +4,10 @@
 <div class="container main">
 	<div class="col-md-8">
 		<h1>Timeline</h1>
+
+		<div id="test_ajout" style="display:none">
+			
+		</div>
 		
 		<h2>Test 1</h2>
 		<div class="point">
@@ -111,30 +115,7 @@
 
 		<br>
 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-		<br>
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<br>
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 	</div>
 
 
@@ -142,7 +123,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
 			<div class="panel-body">
-				<form role="form" action="TODO">
+				<form role="form" >
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Personne</label>
 				    <select class="form-control">
@@ -168,13 +149,22 @@
 				    <label for="exampleInputEmail1">Description</label>
 				    <textarea name="textarea" rows="7" cols="50">Allez là !</textarea>
 				  </div>
-				  <button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
+				  <button id="test" type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
 			</div>
 		</div> 
+		<button id="test2" type="submit" class="btn btn-default pull-right">Ajouter un point fictif !</button>
 	</div>
 
 	
-	
+	<script type="text/javascript">
+
+	$( "#test2" ).click(function(){
+		$("#test_ajout").prepend("<span class=\"point_texte\"> Baptiste a gagné un point Moustache </span> <br>");
+	  	$( "#test_ajout" ).slideDown("slow");
+	});
+
+
+	</script>
 
 </div>

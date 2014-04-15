@@ -26,6 +26,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .active{
+	background-image:radial-gradient(rgb(70,70,70), rgb(0,0,0));
 	border: 1px solid grey;
 	border-radius: 7px;
 	padding-top: 10px;
@@ -91,7 +92,11 @@ h1, h2, h3, h4, h5, h6{
 	color: white;
 }
 
-
+.icone{
+	color: rgb(7,105,173);
+	font-size: 5.0em;
+	text-align: center;
+}
 
 
 

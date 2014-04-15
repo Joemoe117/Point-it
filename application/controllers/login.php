@@ -11,8 +11,6 @@ class Login extends CI_Controller {
 		// Chargement des models
 		$this->load->model('profil_model');
 
-		// Chargement header
-		$this->load->view('template/header.php');
 	}
 
 
@@ -29,11 +27,17 @@ class Login extends CI_Controller {
 	*/
 	public function login(){
 	
-		$this->load->view('login/login.php');
+		$this->load->view('template/header_logout.php');
+
+		$this->load->view('login/view_login.php');
 
 		$this->load->view('template/footer.php');
 	}
 
+
+	public function logout(){
+		redirect('/login', 'location');
+	}
 
 	/**
 	*	@return 	permet de logger l'utilisateur
