@@ -116,8 +116,9 @@
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Personne</label>
 				    <select class="form-control">
-					  <option>Baptiste</option>
-					  <option>Thomas</option>
+				    	<?php foreach ($form_profil as $value): ?>
+				    		<option> <?=$value->nom?> </option>
+				    	<?php endforeach ?>
 					</select>
 				  </div>
 				  <div class="form-group">
@@ -125,17 +126,13 @@
 
 				    <!-- Génération de la dropdown des points -->
 				    <select class="form-control">
-						<?php foreach ($point_nom as $value){ ?>
-							<option > <?=$value?></option>
-						<?php } ?>
+				    	<?php foreach ($form_point as $value): ?>
+				    		<option> <?=$value->nom?> </option>
+				    	<?php endforeach ?>
 					</select>
 
 
 
-				    <select class="form-control">
-					  <option>Point Moustache</option>
-					  <option>Point Vietnam</option>
-					</select>
 				  </div>
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Description</label>

@@ -35,12 +35,9 @@ class Timeline extends CI_Controller {
 
 
 		/* Génération du formulaire */
-		$res = $this->point_model->getAllType();
-
-		foreach ($res as $value){
-			$data['point_id'][] 	= $value->id;
-			$data['point_nom'][]	= $value->nom;
-		}
+		$data['form_point'] = $this->point_model->getAllType();
+		$data['form_profil'] = $this->profil_model->getAll();
+			
 
 		$this->load->view('timeline/exemple.php', $data	);
 
