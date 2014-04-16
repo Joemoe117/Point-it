@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 13 Avril 2014 à 21:45
+-- Généré le: Mer 16 Avril 2014 à 21:52
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -29,14 +29,14 @@ USE `point-it`;
 --
 
 CREATE TABLE IF NOT EXISTS `commentaires` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_point` int(11) NOT NULL,
-  `id_profil` int(11) NOT NULL,
-  `texte` text COLLATE utf8_bin NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `id_point` (`id_point`),
-  KEY `id_profil` (`id_profil`)
+  `com_id` int(11) NOT NULL AUTO_INCREMENT,
+  `point_id` int(11) NOT NULL DEFAULT '0',
+  `profil_id` int(11) DEFAULT NULL,
+  `com_texte` text COLLATE utf8_bin NOT NULL,
+  `com_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`com_id`,`point_id`),
+  KEY `point_id` (`point_id`),
+  KEY `profil_id` (`profil_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -46,14 +46,14 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
 --
 
 CREATE TABLE IF NOT EXISTS `points` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_type` int(11) NOT NULL,
-  `id_profil` int(11) NOT NULL,
-  `texte` text COLLATE utf8_bin NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `id_type` (`id_type`),
-  KEY `id_profil` (`id_profil`)
+  `point_id` int(11) NOT NULL AUTO_INCREMENT,
+  `typept_id` int(11) NOT NULL,
+  `profil_id_donne` int(11) NOT NULL,
+  `point_description` text COLLATE utf8_bin NOT NULL,
+  `point_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`point_id`),
+  KEY `typept_id` (`typept_id`),
+  KEY `profil_id_donne` (`profil_id_donne`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -63,25 +63,38 @@ CREATE TABLE IF NOT EXISTS `points` (
 --
 
 CREATE TABLE IF NOT EXISTS `profils` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(24) COLLATE utf8_bin NOT NULL,
-  `password` varchar(24) COLLATE utf8_bin NOT NULL,
-  `image` varchar(255) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
+  `profil_id` int(11) NOT NULL AUTO_INCREMENT,
+  `profil_nom` varchar(30) COLLATE utf8_bin NOT NULL,
+  `profil_pass` varchar(20) COLLATE utf8_bin NOT NULL,
+  `profil_image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`profil_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `type_point`
+-- Structure de la table `recoit`
 --
 
-CREATE TABLE IF NOT EXISTS `type_point` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) COLLATE utf8_bin NOT NULL,
-  `description` text COLLATE utf8_bin NOT NULL,
-  `image` varchar(255) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS `recoit` (
+  `point_id` int(11) NOT NULL DEFAULT '0',
+  `profil_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`point_id`,`profil_id`),
+  KEY `profil_id` (`profil_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `types_point`
+--
+
+CREATE TABLE IF NOT EXISTS `types_point` (
+  `typept_id` int(11) NOT NULL AUTO_INCREMENT,
+  `typept_nom` varchar(30) COLLATE utf8_bin NOT NULL,
+  `typept_description` text COLLATE utf8_bin NOT NULL,
+  `typept_image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`typept_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
@@ -92,15 +105,22 @@ CREATE TABLE IF NOT EXISTS `type_point` (
 -- Contraintes pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
-  ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`id_point`) REFERENCES `points` (`id`),
-  ADD CONSTRAINT `commentaires_ibfk_2` FOREIGN KEY (`id_profil`) REFERENCES `profils` (`id`);
+  ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`point_id`) REFERENCES `points` (`point_id`),
+  ADD CONSTRAINT `commentaires_ibfk_2` FOREIGN KEY (`profil_id`) REFERENCES `profils` (`profil_id`);
 
 --
 -- Contraintes pour la table `points`
 --
 ALTER TABLE `points`
-  ADD CONSTRAINT `points_ibfk_1` FOREIGN KEY (`id_type`) REFERENCES `type_point` (`id`),
-  ADD CONSTRAINT `points_ibfk_2` FOREIGN KEY (`id_profil`) REFERENCES `profils` (`id`);
+  ADD CONSTRAINT `points_ibfk_1` FOREIGN KEY (`typept_id`) REFERENCES `types_point` (`typept_id`),
+  ADD CONSTRAINT `points_ibfk_2` FOREIGN KEY (`profil_id_donne`) REFERENCES `profils` (`profil_id`);
+
+--
+-- Contraintes pour la table `recoit`
+--
+ALTER TABLE `recoit`
+  ADD CONSTRAINT `recoit_ibfk_1` FOREIGN KEY (`point_id`) REFERENCES `points` (`point_id`),
+  ADD CONSTRAINT `recoit_ibfk_2` FOREIGN KEY (`profil_id`) REFERENCES `profils` (`profil_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
