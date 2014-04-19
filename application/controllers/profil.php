@@ -50,13 +50,9 @@ class Profil extends CI_Controller {
 	public function get($id){
 
 		$res = $this->profil_model->getOne($id);
+		$data['profil'] = $res;
 
-		foreach ($res as $value){
-			$data['id'][] 	= $value->id;
-			$data['nom'][]	= $value->nom;
-		}
-
-		$this->load->view('profil/exemple.php', $data);
+		$this->load->view('profil/view_profil.php', $data);
 
 
 

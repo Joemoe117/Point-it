@@ -10,8 +10,8 @@ class Point_model extends CI_Model{
 	*/
 	public function getAllType(){
 		return $this->db->select('*')
-					->from("type_point")
-					->order_by("nom")
+					->from("types_point")
+					->order_by("typept_nom")
 					->get()
 					->result();
 	}

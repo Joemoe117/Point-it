@@ -11,7 +11,7 @@ class Profil_model extends CI_Model{
 	public function getAll(){
 		return $this->db->select('*')
 					->from("profils")
-					->order_by("nom")
+					->order_by("profil_nom")
 					->get()
 					->result();
 	}
@@ -23,7 +23,7 @@ class Profil_model extends CI_Model{
 	
 		return $this->db->select('*')
 					->from("profils")
-					->where('id', (int) $id)
+					->where('profil_id', (int) $id)
 					->get()
 					->result();
 	}

@@ -2,7 +2,15 @@
 	
 <img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-circle">
 
-<h1><?=$nom ?></h1>
+<?php
+	print_r($profil)
+?>
+
+<?php foreach ($profil as $value): ?>
+	<h1><?php echo $value->profil_nom ?></h1>		
+<?php endforeach ?>
+
+
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
