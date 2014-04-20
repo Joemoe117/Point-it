@@ -15,6 +15,7 @@ class Timeline extends CI_Controller {
 		// Chargement des models
 		$this->load->model('profil_model');
 		$this->load->model('point_model');
+		$this->load->model('commentaire_model');
 
 		// Chargement header
 		$this->load->view('template/header.php');
@@ -43,10 +44,13 @@ class Timeline extends CI_Controller {
 		/* Recupération des derniers points */
 		$data['points'] = $this->point_model->getLastTwenty();
 
-		$this->session->set_userdata('some_name', 'some_value');
+		/* Récupération des commentaires de chaque point */
+		foreach ($data['points'] as $key => $value) {
+			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+		}
 
+		// chargement des vues
 		$this->load->view('timeline/view_timeline.php', $data	);
-
 		$this->load->view('template/footer.php');
 	}
 }

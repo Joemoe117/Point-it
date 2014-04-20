@@ -25,5 +25,30 @@ class Commentaire_model extends CI_Model{
 	}
 
 
+	/** 
+	*	@return 	Récupère tous les commentaires d'un point 	
+	*	@param 		id 		l'id du point pour lequel on veut récupérer les commentaires
+	*/
+	public function getCommentairePoint($id){
+		return $this->db->select('*')
+					->from("commentaires NATURAL JOIN points NATURAL JOIN profils")
+					->where('point_id', (int) $id)
+					->order_by("com_date")
+					->get()
+					->result();
+	}
+
+
+	/**
+	*	@return 	ajoute un point dans la BDD
+	*
+	*/
+	public function create( $id_point, $id_profil, $texte){
+		$this->db->set('point_id', $id_point);
+		$this->db->set('profil_id', $id_profil);
+		echo $texte;
+		$this->db->set('com_texte', $texte);
+		$this->db->insert('commentaires'); 
+	}
 
 }

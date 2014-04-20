@@ -15,7 +15,7 @@
 					a gagné un <?=$value->typept_nom?>
 				<span class="point_date pull-right">
 					<?php
-						echo "Le ".date("d/m/y à H:i", mysql_to_unix($value->point_date));
+						echo "Le ".date("d/m/y à H:i", mysql_to_unix($value->point_date_crea));
 					?>
 				</span>
 			</div>

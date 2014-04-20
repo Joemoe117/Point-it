@@ -19,14 +19,37 @@
 			<div class="point_description"><?=$value->point_description?></div>
 
 			<h5><span class="glyphicon glyphicon-comment"></span>  Commentaires</h5>
+			<div class="zone_commentaire">
+				<?php foreach ($commentaires as $commentaire): ?>
+					<?php foreach ($commentaire as $key => $com): ?>
+						<?php if ($com->point_id == $value->point_id): ?>
+							<div class="commentaire">
+								<img src="<?=$com->profil_image ?>" alt="test" class="img-rounded image_commentaire">
+								<a href="<?php echo site_url("profil/get/"); echo "/".$com->profil_id; ?>"><?=$com->profil_nom?></a>
+								<span class="point_date pull-right">
+								<?php
+									echo "Le ".date("d/m/y à H:i", mysql_to_unix($com->com_date));
+								?>
+								</span>	
+								<br>
+								<?=$com->com_texte?>
+							</div>
+						<?php endif ?>
+					<?php endforeach ?>
+				<?php endforeach ?>
+				<form method="post" role="form" action="<?php echo site_url("commentaire/ajouterCommentaire"); ?>">
+					<textarea name="commentaire" class="form-control" rows="3">Ecrivez ici votre commentaire</textarea>
+					<input name="point_id" type="hidden" value="<?=$value->point_id?>">
+					<br>
+					<input class="btn btn-primary pull-right" value="Poster" type="submit">
+					<br><br>
+				</form>	
+			</div>
+
 
 		</div>
 	<?php endforeach ?>
 
-
-		<?php
-			print_r($points);
-		?>
 
 
 		<script>
@@ -79,7 +102,6 @@
 				</form>
 			</div>
 		</div> 
-		<button id="test2" type="submit" class="btn btn-default pull-right">Ajouter un point fictif !</button>
 	</div>
 
 	
