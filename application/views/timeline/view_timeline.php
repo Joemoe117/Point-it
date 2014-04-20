@@ -1,69 +1,33 @@
 <div class="container main">
-	<div class="col-md-8">
+	<div class="col-md-7">
 		<h1>Timeline</h1>
 
+			<?php foreach ($points as $key => $value): ?>
+		<div class="point">
 
+			<div class="point_texte">
+				<img src="<?=$value->profil_image ?>" alt="test" class="img-rounded image_point">
+				<a href=""><?=$value->profil_nom?></a>
+					a gagné un <?=$value->typept_nom?>
+				<span class="point_date pull-right">
+					<?php
+						echo "Le ".date("d/m/y à H:i", mysql_to_unix($value->point_date));
+					?>
+				</span>
+			</div>
+			
+			<div class="point_description"><?=$value->point_description?></div>
 
-		<?php foreach ($points as $key => $value): ?>
-			<div class="point"></div>
-			<?=$value->profil_nom?>
-			a gagné un <?=$value->typept_nom?>
-			<div class="date"><?=$value->point_date?></div>
-			<div class="description"><?=$value->point_description?></div>
-			<?=$key?>
-			<br><br>
-		<?php endforeach ?>
+			<h5><span class="glyphicon glyphicon-comment"></span>  Commentaires</h5>
+
+		</div>
+	<?php endforeach ?>
+
 
 		<?php
 			print_r($points);
 		?>
 
-
-		<div id="test_ajout" style="display:none">
-			
-		</div>
-		
-		<h2>Test 1</h2>
-		<div class="point">
-		<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="60">
-		<span class="point_texte"> Baptiste a gagné un point Moustache </span> <br>
-			
-			<div class="commentaire">
-				<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
-				<span class="commentaire_texte"> Ah ouais, t'es vraiment un mec stylé ! </span>
-			</div>
-			<div class="commentaire">
-				<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg" alt="..." class="img-rounded" width="30">
-				<span class="commentaire_texte"> Ouais, c'est trop vrai ! </span>
-			</div>
-			<div class="commentaire">
-				<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
-				<span class="commentaire_texte"> Arretez, je suis gêné !</span>
-			</div>
-		</div>
-
-
-
-		<div id="button" >test</div>
-		<div id="test" style="display:none">
-			<div class="point">
-			<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="60">
-			<span class="point_texte"> Baptiste a gagné un point Moustache </span> <br>
-				
-				<div class="commentaire">
-					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
-					<span class="commentaire_texte"> Ah ouais, t'es vraiment un mec stylé ! </span>
-				</div>
-				<div class="commentaire">
-					<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg" alt="..." class="img-rounded" width="30">
-					<span class="commentaire_texte"> Ouais, c'est trop vrai ! </span>
-				</div>
-				<div class="commentaire">
-					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="30">
-					<span class="commentaire_texte"> Arretez, je suis gêné !</span>
-				</div>
-			</div>
-		</div>
 
 		<script>
 		// Préparation d'un effet kikoo
@@ -76,58 +40,6 @@
 		});
 		</script>
 
-
-
-
-
-
-
-		<h2>Test 2</h2>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg" alt="..." class="img-rounded" width="40">
-				<span class="point_texte"> Thomas a gagné un point Moustache <span class="glyphicon glyphicon-thumbs-up pull-right">7</span>	</span> <br>
-
-
-			</div>
-			<div class="panel-body">
-				<div class="commentaire_2">
-					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="32">
-					<span class="commentaire_texte2"> Putain, les deux développeurs sont quand même bien stylé ! </span>
-				</div>
-				<br>
-
-				<div class="commentaire_2">
-					<img src="<?php echo base_url("/assets/images/profil.jpg");  ?>" alt="..." class="img-rounded" width="32">
-					<span class="commentaire_texte2"> En plus, t'as 7 likes ! </span>
-				</div>
-			</div>
-
-		</div> 
-
-		<br><br><br><br>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. 
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<br>
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-		<br>
 
 
 	</div>
