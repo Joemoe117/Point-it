@@ -74,6 +74,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .point_texte{
+	border-bottom: 1px solid lightgrey;
+	padding: 9px;
+	padding-bottom: 12px;
 	vertical-align: top;
 }
 
@@ -85,7 +88,10 @@ h1, h2, h3, h4, h5, h6{
 /* AFFICHAGE DES COMMENTAIRE */
 
 .zone_commentaire{
-	margin-left: 30px;
+	background: rgb(235,235,235);
+	border-radius: 7px;
+	margin-top: 7px;
+	padding: 5px;
 }
 
 .commentaire{
@@ -101,7 +107,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .image_commentaire{
-	width: 40px;
+	width: 45px;
 }
 
 

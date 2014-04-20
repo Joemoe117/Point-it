@@ -15,7 +15,7 @@ class Commentaire_model extends CI_Model{
 		return $this->db->select('*')
 				->from("commentaires NATURAL JOIN points NATURAL JOIN profils")
 				->where('point_id', (int) $id)
-				->order_by("point_id")
+				->order_by("com_date")
 				->get()
 				->result();
 	}
