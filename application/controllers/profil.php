@@ -10,6 +10,8 @@ class Profil extends CI_Controller {
 
 		// Chargement des models
 		$this->load->model('profil_model');
+		$this->load->model('point_model');
+		$this->load->model('commentaire_model');
 
 		// Chargement header
 		$this->load->view('template/header.php');
@@ -49,8 +51,10 @@ class Profil extends CI_Controller {
 	*/
 	public function get($id){
 
-		$res = $this->profil_model->getOne($id);
-		$data['profil'] = $res;
+		$data['profil'] = $this->profil_model->getOne($id);
+		$data['points'] = $this->point_model->getLastTwentyOf($id);
+		$data['commentaires'] = $this->commentaire_model->getLastTwentyPointsOf($id);
+
 
 		$this->load->view('profil/view_profil.php', $data);
 

@@ -48,8 +48,11 @@ h1, h2, h3, h4, h5, h6{
 
 
 
-
-/** MAIN **/
+/********************************************************************/
+/********************************************************************/
+/******************************* MAIN *******************************/
+/********************************************************************/
+/********************************************************************/
 .main{
 	background: white;
 	border: 1px solid grey;
@@ -57,36 +60,60 @@ h1, h2, h3, h4, h5, h6{
 	padding: 15px;
 }
 
+/* AFFICHAGE DES POINTS */
 .point{
 	border: 1px solid lightgrey;
 	border-radius: 7px;
 	padding: 7px;
+	margin-top: 10px;
+}
+
+.point_date{
+	text-align: right;
+	color: grey;
 }
 
 .point_texte{
 	vertical-align: top;
 }
 
+.point_description{
+	margin-top: 10px;
+}
+
+
+/* AFFICHAGE DES COMMENTAIRE */
+
+.zone_commentaire{
+	margin-left: 30px;
+}
 
 .commentaire{
-	font-size: 0.9em;
-	margin-left: 30px;
-	margin-top: 10px;
-	vertical-align: top;
-}
-
-.commentaire2{
-	font-size: 0.9em;
-	vertical-align: top;
+	margin: 6px;
 }
 
 
+
+
+/* GESTION DES IMAGES */
+.image_point{
+	width: 50px;
+}
+
+.image_commentaire{
+	width: 40px;
+}
+
+
+/* FORMULAIRE */
 .form_connexion{
 	background: rgb(38,38,38);
 	border-radius: 10px;
 	padding: 20px;
 }
 
+
+/* COULEURS =) */
 
 .blanc{
 	color: white;

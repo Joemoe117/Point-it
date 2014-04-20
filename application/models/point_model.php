@@ -16,4 +16,30 @@ class Point_model extends CI_Model{
 					->result();
 	}
 
+	/**
+	* @return 	recupere les 20 derniers points chronologiquement
+	*
+	*
+	*/
+	public function getLastTwenty(){
+		return $this->db->select()
+					->from("points NATURAL JOIN recoit NATURAL JOIN types_point NATURAL JOIN profils")
+					->order_by("point_id")
+					->get()
+					->result();
+	}
+
+
+
+	public function getLastTwentyOf($id){
+
+		return $this->db->select()
+				->from("points NATURAL JOIN recoit NATURAL JOIN types_point NATURAL JOIN profils")
+				->where('recoit.profil_id', (int) $id)
+				->order_by("point_id")
+				->get()
+				->result();
+
+	}
+
 }

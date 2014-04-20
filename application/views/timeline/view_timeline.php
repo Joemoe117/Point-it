@@ -1,9 +1,23 @@
-
-
-
 <div class="container main">
 	<div class="col-md-8">
 		<h1>Timeline</h1>
+
+
+
+		<?php foreach ($points as $key => $value): ?>
+			<div class="point"></div>
+			<?=$value->profil_nom?>
+			a gagné un <?=$value->typept_nom?>
+			<div class="date"><?=$value->point_date?></div>
+			<div class="description"><?=$value->point_description?></div>
+			<?=$key?>
+			<br><br>
+		<?php endforeach ?>
+
+		<?php
+			print_r($points);
+		?>
+
 
 		<div id="test_ajout" style="display:none">
 			
