@@ -22,6 +22,8 @@
 			
 			<div class="point_description"><?=$value->point_description?></div>
 
+			<h5><span class="glyphicon glyphicon-comment"></span>  Commentaires</h5>
+
 			<div class="zone_commentaire">
 				<?php foreach ($commentaires as $keyC => $valueCom): ?>
 					<?php if ($valueCom->point_id == $value->point_id): ?>

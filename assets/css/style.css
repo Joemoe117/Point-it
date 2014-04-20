@@ -81,7 +81,11 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .point_description{
+	border-left: 3px solid lightgrey;
+	font-size: 1.2em;
 	margin-top: 10px;
+	margin-left: 7px;
+	padding-left: 7px;
 }
 
 
