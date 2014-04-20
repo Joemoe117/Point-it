@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 17 Avril 2014 à 19:44
+-- Généré le: Dim 20 Avril 2014 à 21:42
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `points` (
   `typept_id` int(11) NOT NULL,
   `profil_id_donne` int(11) NOT NULL,
   `point_description` text COLLATE utf8_bin NOT NULL,
-  `point_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `point_date_crea` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `point_date_evenement` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`point_id`),
   KEY `typept_id` (`typept_id`),
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `points` (
 -- Contenu de la table `points`
 --
 
-INSERT INTO `points` (`point_id`, `typept_id`, `profil_id_donne`, `point_description`, `point_date`, `point_date_evenement`) VALUES
+INSERT INTO `points` (`point_id`, `typept_id`, `profil_id_donne`, `point_description`, `point_date_crea`, `point_date_evenement`) VALUES
 (1, 4, 1, 'Se perdre en campagne totalement raisin et reprendre conscience dans un champ de poneys.', '2014-04-17 19:23:54', '2014-03-19 23:00:00'),
 (2, 1, 1, 'A fait de la soupe à la bière et a kiffé alors que c''était crade.', '2013-01-16 23:00:00', NULL),
 (3, 2, 3, 'Ne vient pas en soirée parce qu''il a déjà but il y a deux semaines', '2014-04-17 19:33:14', '2014-04-17 19:33:14'),
