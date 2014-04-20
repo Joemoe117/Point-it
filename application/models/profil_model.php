@@ -29,6 +29,11 @@ class Profil_model extends CI_Model{
 	}
 	
 
+	public function count(){
+		return $this->db->count_all_results('profils');
+	}
+
+
 	/**
 	*
 	*

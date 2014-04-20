@@ -8,6 +8,8 @@ class Login extends CI_Controller {
 
 		// Chargement des models
 		$this->load->model('profil_model');
+		$this->load->model('commentaire_model');
+		$this->load->model('point_model');
 
 	}
 
@@ -26,7 +28,13 @@ class Login extends CI_Controller {
 	public function login(){
 	
 		$this->load->view('template/header_logout.php');
-		$this->load->view('login/view_login.php');
+
+		$data["nb_profil"] 		= $this->profil_model->count();
+		$data["nb_point"] 		= $this->point_model->count(); 
+		$data["nb_commentaire"] = $this->commentaire_model->count();
+
+
+		$this->load->view('login/view_login.php', $data);
 		$this->load->view('template/footer.php');
 
 		// récupération des posts

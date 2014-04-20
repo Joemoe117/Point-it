@@ -29,6 +29,9 @@ class Point_model extends CI_Model{
 					->result();
 	}
 
+	public function count(){
+		return $this->db->count_all_results('points');
+	}
 
 
 	public function getLastTwentyOf($id){
