@@ -16,6 +16,24 @@ class Point_model extends CI_Model{
 					->result();
 	}
 
+
+
+	/**
+	*	function 	getAllPoints
+	*	@return		Recupere tous les points et les info associés
+	*	
+	*/
+	public function getAllPoints(){
+		return $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, Donne.profil_nom AS profil_nom_donne')
+					->from('Points NATURAL JOIN Types_Point')
+					->join('Profils AS Donne', 'Donne.profil_id = profil_id_donne', 'inner')
+					->order_by('typept_nom')
+					->get()
+					->result();
+	}
+
+
+
 	/**
 	* @return 	recupere les 20 derniers points chronologiquement
 	*
