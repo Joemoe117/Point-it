@@ -46,8 +46,10 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('image', $value->profil_image);
 			}
 
-
-			// Mettre en place les cookies si la checkbox a été coché (faudrait déjà la rajouter dans le formulaire :D)
+			// Mise en place des cookies, pas encore utilisé
+			set_cookie("id", $value->profil_id, 86500, "/");
+			set_cookie("login", $value->profil_id, 86500, "/");
+			set_cookie("image", $value->profil_id, 86500, "/");
 
 			// redirection
 			redirect('/timeline', 'refresh');
