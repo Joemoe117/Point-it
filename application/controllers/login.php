@@ -39,10 +39,7 @@ class Login extends CI_Controller {
 		// connexion réussie
 		if ( $res != false ) {
 
-
-			print_r($res);
-
-			// Mettre en place la session
+			// Mise en place des sessions
 			foreach ($res as $value) {
 				$this->session->set_userdata('id', $value->profil_id);
 				$this->session->set_userdata('login', $value->profil_nom);
