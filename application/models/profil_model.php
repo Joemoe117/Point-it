@@ -44,7 +44,12 @@ class Profil_model extends CI_Model{
 
 		// si identification réussie
 		if ($res == 1) {
-			return true;
+			return 	$this->db->select('*')
+					->from("profils")
+					->where('profil_nom',  $login)
+					->where('profil_pass', $password)
+					->get()
+					->result();
 		} 
 
 		return false;

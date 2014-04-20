@@ -5,8 +5,6 @@ class Login extends CI_Controller {
 
 	public function __construct()	{
 		parent::__construct();
-		session_start();
-		
 
 		// Chargement des models
 		$this->load->model('profil_model');
@@ -38,8 +36,18 @@ class Login extends CI_Controller {
 		// vérification du login, renvoie true si la connexion a réussie
 		$res = $this->profil_model->checkLogin( $login, $password );
 
-		if ( $res ) {
+		// connexion réussie
+		if ( $res != false ) {
+
+
+			print_r($res);
+
 			// Mettre en place la session
+			foreach ($res as $value) {
+				$this->session->set_userdata('id', $value->profil_id);
+				$this->session->set_userdata('login', $value->profil_nom);
+				$this->session->set_userdata('image', $value->profil_image);
+			}
 
 
 			// Mettre en place les cookies si la checkbox a été coché (faudrait déjà la rajouter dans le formulaire :D)

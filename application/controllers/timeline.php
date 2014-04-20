@@ -33,13 +33,14 @@ class Timeline extends CI_Controller {
 	*/
 	public function retrieve(){
 
-
 		/* Génération des informations du formulaire */
 		$data['form_point'] = $this->point_model->getAllType();
 		$data['form_profil'] = $this->profil_model->getAll();
 			
 		/* Recupération des derniers points */
 		$data['points'] = $this->point_model->getLastTwenty();
+
+		$this->session->set_userdata('some_name', 'some_value');
 
 		$this->load->view('timeline/view_timeline.php', $data	);
 
