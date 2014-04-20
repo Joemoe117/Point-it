@@ -7,7 +7,7 @@ class Commentaire_model extends CI_Model{
 		return $this->db->select('*')
 				->from("commentaires NATURAL JOIN points")
 				->order_by("point_id")
-				->get(0,20)
+				->get(0)
 				->result();
 	}
 

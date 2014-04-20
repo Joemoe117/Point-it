@@ -29,4 +29,25 @@ class Profil_model extends CI_Model{
 	}
 	
 
+	/**
+	*
+	*
+	*
+	*/
+	public function checkLogin($login, $password){
+
+		$res = 	$this->db->select('*')
+					->from("profils")
+					->where('profil_nom',  $login)
+					->where('profil_pass', $password)
+					->count_all_results();
+
+		// si identification réussie
+		if ($res == 1) {
+			return true;
+		} 
+
+		return false;
+	}
+
 }
