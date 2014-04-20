@@ -6,8 +6,11 @@ class Timeline extends CI_Controller {
 
 	public function __construct()	{
 		parent::__construct();
-		session_start();
 		
+		// Redirection si non connecté
+		if ( !$this->session->userdata('id')){
+			redirect('/login', 'location');
+		}
 
 		// Chargement des models
 		$this->load->model('profil_model');
