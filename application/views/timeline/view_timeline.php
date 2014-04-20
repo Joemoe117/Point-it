@@ -6,12 +6,12 @@
 		<div class="point">
 
 			<div class="point_texte">
-				<img src="<?=$value->profil_image ?>" alt="test" class="img-rounded image_point">
+				<img src="<?=$value->profil_image ?>" class="img-rounded image_point">
 				<a href=""><?=$value->profil_nom?></a>
 					a gagné un <?=$value->typept_nom?>
 				<span class="point_date pull-right">
 					<?php
-						echo "Le ".date("d/m/y à H:i", mysql_to_unix($value->point_date));
+						echo "Le ".date("d/m/y à H:i", mysql_to_unix($value->point_date_crea));
 					?>
 				</span>
 			</div>

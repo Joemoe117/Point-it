@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Dim 20 Avril 2014 à 21:42
+-- Généré le: Dim 20 Avril 2014 à 22:18
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `profils` (
   `profil_id` int(11) NOT NULL AUTO_INCREMENT,
   `profil_nom` varchar(30) COLLATE utf8_bin NOT NULL,
   `profil_pass` varchar(20) COLLATE utf8_bin NOT NULL,
-  `profil_image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `profil_image` varchar(255) COLLATE utf8_bin DEFAULT 'http://www.air-cosmos.com/img/unknown-avatar.png',
   PRIMARY KEY (`profil_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
@@ -97,12 +97,12 @@ CREATE TABLE IF NOT EXISTS `profils` (
 --
 
 INSERT INTO `profils` (`profil_id`, `profil_nom`, `profil_pass`, `profil_image`) VALUES
-(1, 'Thoumou', 'thoumou', NULL),
-(2, 'Baptiste', 'baptiste', NULL),
-(3, 'Alan', 'alan', NULL),
-(4, 'Bilou', 'bilou', NULL),
-(5, 'Vincent', 'vincent', NULL),
-(6, 'Paul', 'paul', NULL);
+(1, 'Thoumou', 'thoumou', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/t1.0-1/c114.59.733.733/s160x160/522418_10200703773854067_2122395249_n.jpg'),
+(2, 'Baptiste', 'baptiste', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn2/t1.0-1/c0.0.160.160/p160x160/1471311_10202499053824936_1112516852_n.jpg'),
+(3, 'Alan', 'alan', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/c40.0.160.160/p160x160/1512637_10203039467293487_1302683863_n.jpg'),
+(4, 'Bilou', 'bilou', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1.0-1/c7.0.160.160/p160x160/1469849_834512176565273_1993682422_n.jpg'),
+(5, 'Vincent', 'vincent', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1.0-1/c1.134.608.608/s160x160/421916_10200195443623105_1218810733_n.jpg'),
+(6, 'Paul', 'paul', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/c8.0.160.160/p160x160/1779341_10201405039868973_1486349226_n.jpg');
 
 -- --------------------------------------------------------
 
