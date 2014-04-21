@@ -25,46 +25,55 @@ class Login extends CI_Controller {
 	*	@return 	Affiche la page pour qu'un user se connecte
 	*
 	*/
-	public function login(){
-	
+	public function login() {
+
+		// Si le formulaire a été envoyé
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// Récupération des posts
+			$login 		= $this->input->post('login');
+			$password 	= $this->input->post('password');
+
+			$res = $this->profil_model->checkLogin( $login, $password );
+
+			// Vérification du login, renvoie true si la connexion a réussie
+			var_dump($res);
+			if ( $res ) {
+
+				// Mise en place des sessions
+				$this->session->set_userdata('id', $res->profil_id);
+				$this->session->set_userdata('login', $res->profil_nom);
+				$this->session->set_userdata('image', $res->profil_image);
+
+				// Mise en place des cookies, pas encore utilisé
+				set_cookie("id", $res->profil_id, 86500, "/");
+				set_cookie("login", $res->profil_id, 86500, "/");
+				set_cookie("image", $res->profil_id, 86500, "/");
+
+				// redirection
+				redirect('/timeline', 'refresh');
+			}
+			else { // TODO afficher le message d'erreur
+				$data['error'] = "Votre mot de passe ou votre login est invalide";
+				echo $data['error'];
+			}
+		}
+
+		// Affichage de la page
 		$this->load->view('template/header_logout.php');
 
 		$data["nb_profil"] 		= $this->profil_model->count();
 		$data["nb_point"] 		= $this->point_model->count(); 
 		$data["nb_commentaire"] = $this->commentaire_model->count();
 
-
 		$this->load->view('login/view_login.php', $data);
-		$this->load->view('template/footer.php');
-
-		// récupération des posts
-		$login 		= $this->input->post('login');
-		$password 	= $this->input->post('password');
-
-		// vérification du login, renvoie true si la connexion a réussie
-		$res = $this->profil_model->checkLogin( $login, $password );
-
-		// connexion réussie
-		if ( $res != false ) {
-
-			// Mise en place des sessions
-			foreach ($res as $value) {
-				$this->session->set_userdata('id', $value->profil_id);
-				$this->session->set_userdata('login', $value->profil_nom);
-				$this->session->set_userdata('image', $value->profil_image);
-			}
-
-			// Mise en place des cookies, pas encore utilisé
-			set_cookie("id", $value->profil_id, 86500, "/");
-			set_cookie("login", $value->profil_id, 86500, "/");
-			set_cookie("image", $value->profil_id, 86500, "/");
-
-			// redirection
-			redirect('/timeline', 'refresh');
-		}
+		$this->load->view('template/footer.php');	
 	}
 
 
+	/**
+	*	@return 	déconnecte l'utilisateur
+	*
+	*/
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect('/login', 'location');

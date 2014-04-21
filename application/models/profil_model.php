@@ -54,7 +54,7 @@ class Profil_model extends CI_Model{
 					->where('profil_nom',  $login)
 					->where('profil_pass', $password)
 					->get()
-					->result();
+					->result()[0];	// Envoie la première case du array pour éviter d'avoir un array en retour
 		} 
 
 		return false;
