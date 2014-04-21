@@ -40,9 +40,12 @@
 						</div>
 					<?php endif ?>
 				<?php endforeach ?>
-				<form>
-					<input name="login" type="text" class="form-control" placeholder="Lache un com ! ♥">
-					<input type="hidden" value="<?=$value->point_id?>">
+				<form method="post" role="form" action="<?php echo site_url("commentaire/ajouterCommentaire"); ?>">
+					<textarea name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
+					<input name="point_id" type="hidden" value="<?=$value->point_id?>">
+					<br>
+					<input class="btn btn-primary pull-right" value="Poster" type="submit">
+					<br><br>
 				</form>	
 			</div>
 		</div>

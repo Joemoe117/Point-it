@@ -38,7 +38,7 @@
 					<?php endforeach ?>
 				<?php endforeach ?>
 				<form method="post" role="form" action="<?php echo site_url("commentaire/ajouterCommentaire"); ?>">
-					<textarea name="commentaire" class="form-control" rows="3">Ecrivez ici votre commentaire</textarea>
+					<textarea name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
 					<input name="point_id" type="hidden" value="<?=$value->point_id?>">
 					<br>
 					<input class="btn btn-primary pull-right" value="Poster" type="submit">
@@ -114,5 +114,29 @@
 
 
 	</script>
+
+
+	<input id="submit" type="button" value="ajax">
+	<div id="affichage">OK</div>
+
+	<script type="application/javascript">
+		$(document).ready(function() {
+			$('#submit').click(function() {
+				alert("lol");
+				$.ajax({
+					url: "<?php echo site_url('ajax/testAjax'); ?>",
+					type: 'POST',
+					async : false,
+					success: function(msg) {
+						alert("ok");
+						$('#affichage').html(msg);
+					}
+				});
+				alert("lol2");
+				return false;
+			});
+		});
+	</script>
+
 
 </div>

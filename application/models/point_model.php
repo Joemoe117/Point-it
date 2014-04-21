@@ -45,4 +45,18 @@ class Point_model extends CI_Model{
 
 	}
 
+
+	/**
+	*	@return  	ajoute un point dans la BDD
+	*
+	*
+	*/
+	public function create(){
+
+
+
+
+	}
+
+
 }

@@ -53,6 +53,19 @@ class Timeline extends CI_Controller {
 		$this->load->view('timeline/view_timeline.php', $data	);
 		$this->load->view('template/footer.php');
 	}
+
+
+	/**
+	*	@return  	ajoute un point a la BDD via une requete ajax ( on va essayer :D)
+	*
+	*/
+	public function ajaxAjouterPoint(){
+
+
+
+		echo "lol";
+	}
+
 }
 
 /* End of file welcome.php */
