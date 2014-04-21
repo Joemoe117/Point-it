@@ -16,6 +16,35 @@ class Point_model extends CI_Model{
 					->result();
 	}
 
+
+
+	/**
+	*	function 	getAllPoints
+	*	@return		Recupere tous les points et les info associés ainsi que les profils qui ont reçu les points
+	*	
+	*/
+	public function getAllPoints (){
+		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, Donne.profil_nom AS profil_nom_donne')
+						->from('Points NATURAL JOIN Types_Point')
+						->join('Profils AS Donne', 'Donne.profil_id = profil_id_donne', 'inner')
+						->order_by('point_id')
+						->get()
+						->result();
+
+		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points
+		foreach ($allPoints as $point) {
+			$point->recoit = $this->db->select('profil_id, profil_nom')
+											->from('Recoit NATURAL JOIN Profils')
+											->where('point_id', $point->point_id)
+											->get()
+											->result();
+		}
+
+		return $allPoints;
+	}
+
+
+
 	/**
 	* @return 	recupere les 20 derniers points chronologiquement
 	*
