@@ -8,7 +8,7 @@
 
 			<div class="point_texte">
 				<img src="<?=$value->profil_image ?>" class="img-rounded image_point">
-				<a href=""><?=$value->profil_nom?></a>
+				<a href="<?php echo site_url("profil/get/"); echo "/".$value->profil_id; ?>"><?=$value->profil_nom?></a>
 					a gagné un <?=$value->typept_nom?>
 				<span class="point_date pull-right">
 					<?php
@@ -45,8 +45,8 @@
 				<br><br>
 			</div>
 
+			<!-- Ajax pour l'ajout de commentaire -->
 			<script>
-
 				function test(){
 					var parent = $( "#ajouterCommentaire<?=$value->point_id?>" ).parent().get(0).tagName;
 					var donnee = {
@@ -68,7 +68,6 @@
 							}
 						});
 					}
-					
 				}
 			</script>
 
