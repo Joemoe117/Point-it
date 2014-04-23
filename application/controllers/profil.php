@@ -55,15 +55,18 @@ class Profil extends CI_Controller {
 	*/
 	public function get($id){
 
+		// général
 		$data['profil'] = $this->profil_model->getOne($id);
 		$data['points'] = $this->point_model->getLastTwentyOf($id);
 		$data['commentaires'] = $this->commentaire_model->getLastTwentyPointsOf($id);
 
 
+		// statistique
+		$data['nbPoint'] 		= $this->profil_model->getNbPoint($id);
+		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
+
+		// chargement des vues
 		$this->load->view('profil/view_profil.php', $data);
-
-
-
 		$this->load->view('template/footer.php');
 	}
 

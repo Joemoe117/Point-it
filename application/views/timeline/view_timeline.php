@@ -40,8 +40,7 @@
 				<?php endforeach ?>
 				<textarea id="texte" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
 				<input id="point_id" name="point_id" type="hidden" value="<?=$value->point_id?>">
-				<br>
-				<input id="ajouterCommentaire<?=$value->point_id?>" onclick="test()" class="btn btn-primary pull-right" value="Poster" type="submit">
+				<input id="ajouterCommentaire<?=$value->point_id?>" onclick="test()" class="btn btn-primary pull-right test" value="Poster" type="submit">
 				<br><br>
 			</div>
 
@@ -112,7 +111,7 @@
 				  </div>
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Description</label>
-				    <textarea class="form-control" name="textarea" rows="3" cols="50">Allez là !</textarea>
+				    <textarea placeholder="Allez là !" class="form-control" name="textarea" rows="3" cols="50"></textarea>
 				  </div>
 				  <button id="test" type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>

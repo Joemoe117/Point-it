@@ -61,6 +61,11 @@
 	<div class="col-md-6">
 		<h2>Statistiques</h2>
 		<h3>Fonction en cours de développement</h3>
+		<h5>Nombre de points :</h5>
+		<?=$nbPoint?>
+		<h5>Nombre de commentaires :</h5>
+		<?=$nbCommentaire?>
+		<h3>Autres joyeusetés</h3>
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

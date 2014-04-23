@@ -60,4 +60,34 @@ class Profil_model extends CI_Model{
 		return false;
 	}
 
+
+
+
+
+		/**
+		* @return 		retourne le nombre de point possédé par une personne
+		*
+		*/
+		public function getNbPoint($id){
+			return 	$this->db->select('*')
+				->from("recoit")
+				->where('profil_id',  $id)
+				->count_all_results();
+		}
+
+
+		/**
+		* @return 		retourne le nombre de commentaire posté par une personne
+		*
+		*/
+		public function getNbCommentaire($id){
+				return 	$this->db->select('*')
+						->from("commentaires")
+						->where('profil_id',  $id)
+						->count_all_results();
+		}
+
+
+
+
 }
