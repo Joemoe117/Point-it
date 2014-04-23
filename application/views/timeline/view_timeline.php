@@ -1,10 +1,9 @@
 <div class="container main">
 	<div class="col-md-7">
 		<h1>Timeline</h1>
-		<div id="affichage">OK</div>
 
-			<?php foreach ($points as $key => $value): ?>
-		<div class="point">
+		<?php foreach ($points as $key => $value): ?>
+			<div class="point">
 
 
 			<div class="point_texte">
@@ -129,5 +128,5 @@
 		$("#test_ajout").prepend("<span class=\"point_texte\"> Baptiste a gagné un point Moustache </span> <br>");
 	  	$( "#test_ajout" ).slideDown("slow");
 	});
-
+	</script>
 </div>
