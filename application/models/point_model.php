@@ -77,15 +77,17 @@ class Point_model extends CI_Model{
 
 	/**
 	*	@return  	ajoute un point dans la BDD
-	*
+	*	TODO
 	*
 	*/
-	public function create(){
-
-
-
-
+	/*
+	public function create( $typept_id, $profil_id_donne  ){
+		$this->db->set('typept_id', $name);
+		$this->db->set('profil_id_donne', $title);
+		$this->db->set('point_description', $status);
+		$this->db->insert('points');
 	}
+	*/
 
 
 }

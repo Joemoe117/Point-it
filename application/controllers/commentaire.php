@@ -24,7 +24,7 @@ class Commentaire extends CI_Controller {
 	*	@param 		id  	l'id du point auquel on veut ajouter un commentaire
 	*
 	*/
-	public function ajouterCommentaire(){
+	public function ajouterCommentaireAjax(){
 
 		$profil_id 	= $this->session->userdata('id');
 		$point_id	= $this->input->post('point_id', TRUE);

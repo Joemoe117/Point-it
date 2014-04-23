@@ -1,9 +1,11 @@
 <div class="container main">
 	<div class="col-md-7">
 		<h1>Timeline</h1>
+		<div id="affichage">OK</div>
 
 			<?php foreach ($points as $key => $value): ?>
 		<div class="point">
+
 
 			<div class="point_texte">
 				<img src="<?=$value->profil_image ?>" class="img-rounded image_point">
@@ -37,14 +39,39 @@
 						<?php endif ?>
 					<?php endforeach ?>
 				<?php endforeach ?>
-				<form method="post" role="form" action="<?php echo site_url("commentaire/ajouterCommentaire"); ?>">
-					<textarea name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
-					<input name="point_id" type="hidden" value="<?=$value->point_id?>">
-					<br>
-					<input class="btn btn-primary pull-right" value="Poster" type="submit">
-					<br><br>
-				</form>	
+				<textarea id="texte" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
+				<input id="point_id" name="point_id" type="hidden" value="<?=$value->point_id?>">
+				<br>
+				<input id="ajouterCommentaire<?=$value->point_id?>" onclick="test()" class="btn btn-primary pull-right" value="Poster" type="submit">
+				<br><br>
 			</div>
+
+			<script>
+
+				function test(){
+					var parent = $( "#ajouterCommentaire<?=$value->point_id?>" ).parent().get(0).tagName;
+					var donnee = {
+						texte : $( parent ).children( "#texte" ).val(),
+						point_id : $( parent ).children( "#point_id" ).val(),
+						ajax : '1'
+					};
+
+
+					if ($( parent ).children( "#texte" ).val().length != 0){
+						$.ajax({
+							url: "<?php echo site_url('ajax/ajouterCommentaireAjax'); ?>",
+							type: 'POST',
+							async : false,
+							data: donnee,
+							success: function(msg) {
+								$('#affichage').html(msg);
+								$( parent ).children( "#texte" ).val('');
+							}
+						});
+					}
+					
+				}
+			</script>
 
 
 		</div>
@@ -52,23 +79,14 @@
 
 
 
-		<script>
-		// Préparation d'un effet kikoo
-		$(function() {
-			$( "#button" ).click(function() {
-				var options = {};
-				$( "#test" ).show( "slide", options, 700 );
-				});
-			$( "#effect" ).hide();
-		});
-		</script>
+
 
 
 
 	</div>
 
 
-	<div class="col-md-4">
+	<div class="col-md-5">
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
 			<div class="panel-body">
@@ -96,7 +114,7 @@
 				  </div>
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Description</label>
-				    <textarea name="textarea" rows="7" cols="50">Allez là !</textarea>
+				    <textarea class="form-control" name="textarea" rows="3" cols="50">Allez là !</textarea>
 				  </div>
 				  <button id="test" type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
@@ -111,32 +129,5 @@
 		$("#test_ajout").prepend("<span class=\"point_texte\"> Baptiste a gagné un point Moustache </span> <br>");
 	  	$( "#test_ajout" ).slideDown("slow");
 	});
-
-
-	</script>
-
-
-	<input id="submit" type="button" value="ajax">
-	<div id="affichage">OK</div>
-
-	<script type="application/javascript">
-		$(document).ready(function() {
-			$('#submit').click(function() {
-				alert("lol");
-				$.ajax({
-					url: "<?php echo site_url('ajax/testAjax'); ?>",
-					type: 'POST',
-					async : false,
-					success: function(msg) {
-						alert("ok");
-						$('#affichage').html(msg);
-					}
-				});
-				alert("lol2");
-				return false;
-			});
-		});
-	</script>
-
 
 </div>
