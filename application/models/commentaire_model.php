@@ -46,7 +46,6 @@ class Commentaire_model extends CI_Model{
 	public function create( $id_point, $id_profil, $texte){
 		$this->db->set('point_id', $id_point);
 		$this->db->set('profil_id', $id_profil);
-		echo $texte;
 		$this->db->set('com_texte', $texte);
 		$this->db->insert('commentaires'); 
 	}

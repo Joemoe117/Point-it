@@ -64,8 +64,8 @@
 							async : false,
 							data: donnee,
 							success: function(msg) {
-								$('#affichage').html(msg);
 								$( parent ).children( "#texte" ).val('');
+								$( msg ).insertAfter( $(parent).find(".commentaire:last") );
 							}
 						});
 					}
