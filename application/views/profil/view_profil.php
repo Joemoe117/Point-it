@@ -50,12 +50,6 @@
 			</div>
 		</div>
 	<?php endforeach ?>
-
-
-	DEBUG <br>
-	<?php
-		print_r($points);
-	?>
 	</div>
 
 	<div class="col-md-6">

@@ -17,8 +17,7 @@ class Timeline extends CI_Controller {
 		$this->load->model('point_model');
 		$this->load->model('commentaire_model');
 
-		// Chargement header
-		$this->load->view('template/header.php');
+		
 	}
 
 
@@ -49,7 +48,10 @@ class Timeline extends CI_Controller {
 			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
 
+		$data['titre'] = "Timeline";
+
 		// chargement des vues
+		$this->load->view('template/header.php', $data);
 		$this->load->view('timeline/view_timeline.php', $data	);
 		$this->load->view('template/footer.php');
 	}

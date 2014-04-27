@@ -17,8 +17,6 @@ class Profil extends CI_Controller {
 		$this->load->model('point_model');
 		$this->load->model('commentaire_model');
 
-		// Chargement header
-		$this->load->view('template/header.php');
 	}
 
 
@@ -60,12 +58,15 @@ class Profil extends CI_Controller {
 		$data['points'] = $this->point_model->getLastTwentyOf($id);
 		$data['commentaires'] = $this->commentaire_model->getLastTwentyPointsOf($id);
 
-
 		// statistique
 		$data['nbPoint'] 		= $this->profil_model->getNbPoint($id);
 		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
 
+		// données du header
+		$data['titre'] = "profil de " . $data['profil'][0]->profil_nom;
+
 		// chargement des vues
+		$this->load->view('template/header.php', $data);
 		$this->load->view('profil/view_profil.php', $data);
 		$this->load->view('template/footer.php');
 	}

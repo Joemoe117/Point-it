@@ -10,7 +10,6 @@ class Login extends CI_Controller {
 		$this->load->model('profil_model');
 		$this->load->model('commentaire_model');
 		$this->load->model('point_model');
-
 	}
 
 
@@ -58,13 +57,16 @@ class Login extends CI_Controller {
 			}
 		}
 
-		// Affichage de la page
-		$this->load->view('template/header_logout.php');
-
+		// Récupération des statistiques général
 		$data["nb_profil"] 		= $this->profil_model->count();
 		$data["nb_point"] 		= $this->point_model->count(); 
 		$data["nb_commentaire"] = $this->commentaire_model->count();
 
+		// Initialisation du titre
+		$data['titre'] = "Connexion";
+
+		// Chargement des vues
+		$this->load->view('template/header_logout.php', $data);
 		$this->load->view('login/view_login.php', $data);
 		$this->load->view('template/footer.php');	
 	}
