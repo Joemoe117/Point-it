@@ -4,10 +4,10 @@ Point-it
 Le renouveau du Pointbook
 
 #Structure du projet
-/application : c'est ici qu'on intervient, et seulement dans les dossiers controllers, models et views
-/system : fichiers du frameword : ne pas modifier
-/assets : contient tous les fichiers de ressources utiles au projet ( css, images, javascript )
-/bdd : contient le modele et la base de données
+/application : c'est ici qu'on intervient, et seulement dans les dossiers controllers, models et views \n
+/system : fichiers du frameword : ne pas modifier \n
+/assets : contient tous les fichiers de ressources utiles au projet ( css, images, javascript ) \n
+/bdd : contient le modele et la base de données \n
 
 ##Framework PHP
 Point-!t utilise le framework Codeigniter pour gérer toute la partie PHP. il ne faut modifier que les fichiers non créée par le framework
