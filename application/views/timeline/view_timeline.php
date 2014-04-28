@@ -87,15 +87,19 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
 			<div class="panel-body">
-				<form role="form" >
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Personne</label>
-				    <select class="form-control">
-				    	<?php foreach ($form_profil as $value): ?>
-				    		<option> <?=$value->profil_nom?> </option>
-				    	<?php endforeach ?>
-					</select>
-				  </div>
+				<form role="form" method="post">
+
+					<div class="control-group">
+						<label for="multiple" class="control-label">Personne(s)</label>
+						<div class="controls">
+							<select id="select_nom" class="select2" multiple="multiple" style="width:400px;">
+								<?php foreach ($form_profil as $value): ?>
+									<option value="<?=$value->profil_id?>">  <?=$value->profil_nom?> </option>
+								<?php endforeach ?>
+							</select>
+						</div>
+					</div>
+
 				  <div class="form-group">
 				    <label for="exampleInputPassword1">Point</label>
 
@@ -105,6 +109,8 @@
 				    		<option> <?=$value->typept_nom?> </option>
 				    	<?php endforeach ?>
 					</select>
+
+
 
 
 
@@ -119,12 +125,8 @@
 		</div> 
 	</div>
 
-	
 	<script type="text/javascript">
-
-	$( "#test2" ).click(function(){
-		$("#test_ajout").prepend("<span class=\"point_texte\"> Baptiste a gagné un point Moustache </span> <br>");
-	  	$( "#test_ajout" ).slideDown("slow");
-	});
+		$("#select_nom").select2();
 	</script>
+
 </div>
