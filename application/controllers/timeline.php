@@ -58,14 +58,60 @@ class Timeline extends CI_Controller {
 
 
 	/**
-	*	@return  	ajoute un point a la BDD via une requete ajax ( on va essayer :D)
+	*	Permet de rajouter un point
+	*
 	*
 	*/
-	public function ajaxAjouterPoint(){
+	public function create(){
+
+		// Récupération des posts
+		$personnes 		= $this->input->post('personnes', true);
+		$point 			= $this->input->post('point', true);
+		$texte	 		= $this->input->post('texte_point', true);
+		$donneur 		= $this->session->userdata('id');
+
+		// TODO vérifier les données
+		// utilisser et écrire la fonction privée _checkFormulaireAjoutPoint
+	 	
+		$formOk = $this->_checkFormulaireAjoutPoint( $personnes, $point, $texte );
+
+
+		// Si le formulaire est rempli correctement
+		if ( $formOk == true ){
+			// On créér d'abord le point
+			$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
+
+			// On ajoute ensuite les différentes personnes dans la distribution
+			foreach ($personnes as $personne) {
+				$this->point_model->createRecoit( $point_id, $personne );
+			}
+
+			// "rafraichissement" de la page
+			redirect('/timeline', 'refresh');
+		} else {
+			// TODO afficher un message d'erreur
+			echo "Rempli bien le formulaire tocard";
+		}
+	}
 
 
 
-		echo "lol";
+
+
+
+
+	///////////////////////////////////////////////////////////////////////////
+	//							FONCTIONS PRIVEES 							 //
+	///////////////////////////////////////////////////////////////////////////
+
+	// TODO améliorer la vérification
+	public function _checkFormulaireAjoutPoint( $personnes, $point, $texte ){
+
+	 	if ( $personnes == null || $point == null || $texte == null ){
+	 		return false;
+	 	}
+	 	
+		return true;
 	}
 
 }

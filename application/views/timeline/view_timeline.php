@@ -87,12 +87,11 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
 			<div class="panel-body">
-				<form role="form" method="post">
-
+				<form role="form" method="post" action="<?php echo site_url("timeline/create"); ?>">
 					<div class="control-group">
 						<label for="multiple" class="control-label">Personne(s)</label>
 						<div class="controls">
-							<select id="select_nom" class="select2" multiple="multiple" style="width:400px;">
+							<select id="select_nom" class="select2" multiple name="personnes[]" style="width:400px;">
 								<?php foreach ($form_profil as $value): ?>
 									<option value="<?=$value->profil_id?>">  <?=$value->profil_nom?> </option>
 								<?php endforeach ?>
@@ -100,26 +99,20 @@
 						</div>
 					</div>
 
-				  <div class="form-group">
-				    <label for="exampleInputPassword1">Point</label>
+				  	<div class="form-group">
+				    <label>Point</label>
 
 				    <!-- Génération de la dropdown des points -->
-				    <select class="form-control">
+				    <select class="form-control" name="point">
 				    	<?php foreach ($form_point as $value): ?>
-				    		<option> <?=$value->typept_nom?> </option>
+				    		<option value="<?=$value->typept_id?>"> <?=$value->typept_nom?> </option>
 				    	<?php endforeach ?>
 					</select>
 
-
-
-
-
-				  </div>
-				 <div class="form-group">
-				    <label for="exampleInputEmail1">Description</label>
-				    <textarea placeholder="Allez là !" class="form-control" name="textarea" rows="3" cols="50"></textarea>
-				  </div>
-				  <button id="test" type="submit" class="btn btn-default pull-right">Prends-ça !</button>
+				    <label>Description</label>
+				    <textarea placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
+				  	</div>
+				  	<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
 			</div>
 		</div> 

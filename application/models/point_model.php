@@ -80,14 +80,31 @@ class Point_model extends CI_Model{
 	*	TODO
 	*
 	*/
-	/*
-	public function create( $typept_id, $profil_id_donne  ){
-		$this->db->set('typept_id', $name);
-		$this->db->set('profil_id_donne', $title);
-		$this->db->set('point_description', $status);
+	public function createPoint( $typept_id, $profil_id_donne, $texte ){
+		$this->db->set('typept_id', $typept_id);
+		$this->db->set('profil_id_donne', $profil_id_donne);
+		$this->db->set('point_description', $texte);
 		$this->db->insert('points');
+
+		// on renvoie l'id de la transaction
+		return $this->db->insert_id();
 	}
+
+
+
+
+
+	/**
+	*	@return  	
+	*	TODO
+	*
 	*/
+	public function createRecoit( $point_id, $profil_id ){
+		$this->db->set('point_id', $point_id);
+		$this->db->set('profil_id', $profil_id);
+		$this->db->insert('recoit');
+
+	}
 
 
 }
