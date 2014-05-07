@@ -25,14 +25,19 @@ class Commentaire extends CI_Controller {
 	*
 	*/
 	public function ajouterCommentaireAjax(){
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// Vérification du post
+			if (is_int($this->session->userdata('id')))
+				$profil_id = $this->session->userdata('id');
+			if (is_int($this->input->post('point_id')))
+				$point_id = $this->input->post('point_id');
+			if (is_string($this->input->post('commentaire')))
+				$texte = $this->input->post('commentaire');
 
-		$profil_id 	= $this->session->userdata('id');
-		$point_id	= $this->input->post('point_id', TRUE);
-		$texte 		= $this->input->post('commentaire', TRUE);
+			$res = $this->commentaire_model->create( $point_id, $profil_id, $texte);
 
-		$res = $this->commentaire_model->create( $point_id, $profil_id, $texte);
-
-		redirect('/timeline', 'location');
+			redirect('/timeline', 'location');
+		}
 	}
 
 
