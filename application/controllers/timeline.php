@@ -41,7 +41,7 @@ class Timeline extends CI_Controller {
 		$data['form_profil'] = $this->profil_model->getAll();
 			
 		/* Recupération des derniers points */
-		$data['points'] = $this->point_model->getLastTwenty();
+		$data['points'] = $this->point_model->getAllPoints();
 
 		/* Récupération des commentaires de chaque point */
 		foreach ($data['points'] as $key => $value) {
@@ -92,6 +92,23 @@ class Timeline extends CI_Controller {
 			// TODO afficher un message d'erreur
 			echo "Rempli bien le formulaire tocard";
 		}
+	}
+
+
+
+	public function test(){
+		$data['points'] = $this->point_model->getAllPoints();
+
+		/* Récupération des commentaires de chaque point */
+		foreach ($data['points'] as $key => $value) {
+			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+		}
+
+		$data['titre'] = "TEST";
+
+		$this->load->view('template/header.php', $data);
+		$this->load->view('timeline/view_timeline_test.php', $data	);
+		$this->load->view('template/footer.php');
 	}
 
 
