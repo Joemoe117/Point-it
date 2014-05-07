@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6{
 .point{
 	border: 1px solid lightgrey;
 	border-radius: 7px;
-	padding: 5px;
+	padding: 2px;
 	margin-top: 10px;
 }
 
@@ -80,8 +80,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .point_texte{
-	padding: 7px;
-	padding-bottom: 12px;
+	padding: 6px;
 	vertical-align: top;
 }
 
@@ -100,7 +99,6 @@ h1, h2, h3, h4, h5, h6{
 	background: rgb(235,235,235);
 	border: 1px solid lightgrey;
 	border-radius: 7px;
-	margin-top: 7px;
 	padding: 5px;
 }
 
@@ -156,10 +154,6 @@ h1, h2, h3, h4, h5, h6{
 	background: lightgrey;
 }
 
-
-.test{
-	margin: 5px; 
-}
 
 
 

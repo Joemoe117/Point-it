@@ -59,7 +59,7 @@
 						<form method="post" action="<?php echo site_url("commentaire/create"); ?>">
 							<div class="container-fluid" style="margin:0px; padding:0px;" >
 								<div class="row col-xs-10" style="margin:0px; padding:0px;" >
-								    <textarea name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="3"></textarea>
+								    <textarea name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
 								</div>
 								<div class="row col-xs-2" style="margin:0px; padding:0px;">
 								    <input class="btn btn-primary form-control pull-right" value="Poster" type="submit">
