@@ -35,7 +35,6 @@ class Login extends CI_Controller {
 			$res = $this->profil_model->checkLogin( $login, $password );
 
 			// Vérification du login, renvoie true si la connexion a réussie
-			var_dump($res);
 			if ( $res ) {
 
 				// Mise en place des sessions
@@ -53,7 +52,7 @@ class Login extends CI_Controller {
 			}
 			else { // TODO afficher le message d'erreur
 				$data['error'][] = "Votre mot de passe ou votre login est invalide";
-				echo $data['error'];
+				echo $data['error'][0];
 			}
 		}
 
@@ -88,6 +87,16 @@ class Login extends CI_Controller {
 	*/
 	public function _logout(){
 		
+	}
+
+
+	public function hashpwd( $password ){
+
+
+
+		$hashP = $this->password->create_hash($password);
+
+		echo $hashP;
 	}
 }
 

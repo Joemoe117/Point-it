@@ -41,23 +41,23 @@ class Profil_model extends CI_Model{
 	*/
 	public function checkLogin($login, $password){
 
-		$res = 	$this->db->select('*')
-					->from("profils")
-					->where('profil_nom',  $login)
-					->where('profil_pass', $password)
-					->count_all_results();
+		$this->db->select();
+		$this->db->where('profil_nom', $login);
+		$query = $this->db->get('profils');
+		$row = $query->row();
 
-		// si identification réussie
-		if ($res == 1) {
+
+		if (!empty($row) && $this->password->validate_password($password, $row->profil_pass)){
+			
 			return 	$this->db->select('*')
 					->from("profils")
 					->where('profil_nom',  $login)
-					->where('profil_pass', $password)
 					->get()
 					->result()[0];	// Envoie la première case du array pour éviter d'avoir un array en retour
-		} 
 
-		return false;
+		} else {
+			return null;
+		}
 	}
 
 
