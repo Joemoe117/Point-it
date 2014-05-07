@@ -1,9 +1,9 @@
 <div class="container main">
-	<div class="col-md-6">
+	<div class="col-md-7">
 
 	<?php foreach ($profil as $value): ?>
-		<img src="<?=$value->profil_image ?>" alt="..." class="img-circle" >
-		<h1 style="display:inline-block"><?=$value->profil_nom ?></h1>	<br>	
+		<img src="<?=$value->profil_image ?>" alt="..." class="img-circle"  width="200px" height="200px">
+		<h1 style="display:inline-block; vertical-align:bottom"><?=$value->profil_nom ?></h1>	<br>	
 	<?php endforeach ?>
 
 	<?php foreach ($points as $key => $value): ?>
@@ -52,7 +52,7 @@
 	<?php endforeach ?>
 	</div>
 
-	<div class="col-md-6">
+	<div class="col-md-5">
 		<h2>Statistiques</h2>
 		<h3>Fonction en cours de développement</h3>
 		<h5>Nombre de points :</h5>

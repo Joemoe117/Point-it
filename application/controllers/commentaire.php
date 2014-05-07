@@ -32,7 +32,7 @@ class Commentaire extends CI_Controller {
 			$texte = $this->input->post('commentaire');
 
 			// Vérification du post
-			if (isset($profil_id) AND is_int($profil_id)))
+			if (isset($profil_id) AND is_int($profil_id))
 				$data['errors'][] = "Profil invalide";
 			if (isset($point_id) AND is_int($point_id))
 				$data['errors'][] = "Point invalide";

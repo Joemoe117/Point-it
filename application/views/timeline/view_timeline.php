@@ -10,7 +10,7 @@
 
 					<!-- Affichage des avatars -->
 					<?php foreach ($point->recoit as $pointInfo): ?>
-						<img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point">
+						<img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" >
 					<?php endforeach ?>
 
 					<?php $i = 0; ?>
@@ -96,7 +96,7 @@
 				    <!-- Génération de la dropdown des points -->
 				    <select class="form-control" name="point">
 				    	<?php foreach ($form_point as $value): ?>
-				    		<option value="<?=$value->typept_id?>"> <?=$value->typept_nom?> </option>
+				    		<option value="<?=$value->typept_id?>">Point <?=$value->typept_nom?> </option>
 				    	<?php endforeach ?>
 					</select>
 
