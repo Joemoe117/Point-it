@@ -52,7 +52,7 @@ class Login extends CI_Controller {
 				redirect('/timeline', 'refresh');
 			}
 			else { // TODO afficher le message d'erreur
-				$data['error'] = "Votre mot de passe ou votre login est invalide";
+				$data['error'][] = "Votre mot de passe ou votre login est invalide";
 				echo $data['error'];
 			}
 		}
