@@ -9,6 +9,7 @@
 
 		<div class="form_connexion">
 			<h2 class="blanc">Formulaire de connexion</h2>
+			<?php echo validation_errors(); ?>
 			<form method="post" role="form" action="<?php echo site_url("login"); ?>">
 				<div class="form-group">
 				<label class="blanc" for="exampleInputEmail1">Login</label>

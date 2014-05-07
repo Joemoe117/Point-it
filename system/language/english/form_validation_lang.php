@@ -1,6 +1,6 @@
 <?php
 
-$lang['required']			= "The %s field is required.";
+$lang['required']			= "<div class=\"alert alert-danger\">Le champ %s est obligatoire.</div>";
 $lang['isset']				= "The %s field must have a value.";
 $lang['valid_email']		= "The %s field must contain a valid email address.";
 $lang['valid_emails']		= "The %s field must contain all valid email addresses.";
@@ -23,6 +23,7 @@ $lang['is_natural_no_zero']	= "The %s field must contain a number greater than z
 $lang['decimal']			= "The %s field must contain a decimal number.";
 $lang['less_than']			= "The %s field must contain a number less than %s.";
 $lang['greater_than']		= "The %s field must contain a number greater than %s.";
+$lang['form_incorrect']		= "<div class=\"alert alert-danger\">Le formulaire n'est pas rempli correctement</div>";
 
 
 /* End of file form_validation_lang.php */

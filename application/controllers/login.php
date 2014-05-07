@@ -32,6 +32,22 @@ class Login extends CI_Controller {
 			$login 		= $this->input->post('login');
 			$password 	= $this->input->post('password');
 
+
+
+			// Mise en place des règles de validation
+			$this->form_validation->set_rules('login', 'Login', 'required');
+			$this->form_validation->set_rules('password', 'Password', 'required');
+
+
+			// Si validation ok
+			if ($this->form_validation->run() == TRUE)	{
+				$res = $this->profil_model->checkLogin( $login, $password );
+			} else {
+				//$this->load->view('formsuccess');
+			}
+
+
+
 			$res = $this->profil_model->checkLogin( $login, $password );
 
 			// Vérification du login, renvoie true si la connexion a réussie
