@@ -29,8 +29,8 @@ class Login extends CI_Controller {
 		// Si le formulaire a été envoyé
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Récupération des posts
-			$login 		= $this->input->post('login');
-			$password 	= $this->input->post('password');
+			$login 		= htmlentities($this->input->post('login'));
+			$password 	= htmlentities($this->input->post('password'));
 
 			$res = $this->profil_model->checkLogin( $login, $password );
 
