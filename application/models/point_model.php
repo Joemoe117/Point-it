@@ -27,13 +27,13 @@ class Point_model extends CI_Model{
 		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, Donne.profil_nom AS profil_nom_donne')
 						->from('Points NATURAL JOIN Types_Point')
 						->join('Profils AS Donne', 'Donne.profil_id = profil_id_donne', 'inner')
-						->order_by('point_id')
+						->order_by('point_id', 'desc')
 						->get()
 						->result();
 
 		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points
 		foreach ($allPoints as $point) {
-			$point->recoit = $this->db->select('profil_id, profil_nom')
+			$point->recoit = $this->db->select('profil_id, profil_nom, profil_image')
 											->from('Recoit NATURAL JOIN Profils')
 											->where('point_id', $point->point_id)
 											->get()
@@ -53,7 +53,7 @@ class Point_model extends CI_Model{
 	public function getLastTwenty(){
 		return $this->db->select()
 					->from("points NATURAL JOIN recoit NATURAL JOIN types_point NATURAL JOIN profils")
-					->order_by("point_id")
+					->order_by("point_id", 'desc')
 					->get()
 					->result();
 	}
@@ -105,6 +105,5 @@ class Point_model extends CI_Model{
 		$this->db->insert('recoit');
 
 	}
-
 
 }
