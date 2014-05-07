@@ -67,7 +67,7 @@ class Timeline extends CI_Controller {
 		// Récupération des posts
 		$personnes 		= $this->input->post('personnes', true);
 		$point 			= $this->input->post('point', true);
-		$texte	 		= $this->input->post('texte_point', true);
+		$texte	 		= nl2br($this->input->post('texte_point', true));
 		$donneur 		= $this->session->userdata('id');
 
 		// TODO vérifier les données

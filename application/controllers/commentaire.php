@@ -29,7 +29,7 @@ class Commentaire extends CI_Controller {
 			
 			$profil_id = $this->session->userdata('id');
 			$point_id = $this->input->post('point_id');
-			$texte = $this->input->post('commentaire');
+			$texte = nl2br($this->input->post('commentaire'));
 
 			// Vérification du post
 			if (isset($profil_id) AND is_int($profil_id))
