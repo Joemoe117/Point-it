@@ -55,8 +55,12 @@ class Profil extends CI_Controller {
 
 		// général
 		$data['profil'] = $this->profil_model->getOne($id);
-		$data['points'] = $this->point_model->getLastTwentyOf($id);
-		$data['commentaires'] = $this->commentaire_model->getLastTwentyPointsOf($id);
+		$data['points'] = $this->point_model->getAllPointsOf($id);
+
+		/* Récupération des commentaires de chaque point */
+		foreach ($data['points'] as $value) {
+			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+		}
 
 		// statistique
 		$data['nbPoint'] 		= $this->profil_model->getNbPoint($id);

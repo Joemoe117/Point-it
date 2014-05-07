@@ -57,9 +57,7 @@ class Commentaire extends CI_Controller {
 		$texte 		= $this->input->post('commentaire', TRUE);
 
 		// TODO vérifier les champs
-
 		echo now();
-
 		$res = $this->commentaire_model->create( $point_id, $profil_id, $texte);
 
 		redirect('/timeline', 'location');

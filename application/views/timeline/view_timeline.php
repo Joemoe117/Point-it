@@ -5,9 +5,6 @@
 			<div class="point">
 				<div class="point_texte">
 
-
-
-
 					<!-- Affichage des avatars -->
 					<?php foreach ($point->recoit as $pointInfo): ?>
 						<img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" >
@@ -82,7 +79,7 @@
 					<div class="control-group">
 						<label for="multiple" class="control-label">Personne(s)</label>
 						<div class="controls">
-							<select id="select_nom" class="select2" multiple name="personnes[]" style="width:400px;">
+							<select id="select_nom" class="select2" multiple name="personnes[]" style="width:100%;">
 								<?php foreach ($form_profil as $value): ?>
 									<option value="<?=$value->profil_id?>">  <?=$value->profil_nom?> </option>
 								<?php endforeach ?>

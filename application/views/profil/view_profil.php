@@ -6,50 +6,73 @@
 		<h1 style="display:inline-block; vertical-align:bottom"><?=$value->profil_nom ?></h1>	<br>	
 	<?php endforeach ?>
 
-	<?php foreach ($points as $key => $value): ?>
-		<div class="point">
+	<?php foreach ($points as $point): ?>
+			<div class="point">
+				<div class="point_texte">
 
-			<div class="point_texte">
-				<img src="<?=$value->profil_image ?>" alt="test" class="img-rounded image_point">
-				<a href=""><?=$value->profil_nom?></a>
-					a gagné un <?=$value->typept_nom?>
-				<span class="point_date pull-right">
-					<?php
-						echo "Le ".date("d/m/y à H:i", mysql_to_unix($value->point_date_crea));
-					?>
-				</span>
-			</div>
-			
-			<div class="point_description"><?=$value->point_description?></div>
+					<!-- Affichage des avatars -->
+					<?php foreach ($point->recoit as $pointInfo): ?>
+						<img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" >
+					<?php endforeach ?>
 
-			<h5><span class="glyphicon glyphicon-comment"></span>  Commentaires</h5>
+					<?php $i = 0; ?>
+					<!-- Affichage des noms -->
+					<?php foreach ($point->recoit as $pointInfo): ?>
+						<a class="name" href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><?=$pointInfo->profil_nom?></a>
+						<?php if ( $i < (count($point->recoit)-1) && $i !=(count($point->recoit)-1) ): ?>
+							et
+						<?php endif ?>
+						<?php 
+							// améliorer
+							$i++;
+						?>
+					<?php endforeach ?>
 
-			<div class="zone_commentaire">
-				<?php foreach ($commentaires as $keyC => $valueCom): ?>
-					<?php if ($valueCom->point_id == $value->point_id): ?>
-						<div class="commentaire">
-							<img src="<?=$valueCom->profil_image ?>" alt="test" class="img-rounded image_commentaire">
-							<a href="<?php echo site_url("profil/get/"); echo "/".$valueCom->profil_id; ?>"><?=$valueCom->profil_nom?></a>
-							<span class="point_date pull-right">
-							<?php
-								echo "Le ".date("d/m/y à H:i", mysql_to_unix($valueCom->com_date));
-							?>
-							</span>	
-							<br>
-							<?=$valueCom->com_texte?>
-						</div>
+
+					<?php if ( (count($point->recoit) == 1 )): ?>
+						a
+					<?php else: ?>
+						ont
 					<?php endif ?>
-				<?php endforeach ?>
-				<form method="post" role="form" action="<?php echo site_url("commentaire/ajouterCommentaire"); ?>">
-					<textarea name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
-					<input name="point_id" type="hidden" value="<?=$value->point_id?>">
-					<br>
-					<input class="btn btn-primary pull-right" value="Poster" type="submit">
-					<br><br>
-				</form>	
+					gagné un Point <?=$point->typept_nom?>
+					<span class="point_date pull-right">
+						<?php
+							echo "Le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea));
+						?>
+					</span>
+
+					<div class="point_description"><?=$point->point_description?></div>
+
+
+					<h5><span class="glyphicon glyphicon-comment"></span>  Commentaires</h5>
+					<div class="zone_commentaire">
+						<?php foreach ($commentaires as $commentaire): ?>
+							<?php foreach ($commentaire as $key => $com): ?>
+								<?php if ($com->point_id == $point->point_id): ?>
+									<div class="commentaire">
+										<img src="<?=$com->profil_image ?>" alt="test" class="img-rounded image_commentaire">
+										<a href="<?php echo site_url("profil/get/"); echo "/".$com->profil_id; ?>"><?=$com->profil_nom?></a>
+										<span class="point_date pull-right">
+											<?php echo "Le ".date("d/m/y à H:i", mysql_to_unix($com->com_date)); ?>
+										</span>	
+										<br>
+										<?=$com->com_texte?>
+									</div>
+								<?php endif ?>
+							<?php endforeach ?>
+						<?php endforeach ?>
+						<form method="post" action="<?php echo site_url("commentaire/create"); ?>">
+							<textarea id="texte" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
+							<input id="point_id" name="point_id" type="hidden" value="<?=$point->point_id?>">
+							<input class="btn btn-primary pull-right test" value="Poster" type="submit">
+							<br><br>
+						</form>
+					</div>
+
+				</div>
 			</div>
-		</div>
-	<?php endforeach ?>
+		<?php endforeach ?>
+
 	</div>
 
 	<div class="col-md-5">
