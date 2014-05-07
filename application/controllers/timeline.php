@@ -44,7 +44,7 @@ class Timeline extends CI_Controller {
 		$data['points'] = $this->point_model->getAllPoints();
 
 		/* Récupération des commentaires de chaque point */
-		foreach ($data['points'] as $key => $value) {
+		foreach ($data['points'] as $value) {
 			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
 
@@ -93,28 +93,6 @@ class Timeline extends CI_Controller {
 			echo "Rempli bien le formulaire tocard";
 		}
 	}
-
-
-
-	public function test(){
-		$data['points'] = $this->point_model->getAllPoints();
-
-		/* Récupération des commentaires de chaque point */
-		foreach ($data['points'] as $key => $value) {
-			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
-		}
-
-		$data['titre'] = "TEST";
-
-		$this->load->view('template/header.php', $data);
-		$this->load->view('timeline/view_timeline_test.php', $data	);
-		$this->load->view('template/footer.php');
-	}
-
-
-
-
-
 
 
 	///////////////////////////////////////////////////////////////////////////

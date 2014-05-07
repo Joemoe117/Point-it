@@ -51,9 +51,7 @@
 										<img src="<?=$com->profil_image ?>" alt="test" class="img-rounded image_commentaire">
 										<a href="<?php echo site_url("profil/get/"); echo "/".$com->profil_id; ?>"><?=$com->profil_nom?></a>
 										<span class="point_date pull-right">
-										<?php
-											echo "Le ".date("d/m/y à H:i", mysql_to_unix($com->com_date));
-										?>
+											<?php echo "Le ".date("d/m/y à H:i", mysql_to_unix($com->com_date)); ?>
 										</span>	
 										<br>
 										<?=$com->com_texte?>
@@ -61,10 +59,12 @@
 								<?php endif ?>
 							<?php endforeach ?>
 						<?php endforeach ?>
-						<textarea id="texte" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
-						<input id="point_id" name="point_id" type="hidden" value="<?=$point->point_id?>">
-						<input id="ajouterCommentaire<?=$point->point_id?>" onclick="test()" class="btn btn-primary pull-right test" value="Poster" type="submit">
-						<br><br>
+						<form method="post" action="<?php echo site_url("commentaire/create"); ?>">
+							<textarea id="texte" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
+							<input id="point_id" name="point_id" type="hidden" value="<?=$point->point_id?>">
+							<input class="btn btn-primary pull-right test" value="Poster" type="submit">
+							<br><br>
+						</form>
 					</div>
 
 				</div>

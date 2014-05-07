@@ -44,10 +44,17 @@ class Commentaire_model extends CI_Model{
 	*
 	*/
 	public function create( $id_point, $id_profil, $texte){
+		// On insere le commentaire
 		$this->db->set('point_id', $id_point);
 		$this->db->set('profil_id', $id_profil);
 		$this->db->set('com_texte', $texte);
 		$this->db->insert('commentaires'); 
+
+
+		// on met a jour le dernier evenement du point
+		$this->db->set('point_date_actualite', date('Y-m-d H:i:s', now()) );
+		$this->db->where('point_id', $id_point);
+		$this->db->update('points');
 	}
 
 }

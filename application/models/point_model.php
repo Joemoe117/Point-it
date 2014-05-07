@@ -27,7 +27,7 @@ class Point_model extends CI_Model{
 		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, Donne.profil_nom AS profil_nom_donne')
 						->from('Points NATURAL JOIN Types_Point')
 						->join('Profils AS Donne', 'Donne.profil_id = profil_id_donne', 'inner')
-						->order_by('point_id', 'desc')
+						->order_by('point_date_actualite', 'desc')
 						->get()
 						->result();
 

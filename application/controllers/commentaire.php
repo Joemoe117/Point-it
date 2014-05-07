@@ -48,6 +48,24 @@ class Commentaire extends CI_Controller {
 	}
 
 
+
+
+
+	public function create(){
+		$profil_id 	= $this->session->userdata('id');
+		$point_id	= $this->input->post('point_id', TRUE);
+		$texte 		= $this->input->post('commentaire', TRUE);
+
+		// TODO vérifier les champs
+
+		echo now();
+
+		$res = $this->commentaire_model->create( $point_id, $profil_id, $texte);
+
+		redirect('/timeline', 'location');
+	}
+
+
 }
 
 /* End of file welcome.php */

@@ -2,10 +2,10 @@
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Dim 20 Avril 2014 à 22:18
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
+-- Host: localhost
+-- Generation Time: May 07, 2014 at 08:39 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `point-it`
+-- Database: `point-it`
 --
 CREATE DATABASE IF NOT EXISTS `point-it` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
 USE `point-it`;
@@ -25,7 +25,7 @@ USE `point-it`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `commentaires`
+-- Table structure for table `commentaires`
 --
 
 CREATE TABLE IF NOT EXISTS `commentaires` (
@@ -37,10 +37,10 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   PRIMARY KEY (`com_id`),
   KEY `point_id` (`point_id`),
   KEY `profil_id` (`profil_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=25 ;
 
 --
--- Contenu de la table `commentaires`
+-- Dumping data for table `commentaires`
 --
 
 INSERT INTO `commentaires` (`com_id`, `point_id`, `profil_id`, `com_texte`, `com_date`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `commentaires` (`com_id`, `point_id`, `profil_id`, `com_texte`, `com
 -- --------------------------------------------------------
 
 --
--- Structure de la table `points`
+-- Table structure for table `points`
 --
 
 CREATE TABLE IF NOT EXISTS `points` (
@@ -63,25 +63,26 @@ CREATE TABLE IF NOT EXISTS `points` (
   `point_description` text COLLATE utf8_bin NOT NULL,
   `point_date_crea` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `point_date_evenement` timestamp NULL DEFAULT NULL,
+  `point_date_actualite` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`point_id`),
   KEY `typept_id` (`typept_id`),
   KEY `profil_id_donne` (`profil_id_donne`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `points`
+-- Dumping data for table `points`
 --
 
-INSERT INTO `points` (`point_id`, `typept_id`, `profil_id_donne`, `point_description`, `point_date_crea`, `point_date_evenement`) VALUES
-(1, 4, 1, 'Se perdre en campagne totalement raisin et reprendre conscience dans un champ de poneys.', '2014-04-17 19:23:54', '2014-03-19 23:00:00'),
-(2, 1, 1, 'A fait de la soupe à la bière et a kiffé alors que c''était crade.', '2013-01-16 23:00:00', NULL),
-(3, 2, 3, 'Ne vient pas en soirée parce qu''il a déjà but il y a deux semaines', '2014-04-17 19:33:14', '2014-04-17 19:33:14'),
-(4, 1, 2, 'Ont fait des choses.', '2014-04-17 19:35:32', NULL);
+INSERT INTO `points` (`point_id`, `typept_id`, `profil_id_donne`, `point_description`, `point_date_crea`, `point_date_evenement`, `point_date_actualite`) VALUES
+(1, 4, 1, 'Se perdre en campagne totalement raisin et reprendre conscience dans un champ de poneys.', '2014-05-07 20:34:29', '2014-03-19 23:00:00', '2014-05-07 18:34:29'),
+(2, 1, 1, 'A fait de la soupe à la bière et a kiffé alors que c''était crade.', '2013-01-16 23:00:00', NULL, '2014-05-07 20:00:21'),
+(3, 2, 3, 'Ne vient pas en soirée parce qu''il a déjà but il y a deux semaines', '2014-05-07 20:36:48', '2014-04-17 19:33:14', '2014-05-05 18:35:21'),
+(4, 1, 2, 'Ont fait des choses.', '2014-05-07 20:36:44', NULL, '2014-05-06 18:34:06');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `profils`
+-- Table structure for table `profils`
 --
 
 CREATE TABLE IF NOT EXISTS `profils` (
@@ -93,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `profils` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
 
 --
--- Contenu de la table `profils`
+-- Dumping data for table `profils`
 --
 
 INSERT INTO `profils` (`profil_id`, `profil_nom`, `profil_pass`, `profil_image`) VALUES
@@ -107,7 +108,7 @@ INSERT INTO `profils` (`profil_id`, `profil_nom`, `profil_pass`, `profil_image`)
 -- --------------------------------------------------------
 
 --
--- Structure de la table `recoit`
+-- Table structure for table `recoit`
 --
 
 CREATE TABLE IF NOT EXISTS `recoit` (
@@ -118,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `recoit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Contenu de la table `recoit`
+-- Dumping data for table `recoit`
 --
 
 INSERT INTO `recoit` (`point_id`, `profil_id`) VALUES
@@ -131,7 +132,7 @@ INSERT INTO `recoit` (`point_id`, `profil_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `types_point`
+-- Table structure for table `types_point`
 --
 
 CREATE TABLE IF NOT EXISTS `types_point` (
@@ -143,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `types_point` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `types_point`
+-- Dumping data for table `types_point`
 --
 
 INSERT INTO `types_point` (`typept_id`, `typept_nom`, `typept_description`, `typept_image`) VALUES
@@ -153,25 +154,25 @@ INSERT INTO `types_point` (`typept_id`, `typept_nom`, `typept_description`, `typ
 (4, 'Moustache', 'Parce que c''est classe !', NULL);
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `commentaires`
+-- Constraints for table `commentaires`
 --
 ALTER TABLE `commentaires`
   ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`point_id`) REFERENCES `points` (`point_id`),
   ADD CONSTRAINT `commentaires_ibfk_2` FOREIGN KEY (`profil_id`) REFERENCES `profils` (`profil_id`);
 
 --
--- Contraintes pour la table `points`
+-- Constraints for table `points`
 --
 ALTER TABLE `points`
   ADD CONSTRAINT `points_ibfk_1` FOREIGN KEY (`typept_id`) REFERENCES `types_point` (`typept_id`),
   ADD CONSTRAINT `points_ibfk_2` FOREIGN KEY (`profil_id_donne`) REFERENCES `profils` (`profil_id`);
 
 --
--- Contraintes pour la table `recoit`
+-- Constraints for table `recoit`
 --
 ALTER TABLE `recoit`
   ADD CONSTRAINT `recoit_ibfk_1` FOREIGN KEY (`point_id`) REFERENCES `points` (`point_id`),
