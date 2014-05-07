@@ -8,7 +8,7 @@
         <meta name="author" content="">
         <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-        <title>Point-it / <?=$titre?></title>
+        <title><?=$titre?></title>
 
         <!-- Bootstrap core CSS -->
         <link href=" <?php echo base_url("/assets/css/bootstrap.min.css");  ?>    " rel="stylesheet">

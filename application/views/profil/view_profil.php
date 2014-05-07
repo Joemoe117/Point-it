@@ -5,6 +5,7 @@
 		<img src="<?=$value->profil_image ?>" alt="..." class="img-circle"  width="200px" height="200px">
 		<h1 style="display:inline-block; vertical-align:bottom"><?=$value->profil_nom ?></h1>	<br>	
 	<?php endforeach ?>
+	<div class="separateur"></div>
 
 	<?php foreach ($points as $point): ?>
 			<div class="point">

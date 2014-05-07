@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6{
 .point{
 	border: 1px solid lightgrey;
 	border-radius: 7px;
-	padding: 7px;
+	padding: 5px;
 	margin-top: 10px;
 }
 
@@ -74,13 +74,13 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .point_date{
+	font-size: 0.7em;
 	text-align: right;
 	color: grey;
 }
 
 .point_texte{
-	border-bottom: 1px solid lightgrey;
-	padding: 9px;
+	padding: 7px;
 	padding-bottom: 12px;
 	vertical-align: top;
 }
@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .commentaire{
-	margin: 6px;
+	margin: 3px;
 	vertical-align: top;
 }
 
@@ -148,6 +148,13 @@ h1, h2, h3, h4, h5, h6{
 
 
 
+
+.separateur{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 3px;
+	background: lightgrey;
+}
 
 
 .test{

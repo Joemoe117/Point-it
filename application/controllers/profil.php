@@ -67,7 +67,7 @@ class Profil extends CI_Controller {
 		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
 
 		// données du header
-		$data['titre'] = "profil de " . $data['profil'][0]->profil_nom;
+		$data['titre'] = "Profil de " . $data['profil'][0]->profil_nom;
 
 		// chargement des vues
 		$this->load->view('template/header.php', $data);
