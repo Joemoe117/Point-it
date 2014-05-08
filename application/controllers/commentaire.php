@@ -27,16 +27,16 @@ class Commentaire extends CI_Controller {
 	public function ajouterCommentaireAjax(){
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			
-			$profil_id = $this->session->userdata('id');
-			$point_id = $this->input->post('point_id');
+			$profil_id = (int)$this->session->userdata('id');
+			$point_id = (int)$this->input->post('point_id');
 			$texte = nl2br($this->input->post('commentaire'));
 
 			// Vérification du post
-			if (isset($profil_id) AND is_int($profil_id))
+			if (!isset($profil_id) OR !is_int($profil_id))
 				$data['errors'][] = "Profil invalide";
-			if (isset($point_id) AND is_int($point_id))
+			if (!isset($point_id) OR !is_int($point_id))
 				$data['errors'][] = "Point invalide";
-			if (isset($texte) AND is_string($texte))
+			if (!isset($texte) OR !is_string($texte))
 				$data['errors'][] = "Commentaire invalide";
 
 			// Si pas d'erreur, créer le commentaire
@@ -48,23 +48,33 @@ class Commentaire extends CI_Controller {
 	}
 
 
+	public function create() {
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			
+			$profil_id = (int)$this->session->userdata('id');
+			$point_id = (int)$this->input->post('point_id');
+			$texte = nl2br($this->input->post('commentaire'));
 
+			// Vérification du post
+			if (!isset($profil_id) OR !is_int($profil_id))
+				$data['errors'][] = "Profil invalide";
+			if (!isset($point_id) OR !is_int($point_id))
+				$data['errors'][] = "Point invalide";
+			if (!isset($texte) OR !is_string($texte))
+				$data['errors'][] = "Commentaire invalide";
 
+			// Si pas d'erreur, créer le commentaire
+			if (!isset($data['errors'])) {
+				echo now();
+				$res = $this->commentaire_model->create( $point_id, $profil_id, $texte);
+			}
+			else {
+				foreach ($data['errors'] as $error) {
+					echo $error;
+				}
+			}
 
-	public function create(){
-		$profil_id 	= $this->session->userdata('id');
-		$point_id	= $this->input->post('point_id', TRUE);
-		$texte 		= $this->input->post('commentaire', TRUE);
-
-		// TODO vérifier les champs
-		echo now();
-		$res = $this->commentaire_model->create( $point_id, $profil_id, $texte);
-
-		redirect('/timeline', 'location');
+			redirect('/timeline', 'location');
+		}
 	}
-
-
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

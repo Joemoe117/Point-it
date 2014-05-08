@@ -32,8 +32,6 @@ class Login extends CI_Controller {
 			$login 		= $this->input->post('login');
 			$password 	= $this->input->post('password');
 
-
-
 			// Mise en place des règles de validation
 			$this->form_validation->set_rules('login', 'Login', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
@@ -54,7 +52,7 @@ class Login extends CI_Controller {
 			if ( $res ) {
 
 				// Mise en place des sessions
-				$this->session->set_userdata('id', $res->profil_id);
+				$this->session->set_userdata('id', (int)$res->profil_id);
 				$this->session->set_userdata('login', $res->profil_nom);
 				$this->session->set_userdata('image', $res->profil_image);
 
@@ -115,6 +113,3 @@ class Login extends CI_Controller {
 		echo $hashP;
 	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

@@ -10,4 +10,12 @@ class Tests extends CI_Controller {
 		echo "</pre>";
 	}
 
+	public function verif_form() {
+		$string = "Salut les loulous";
+		$int = "3";
+
+		var_dump(intval($string));
+		var_dump(intval($int));
+	}
+
 }

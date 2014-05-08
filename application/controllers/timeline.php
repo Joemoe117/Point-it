@@ -63,35 +63,53 @@ class Timeline extends CI_Controller {
 	*
 	*/
 	public function create(){
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// Récupération des posts
+			$personnes 		= (int)$this->input->post('personnes');
+			$point 			= (int)$this->input->post('point');
+			$texte	 		= nl2br($this->input->post('texte_point'));
+			$donneur 		= (int)$this->session->userdata('id');
 
-		// Récupération des posts
-		$personnes 		= $this->input->post('personnes', true);
-		$point 			= $this->input->post('point', true);
-		$texte	 		= nl2br($this->input->post('texte_point', true));
-		$donneur 		= $this->session->userdata('id');
+			// Vérification des Posts
+			if (isset($personnes) AND !empty($personnes)) {
+				foreach ($personnes as $personne) {
+					if (!is_int($personne)) {
+						$data['errors'][] = "Personnes invalide";
+						break;
+					}
+				}				
+			}
+			else
+				$data['errors'][] = "Personnes invalide";
 
-		// TODO vérifier les données
-		// utilisser et écrire la fonction privée _checkFormulaireAjoutPoint
-	 	
-		$formOk = $this->_checkFormulaireAjoutPoint( $personnes, $point, $texte );
+			if (!isset($point) OR !is_int($point))
+				$data['errors'][] = "Point invalide";
+			if (!isset($texte) OR !is_string($texte))
+				$data['errors'][] = "Texte invalide";
+			if (!isset($donneur) OR !is_int($donneur))
+				$data['errors'][] = "Donneur invalide";
 
 
-		// Si le formulaire est rempli correctement
-		if ( $formOk == true ){
-			// On créér d'abord le point
-			$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
+			// Si le formulaire est rempli correctement
+			if (!isset($data['errors'])) {
+				// On créér d'abord le point
+				$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
 
-			// On ajoute ensuite les différentes personnes dans la distribution
-			foreach ($personnes as $personne) {
-				$this->point_model->createRecoit( $point_id, $personne );
+				// On ajoute ensuite les différentes personnes dans la distribution
+				foreach ($personnes as $personne) {
+					$this->point_model->createRecoit( $point_id, $personne );
+				}
+			}
+			else {
+				foreach ($data['errors'] as $error) {
+					echo $error;
+				}
 			}
 
 			// "rafraichissement" de la page
-			redirect('/timeline', 'refresh');
-		} else {
-			// TODO afficher un message d'erreur
-			echo "Rempli bien le formulaire tocard";
-		}
+			// redirect('/timeline', 'refresh');
+			
+		}			
 	}
 
 
@@ -110,6 +128,3 @@ class Timeline extends CI_Controller {
 	}
 
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
