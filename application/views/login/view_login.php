@@ -16,9 +16,12 @@
 				<input name="login" type="text" class="form-control" id="exampleInputEmail1" placeholder="Entrer votre Login">
 				</div>
 				<div class="form-group">
-				<label class="blanc" for="exampleInputPassword1">Mot de passe</label>
-				<input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Entrer votre mot de passe">
+					<label class="blanc" for="exampleInputPassword1">Mot de passe</label>
+					<input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Entrer votre mot de passe">
 				</div>
+				<?php if (isset($error) ): ?>
+					<div class="alert alert-danger"><?=$error?></div>
+				<?php endif ?>
 				<button type="submit" class="btn btn-default pull-right">Connexion</button>
 				<br>
 			</form>
