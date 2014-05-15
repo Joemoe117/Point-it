@@ -54,7 +54,7 @@ class Profil extends CI_Controller {
 	public function get($id){
 
 		// check si l'id existe bien dans la BDD
-		if ($id==0){
+		if ( !$this->profil_model->exist($id) ){
 			show_404('page');
 		}
 

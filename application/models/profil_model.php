@@ -81,13 +81,26 @@ class Profil_model extends CI_Model{
 		*
 		*/
 		public function getNbCommentaire($id){
-				return 	$this->db->select('*')
-						->from("commentaires")
-						->where('profil_id',  $id)
-						->count_all_results();
+			return 	$this->db->select('*')
+					->from("commentaires")
+					->where('profil_id',  $id)
+					->count_all_results();
 		}
 
 
+		public function exist($id=0){
+			$nb = $this->db->from("profils")
+					->where('profil_id',  $id)
+					->count_all_results();
 
+			echo $nb;
+			echo $id;
+
+			if ( $nb == 0 || $id == 0 ){
+				return false;
+			} else {
+				return true;
+			}
+		}
 
 }
