@@ -93,9 +93,6 @@ class Profil_model extends CI_Model{
 					->where('profil_id',  $id)
 					->count_all_results();
 
-			echo $nb;
-			echo $id;
-
 			if ( $nb == 0 || $id == 0 ){
 				return false;
 			} else {
