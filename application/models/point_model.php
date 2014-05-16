@@ -132,4 +132,17 @@ class Point_model extends CI_Model{
 
 	}
 
+
+	public function exist($id=0){
+			$nb = $this->db->from("types_point")
+					->where('typept_id',  $id)
+					->count_all_results();
+
+			if ( $nb == 0 || $id == 0 ){
+				return false;
+			} else {
+				return true;
+			}
+		}
+
 }

@@ -71,13 +71,18 @@ class Timeline extends CI_Controller {
 		$donneur 		= $this->session->userdata('id');
 
 		// TODO vérifier les données
-		// utilisser et écrire la fonction privée _checkFormulaireAjoutPoint
-	 	
+		// utiliser et écrire la fonction privée _checkFormulaireAjoutPoint
 		$formOk = $this->_checkFormulaireAjoutPoint( $personnes, $point, $texte );
 
+		
 
 		// Si le formulaire est rempli correctement
 		if ( $formOk == true ){
+
+			// Vérification dans le modèle que les personnes existent bien
+			if ( $this->idExistInModel( $personnes, $point) ) {
+				show_404('page');
+			}
 			// On créér d'abord le point
 			$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
 
@@ -90,7 +95,7 @@ class Timeline extends CI_Controller {
 			redirect('/timeline', 'refresh');
 		} else {
 			// TODO afficher un message d'erreur
-			echo "Rempli bien le formulaire tocard";
+			show_404('page');
 		}
 	}
 
@@ -106,6 +111,30 @@ class Timeline extends CI_Controller {
 	 		return false;
 	 	}
 	 	
+		return true;
+	}
+
+
+
+	/**
+	*	Verifie que les id données existent bien dans la BDD avant d'ajouter les points
+	*	@param 	$personnes 		array of personnes
+	*	@param 	$points 		point
+	*	@return vrai si les id existent, false sinon
+	*/
+	public function idExistInModel( $personnes = array(), $point = 0){
+
+		foreach ($personnes as $value) {
+			if ( !$this->profil_model->exist($value->profil_id) ){
+				return false;
+			}
+		}
+
+		if ( !$this->point_model->exist($point->typept_id) ){
+			return false;
+		}
+
+
 		return true;
 	}
 

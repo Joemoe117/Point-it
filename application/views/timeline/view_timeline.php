@@ -105,6 +105,9 @@
 				    <label>Description</label>
 				    <textarea placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
 				  	</div>
+				  	<?php if (isset($error) ): ?>
+						<div class="alert alert-danger"><?=$error?></div>
+					<?php endif ?>
 				  	<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
 			</div>
