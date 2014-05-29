@@ -70,8 +70,7 @@ class Timeline extends CI_Controller {
 		$texte	 		= nl2br($this->input->post('texte_point', true));
 		$donneur 		= $this->session->userdata('id');
 
-		// TODO vérifier les données
-		// utiliser et écrire la fonction privée _checkFormulaireAjoutPoint
+
 		$formOk = $this->_checkFormulaireAjoutPoint( $personnes, $point, $texte );
 
 		

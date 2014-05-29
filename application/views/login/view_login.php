@@ -13,11 +13,11 @@
 			<form method="post" role="form" action="<?php echo site_url("login"); ?>">
 				<div class="form-group">
 				<label class="blanc" for="exampleInputEmail1">Login</label>
-				<input name="login" type="text" class="form-control" id="exampleInputEmail1" placeholder="Entrer votre Login">
+				<input name="login" type="text" class="form-control" placeholder="Entrer votre Login">
 				</div>
 				<div class="form-group">
 					<label class="blanc" for="exampleInputPassword1">Mot de passe</label>
-					<input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Entrer votre mot de passe">
+					<input name="password" type="password" class="form-control" placeholder="Entrer votre mot de passe">
 				</div>
 				<?php if (isset($error) ): ?>
 					<div class="alert alert-danger"><?=$error?></div>
@@ -32,6 +32,8 @@
 		<p> Déjà <?= $nb_point ?> points ont été distribué et <?= $nb_commentaire ?> commentaires ont été rajouté</p>
 
 	</div>
+
+	
 	<div class="col-md-6">
 		<h3>Point-it dispose de nombreuses nouvelles fonctionnalités comme : </h3>
 

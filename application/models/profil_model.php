@@ -29,9 +29,6 @@ class Profil_model extends CI_Model{
 	}
 	
 
-	public function count(){
-		return $this->db->count_all_results('profils');
-	}
 
 
 	/**
@@ -64,40 +61,59 @@ class Profil_model extends CI_Model{
 
 
 
-		/**
-		* @return 		retourne le nombre de point possédé par une personne
-		*
-		*/
-		public function getNbPoint($id){
-			return 	$this->db->select('*')
-				->from("recoit")
+
+
+
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	// 									UTILS								 //
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+
+
+	/**
+	* @return 		retourne le nombre de point possédé par une personne
+	*
+	*/
+	public function getNbPoint($id){
+		return 	$this->db->select('*')
+			->from("recoit")
+			->where('profil_id',  $id)
+			->count_all_results();
+	}
+
+
+	/**
+	* @return 		retourne le nombre de commentaire posté par une personne
+	*
+	*/
+	public function getNbCommentaire($id){
+		return 	$this->db->select('*')
+				->from("commentaires")
 				->where('profil_id',  $id)
 				->count_all_results();
+	}
+
+
+	
+	public function count(){
+		return $this->db->count_all_results('profils');
+	}
+
+	/**
+	*	@return 	Verifie qu'un profil existe vraiment dans la BDD
+	*
+	*/
+	public function exist($id=0){
+		$nb = $this->db->from("profils")
+				->where('profil_id',  $id)
+				->count_all_results();
+
+		if ( $nb == 0 || $id == 0 ){
+			return false;
+		} else {
+			return true;
 		}
-
-
-		/**
-		* @return 		retourne le nombre de commentaire posté par une personne
-		*
-		*/
-		public function getNbCommentaire($id){
-			return 	$this->db->select('*')
-					->from("commentaires")
-					->where('profil_id',  $id)
-					->count_all_results();
-		}
-
-
-		public function exist($id=0){
-			$nb = $this->db->from("profils")
-					->where('profil_id',  $id)
-					->count_all_results();
-
-			if ( $nb == 0 || $id == 0 ){
-				return false;
-			} else {
-				return true;
-			}
-		}
+	}
 
 }

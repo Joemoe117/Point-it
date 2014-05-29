@@ -14,8 +14,7 @@ class Login extends CI_Controller {
 
 
 
-	public function index()
-	{
+	public function index()	{
 		$this->login();
 	}
 
@@ -33,7 +32,6 @@ class Login extends CI_Controller {
 			$password 	= $this->input->post('password');
 
 
-
 			// Mise en place des règles de validation
 			$this->form_validation->set_rules('login', 'Login', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
@@ -42,13 +40,8 @@ class Login extends CI_Controller {
 			// Si validation ok
 			if ($this->form_validation->run() == TRUE)	{
 				$res = $this->profil_model->checkLogin( $login, $password );
-			} else {
-				//$this->load->view('formsuccess');
 			}
 
-
-
-			$res = $this->profil_model->checkLogin( $login, $password );
 
 			// Vérification du login, renvoie true si la connexion a réussie
 			if ( $res ) {
@@ -65,8 +58,9 @@ class Login extends CI_Controller {
 
 				// redirection
 				redirect('/timeline', 'refresh');
-			}
-			else { // TODO afficher le message d'erreur
+
+				
+			} else { 
 				$data['error'] = "Votre mot de passe ou votre login est invalide";
 			}
 		}
@@ -97,20 +91,11 @@ class Login extends CI_Controller {
 
 
 	/**
-	*	@return 	déconnecte l'utilisateur
+	* @return
 	*
 	*/
-	public function _logout(){
-		
-	}
-
-
 	public function hashpwd( $password ){
-
-
-
 		$hashP = $this->password->create_hash($password);
-
 		echo $hashP;
 	}
 }

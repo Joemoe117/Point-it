@@ -17,7 +17,6 @@ class Point_model extends CI_Model{
 	}
 
 
-
 	/**
 	*	function 	getAllPoints
 	*	@return		Recupere tous les points et les info associés ainsi que les profils qui ont reçu les points
@@ -71,35 +70,21 @@ class Point_model extends CI_Model{
 
 
 
-	/**
-	* @return 	recupere les 20 derniers points chronologiquement
-	*
-	*
-	*/
-	public function getLastTwenty(){
-		return $this->db->select()
-					->from("points NATURAL JOIN recoit NATURAL JOIN types_point NATURAL JOIN profils")
-					->order_by("point_id", 'desc')
-					->get()
-					->result();
-	}
-
-	public function count(){
-		return $this->db->count_all_results('points');
-	}
 
 
-	public function getLastTwentyOf($id){
 
-		return $this->db->select()
-				->from("points NATURAL JOIN recoit NATURAL JOIN types_point NATURAL JOIN profils")
-				->where('recoit.profil_id', (int) $id)
-				->order_by("point_id")
-				->get()
-				->result();
 
-	}
 
+
+
+
+
+
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
+	// 									CREATE								 //
+	///////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////
 
 	/**
 	*	@return  	ajoute un point dans la BDD
@@ -117,9 +102,6 @@ class Point_model extends CI_Model{
 	}
 
 
-
-
-
 	/**
 	*	@return  	
 	*	TODO
@@ -129,20 +111,38 @@ class Point_model extends CI_Model{
 		$this->db->set('point_id', $point_id);
 		$this->db->set('profil_id', $profil_id);
 		$this->db->insert('recoit');
-
 	}
 
 
+
+
+
+
+
+
+
+
+	//////////////////////////////
+	// 			UTILS 
+	//////////////////////////////
+
+	/**
+	*	@return recupere le nombre de points distribué sur le site
+	*
+	*/
+	public function count(){
+		return $this->db->count_all_results('points');
+	}
+
 	public function exist($id=0){
-			$nb = $this->db->from("types_point")
-					->where('typept_id',  $id)
-					->count_all_results();
+		$nb = 	$this->db->from("types_point")
+						->where('typept_id',  $id)
+						->count_all_results();
 
-			if ( $nb == 0 || $id == 0 ){
-				return false;
-			} else {
-				return true;
-			}
+		if ( $nb == 0 || $id == 0 ){
+			return false;
+		} else {
+			return true;
 		}
-
+	}
 }
