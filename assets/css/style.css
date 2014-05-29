@@ -21,8 +21,15 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .menu{
-	font-size: 1.2em;
-	margin-left: 20px;
+	font-size: 1.3em;
+	margin-right: 10px;
+}
+.menu:hover{
+	font-size: 1.3em;
+	margin-right: 10px;
+	color: white;
+	text-decoration: none;
+	border-bottom: 3px solid white;
 }
 
 .active{
@@ -64,33 +71,26 @@ h1, h2, h3, h4, h5, h6{
 .point{
 	border: 1px solid lightgrey;
 	border-radius: 7px;
-	padding: 2px;
+	padding: 4px;
 	margin-top: 10px;
-}
-
-.point:hover{
-	background: lightgrey;
-	border: 1px solid black;
-}
+	vertical-align: top;
+}	
 
 .point_date{
-	font-size: 0.7em;
+	font-size: 0.75em;
 	text-align: right;
 	color: grey;
 }
 
-.point_texte{
-	padding: 6px;
+.point_description{
+	font-size: 1.2em;
+	padding: 5px;
+}
+
+.name{
 	vertical-align: top;
 }
 
-.point_description{
-	border-left: 3px solid lightgrey;
-	font-size: 1.2em;
-	margin-top: 10px;
-	margin-left: 7px;
-	padding-left: 7px;
-}
 
 
 /* AFFICHAGE DES COMMENTAIRE */
@@ -107,9 +107,6 @@ h1, h2, h3, h4, h5, h6{
 	vertical-align: top;
 }
 
-.name{
-	vertical-align: top;
-}
 
 
 /* GESTION DES IMAGES */
