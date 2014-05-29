@@ -6,7 +6,7 @@
 
 				<!-- Affichage des avatars -->
 				<?php foreach ($point->recoit as $pointInfo): ?>
-					<img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" >
+					<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" ></a>	
 				<?php endforeach ?>
 
 				<?php $i = 0; ?>
