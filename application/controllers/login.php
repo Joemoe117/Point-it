@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 				// redirection
 				redirect('/timeline', 'refresh');
 
-				
+
 			} else { 
 				$data['error'] = "Votre mot de passe ou votre login est invalide";
 			}
@@ -70,10 +70,8 @@ class Login extends CI_Controller {
 		$data["nb_point"] 		= $this->point_model->count(); 
 		$data["nb_commentaire"] = $this->commentaire_model->count();
 
-		// Initialisation du titre
-		$data['titre'] = "Connexion";
-
 		// Chargement des vues
+		$data['titre'] = "Connexion";
 		$this->load->view('template/header_logout.php', $data);
 		$this->load->view('login/view_login.php', $data);
 		$this->load->view('template/footer.php');	

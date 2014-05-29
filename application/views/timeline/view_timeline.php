@@ -17,10 +17,7 @@
 						<?php if ( $i < (count($point->recoit)-1) && $i !=(count($point->recoit)-1) ): ?>
 							et
 						<?php endif ?>
-						<?php 
-							// améliorer
-							$i++;
-						?>
+						<?php $i++;	?>
 					<?php endforeach ?>
 
 

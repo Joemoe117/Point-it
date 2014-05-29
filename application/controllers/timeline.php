@@ -23,14 +23,13 @@ class Timeline extends CI_Controller {
 
 
 
-	public function index()
-	{
+	public function index()	{
 		$this->retrieve();
 	}
 
 
 	/**
-	*	@return 	affiche la timeline des 20 derniers points distribuées
+	*	@return 	affiche la timeline
 	*
 	*
 	*/
@@ -40,17 +39,15 @@ class Timeline extends CI_Controller {
 		$data['form_point'] = $this->point_model->getAllType();
 		$data['form_profil'] = $this->profil_model->getAll();
 			
-		/* Recupération des derniers points */
+		/* Recupération des derniers points et des commentaires de chaque point*/
 		$data['points'] = $this->point_model->getAllPoints();
-
-		/* Récupération des commentaires de chaque point */
 		foreach ($data['points'] as $value) {
 			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
 
-		$data['titre'] = "Timeline";
-
+		
 		// chargement des vues
+		$data['titre'] = "Timeline";
 		$this->load->view('template/header.php', $data);
 		$this->load->view('timeline/view_timeline.php', $data	);
 		$this->load->view('template/footer.php');
