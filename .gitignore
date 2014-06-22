@@ -9,5 +9,4 @@ application/logs/*
 !application/logs/.htaccess
 
 application/config/database.php
-application/models/.fuse_hidden000071d600000002
-application/models/.fuse_hidden000071d700000003
+^.*
