@@ -10,8 +10,8 @@ class Point_model extends CI_Model{
 	*/
 	public function getAllType(){
 		return $this->db->select('*')
-					->from("types_point")
-					->order_by("typept_nom")
+					->from('types_point')
+					->order_by('typept_nom')
 					->get()
 					->result();
 	}
@@ -23,9 +23,9 @@ class Point_model extends CI_Model{
 	*	
 	*/
 	public function getAllPoints (){
-		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, Donne.profil_nom AS profil_nom_donne')
-						->from('Points NATURAL JOIN Types_Point')
-						->join('Profils AS Donne', 'Donne.profil_id = profil_id_donne', 'inner')
+		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, donne.profil_nom AS profil_nom_donne')
+						->from('points NATURAL JOIN types_point')
+						->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
 						->order_by('point_date_actualite', 'desc')
 						->get()
 						->result();
@@ -33,7 +33,7 @@ class Point_model extends CI_Model{
 		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points
 		foreach ($allPoints as $point) {
 			$point->recoit = $this->db->select('profil_id, profil_nom, profil_image')
-											->from('Recoit NATURAL JOIN Profils')
+											->from('recoit NATURAL JOIN profils')
 											->where('point_id', $point->point_id)
 											->get()
 											->result();
@@ -48,9 +48,9 @@ class Point_model extends CI_Model{
 	*	
 	*/
 	public function getAllPointsOf( $id ){
-		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, Donne.profil_nom AS profil_nom_donne')
-						->from('Points NATURAL JOIN Types_Point NATURAL JOIN recoit')
-						->join('Profils AS Donne', 'Donne.profil_id = profil_id_donne', 'inner')
+		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, donne.profil_nom AS profil_nom_donne')
+						->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
+						->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
 						->where('recoit.profil_id', (int) $id)
 						->order_by('point_date_actualite', 'desc')
 						->get()
@@ -59,7 +59,7 @@ class Point_model extends CI_Model{
 		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points
 		foreach ($allPoints as $point) {
 			$point->recoit = $this->db->select('profil_id, profil_nom, profil_image')
-											->from('Recoit NATURAL JOIN Profils')
+											->from('recoit NATURAL JOIN profils')
 											->where('point_id', $point->point_id)
 											->get()
 											->result();
@@ -135,7 +135,7 @@ class Point_model extends CI_Model{
 	}
 
 	public function exist($id=0){
-		$nb = 	$this->db->from("types_point")
+		$nb = 	$this->db->from('types_point')
 						->where('typept_id',  $id)
 						->count_all_results();
 
