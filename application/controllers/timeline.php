@@ -8,7 +8,7 @@ class Timeline extends CI_Controller {
 		parent::__construct();
 		
 		// Redirection si non connecté
-		if ( !$this->session->userdata('id')){
+		if (!$this->session->userdata('id')){
 			redirect('/login', 'location');
 		}
 
@@ -53,46 +53,38 @@ class Timeline extends CI_Controller {
 		$this->load->view('template/footer.php');
 	}
 
+	public function add_point(){
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			echo "POST<br>";
+			var_dump($this->input->post());
 
-	/**
-	*	Permet de rajouter un point
-	*
-	*
-	*/
-	public function create(){
+			// récupération du Post
+			$personnes 		= $this->input->post('personnes', true);
+			$point 			= $this->input->post('point', true);
+			$texte	 		= nl2br($this->input->post('texte_point', true)); // Ajoute un <br> pour chaque retour à la ligne
+			$donneur 		= $this->session->userdata('id');
 
-		// Récupération des posts
-		$personnes 		= $this->input->post('personnes', true);
-		$point 			= $this->input->post('point', true);
-		$texte	 		= nl2br($this->input->post('texte_point', true));
-		$donneur 		= $this->session->userdata('id');
+			$checkForm = $this->_checkFormAddPoint($personnes, $point, $texte, $donneur);
 
+			// Si $checkForm vaut 0 Alors le formulaire est bon
+			if ($checkForm === 0) {
+				// On créér d'abord le point
+				$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
 
-		$formOk = $this->_checkFormulaireAjoutPoint( $personnes, $point, $texte );
-
-		
-
-		// Si le formulaire est rempli correctement
-		if ( $formOk == true ){
-
-			// Vérification dans le modèle que les personnes existent bien
-			if ( $this->idExistInModel( $personnes, $point) ) {
-				show_404('page');
+				// On ajoute ensuite les différentes personnes dans la distribution
+				foreach ($personnes as $personne) {
+					$this->point_model->createRecoit($point_id, $personne);
+				}
 			}
-			// On créér d'abord le point
-			$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
-
-			// On ajoute ensuite les différentes personnes dans la distribution
-			foreach ($personnes as $personne) {
-				$this->point_model->createRecoit( $point_id, $personne );
+			// Sinon stockage des erreurs
+			elseif (is_array($checkForm)) {
+				$data['errors'] = $checkForm;
 			}
 
-			// "rafraichissement" de la page
-			redirect('/timeline', 'refresh');
-		} else {
-			// TODO afficher un message d'erreur
-			show_404('page');
+			// TODO transférer les erreurs vers la timeline
 		}
+		
+		redirect('/timeline', 'refresh');
 	}
 
 
@@ -100,16 +92,71 @@ class Timeline extends CI_Controller {
 	//							FONCTIONS PRIVEES 							 //
 	///////////////////////////////////////////////////////////////////////////
 
-	// TODO améliorer la vérification
-	public function _checkFormulaireAjoutPoint( $personnes, $point, $texte ){
+	/**
+	 * 	@param 	$personnes 	Les personnes qui reçoivent le point
+	 *	@param 	$point 		ID du type_point
+	 *	@param 	$texte 		Description point
+	 *	@param 	$donneur 	ID du profil qui donne le point
+	 *	
+	 * 	@return $res 		Retourne 0 si formualaire OK sinon le tableau d'erreurs
+	 */
+	public function _checkFormAddPoint($personnes=null, $point=null, $texte=null, $donneur=null) {
+		echo "<br>CHECK<br>";
+		echo "<br>personnes<br>";
+		var_dump($personnes);
+		echo "<br>point<br>";
+		var_dump($point);
+		echo "<br>texte<br>";
+		var_dump($texte);
+		echo "<br>donneur<br>";
+		var_dump($donneur);
 
-	 	if ( $personnes == null || $point == null || $texte == null ){
-	 		return false;
-	 	}
-	 	
-		return true;
+		// Vérif des personnes
+		if (is_null($personnes) OR !$personnes)
+			$res[] = "Veuillez entrer une personne";
+		else {
+			if (is_array($personnes)) {
+				foreach ($personnes as $key => $personne) {
+					if (empty($personne)) {
+						$res[] = "Les personnes sélectionnées sont dans un mauvais format";
+						break;
+					}
+					elseif (!$this->profil_model->exist($personne)) {
+						$res[] = "Des personnes sélectionnées n'existent pas";
+						break;
+					}
+				}
+			}
+			else
+				$res[] = "Arrête de faire n'importe quoi avec les formulaires...";
+		}
+
+		// Vérif du point
+		if (is_null($point) OR !$point)
+			$res[] = "Veuillez entrer un type de point";
+		elseif (!$this->point_model->typePointExist($point)) {
+			$res[] = "Ce type de point n'existe pas";
+		}
+
+		// Vérif du texte de description
+		if (is_null($texte) OR !$texte)
+			$res[] = "Veuillez entrer une description";
+
+		// Vérif du donneur
+		if (is_null($donneur) OR
+				!$donneur OR
+				!$this->profil_model->exist($donneur)
+		) {
+			$res[] = "Qui t'as dit de toucher aux cookies ?";
+		}
+
+		// Si pas d'erreurs on envoie 0 valeur de réussite
+		if (!isset($res))
+			$res = 0;
+
+		var_dump($res);
+		return $res;
 	}
-
 
 
 	/**
@@ -135,6 +182,3 @@ class Timeline extends CI_Controller {
 	}
 
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
