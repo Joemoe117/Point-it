@@ -5,6 +5,10 @@ class Login extends CI_Controller {
 
 	public function __construct()	{
 		parent::__construct();
+		
+		// Si l'utilisateur est déjà connecté le rediriger vers la timeline
+		if ($this->session->userdata('id'))
+			redirect('/timeline', 'refresh');
 
 		// Chargement des models
 		$this->load->model('profil_model');
@@ -20,16 +24,18 @@ class Login extends CI_Controller {
 
 
 	/**
-	*	@return 	Affiche la page pour qu'un user se connecte
+	*	@return Affiche la page pour qu'un user se connecte
 	*
 	*/
 	public function login() {
 
 		// Si le formulaire a été envoyé
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 			// Récupération des posts
 			$login 		= $this->input->post('login');
 			$password 	= $this->input->post('password');
+			$res = FALSE;
 
 
 			// Mise en place des règles de validation
@@ -44,7 +50,7 @@ class Login extends CI_Controller {
 
 
 			// Vérification du login, renvoie true si la connexion a réussie
-			if ( $res ) {
+			if ($res) {
 
 				// Mise en place des sessions
 				$this->session->set_userdata('id', $res->profil_id);
@@ -56,14 +62,16 @@ class Login extends CI_Controller {
 				set_cookie("login", $res->profil_id, 86500, "/");
 				set_cookie("image", $res->profil_id, 86500, "/");
 
-				// redirection
+				// Redirection vers la timeline
 				redirect('/timeline', 'refresh');
 
 
-			} else { 
-				$data['error'] = "Votre mot de passe ou votre login est invalide";
+			} else {
+				$data['errors'][] = "Votre mot de passe ou votre login est invalide";
 			}
 		}
+
+		// Sinon afficher la page d'accueil
 
 		// Récupération des statistiques général
 		$data["nb_profil"] 		= $this->profil_model->count();
@@ -79,7 +87,7 @@ class Login extends CI_Controller {
 
 
 	/**
-	*	@return 	déconnecte l'utilisateur
+	*	@return 	Déconnecte l'utilisateur
 	*
 	*/
 	public function logout(){
@@ -89,7 +97,7 @@ class Login extends CI_Controller {
 
 
 	/**
-	* @return
+	* @return Hashage du mot de passe
 	*
 	*/
 	public function hashpwd( $password ){

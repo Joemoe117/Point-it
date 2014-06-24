@@ -8,7 +8,7 @@ class Timeline extends CI_Controller {
 		parent::__construct();
 		
 		// Redirection si non connecté
-		if ( !$this->session->userdata('id')){
+		if (!$this->session->userdata('id')){
 			redirect('/login', 'location');
 		}
 

@@ -9,7 +9,7 @@
 
 		<div class="form_connexion">
 			<h2 class="blanc">Formulaire de connexion</h2>
-			<?php echo validation_errors(); ?>
+			<?= validation_errors() ?>
 			<form method="post" role="form" action="<?php echo site_url("login"); ?>">
 				<div class="form-group">
 				<label class="blanc" for="exampleInputEmail1">Login</label>
@@ -19,9 +19,13 @@
 					<label class="blanc" for="exampleInputPassword1">Mot de passe</label>
 					<input name="password" type="password" class="form-control" placeholder="Entrer votre mot de passe">
 				</div>
-				<?php if (isset($error) ): ?>
-					<div class="alert alert-danger"><?=$error?></div>
+				<!-- Gestion erreurs -->
+				<?php if (isset($errors)): ?>
+					<?php foreach ($errors as $error): ?>	
+						<div class="alert alert-danger"><?= $error ?></div>
+					<?php endforeach ?>
 				<?php endif ?>
+				
 				<button type="submit" class="btn btn-default pull-right">Connexion</button>
 				<br>
 			</form>
