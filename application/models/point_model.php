@@ -22,13 +22,20 @@ class Point_model extends CI_Model{
 	*	@return		Recupere tous les points et les info associés ainsi que les profils qui ont reçu les points
 	*	
 	*/
-	public function getAllPoints (){
+	public function getAllPoints ($nb=null, $limit=null) {
 		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, donne.profil_nom AS profil_nom_donne')
-						->from('points NATURAL JOIN types_point')
-						->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
-						->order_by('point_date_actualite', 'desc')
-						->get()
-						->result();
+			->from('points NATURAL JOIN types_point')
+			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
+			->order_by('point_date_actualite', 'desc');
+
+		// Limit
+		if (isset($nb) AND isset($limit))
+			$allPoints = $allPoints->limit($limit, $nb);
+		elseif (isset($nb))
+			$allPoints = $allPoints->limit($nb);
+						
+		$allPoints = $allPoints->get()
+			->result();
 
 		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points
 		foreach ($allPoints as $point) {
@@ -42,18 +49,26 @@ class Point_model extends CI_Model{
 		return $allPoints;
 	}
 
+
 	/**
-	*	function 	getAllPoints
-	*	@return		Recupere tous les points et les info associés ainsi que les profils qui ont reçu les points
+	*	function 	getAllPointsOf
+	*	@return		Recupere tous les points et les info associés d'un profil
 	*	
 	*/
-	public function getAllPointsOf( $id ){
+	public function getAllPointsOf( $id, $limit=null, $nb=null) {
 		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, donne.profil_nom AS profil_nom_donne')
 			->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
 			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
 			->where('recoit.profil_id', (int) $id)
-			->order_by('point_date_actualite', 'desc')
-			->get()
+			->order_by('point_date_actualite', 'desc');
+
+		// Limit
+		if (isset($nb) AND isset($limit))
+			$allPoints = $allPoints->limit($limit, $nb);
+		elseif (isset($nb))
+			$allPoints = $allPoints->limit($nb);
+		
+		$allPoints = $allPoints->get()
 			->result();
 
 		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points

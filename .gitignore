@@ -9,4 +9,8 @@ application/logs/*
 !application/logs/.htaccess
 
 application/config/database.php
+
+
+
 application/models/.fuse_hidden*
+application/controllers/.fuse_hidden*
