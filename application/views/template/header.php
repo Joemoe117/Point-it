@@ -11,8 +11,8 @@
         <title><?=$titre?></title>
 
         <!-- Bootstrap core CSS -->
-        <link href=" <?php echo base_url("/assets/css/bootstrap.min.css");  ?>    " rel="stylesheet">
-        <link href=" <?php echo base_url("/assets/css/style.css");  ?>    " rel="stylesheet">
+        <link href=" <?= base_url("/assets/css/bootstrap.min.css");  ?>    " rel="stylesheet">
+        <link href=" <?= base_url("/assets/css/style.css");  ?>    " rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="http://ivaynberg.github.io/select2/select2-3.4.1/select2.css"/>
 
         <!-- FONT -->
@@ -20,21 +20,20 @@
 
 
         <!-- Javascript Bootstrap, JQuery et Jquery UI -->
-        <script type="text/javascript" src="<?php echo base_url("/assets/js/jquery-2.1.0.min.js");  ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url("/assets/js/jquery-ui-1.10.4.custom.min.js");  ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url("/assets/js/select2.min.js");  ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url("/assets/js/bootstrap.min.js");  ?>"></script>
-
+        <script type="text/javascript" src="<?= base_url("/assets/js/jquery-2.1.0.min.js");  ?>"></script>
+        <script type="text/javascript" src="<?= base_url("/assets/js/jquery-ui-1.10.4.custom.min.js");  ?>"></script>
+        <script type="text/javascript" src="<?= base_url("/assets/js/select2.min.js");  ?>"></script>
+        <script type="text/javascript" src="<?= base_url("/assets/js/bootstrap.min.js");  ?>"></script>
     </head>
 
   <body>
 
     <div class="header">
         <div class="container">
-            <a class="menu active" href="<?php echo site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> Accueil</a>
-            <a class="menu" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> Profil</a>
+            <a class="menu active" href="<?= site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> Accueil</a>
+            <a class="menu" href="<? echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> Profil</a>
             <a class="menu" href=""><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>
-            <a class="menu pull-right" href="<?php echo site_url("login/logout"); ?>"><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
+            <a class="menu pull-right" href="<?= site_url("login/logout"); ?>"><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
             <a class="menu pull-right" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-cog"></span></a>
         </div>
     </div>

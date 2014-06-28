@@ -33,14 +33,15 @@ class Timeline extends CI_Controller {
 	*
 	*
 	*/
-	public function retrieve(){
+	public function retrieve() {
+		$initNbPoints = 5;
 
 		/* Génération des informations du formulaire */
 		$data['form_point'] = $this->point_model->getAllType();
 		$data['form_profil'] = $this->profil_model->getAll();
 			
-		/* Recupération des derniers points et des commentaires de chaque point*/
-		$data['points'] = $this->point_model->getAllPoints();
+		/* Recupération des $initNbPoints derniers points et des commentaires de chaque point */
+		$data['points'] = $this->point_model->getAllPoints($initNbPoints);
 		foreach ($data['points'] as $value) {
 			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
@@ -49,11 +50,28 @@ class Timeline extends CI_Controller {
 		// chargement des vues
 		$data['titre'] = "Timeline";
 		$this->load->view('template/header.php', $data);
-		$this->load->view('timeline/view_timeline.php', $data	);
+		$this->load->view('timeline/view_timeline.php', $data);
 		$this->load->view('template/footer.php');
 	}
 
-	public function add_point(){
+	/**
+	 * 	@param 	$nb 	Le nombre de point à afficher
+	 * 	@param 	$limit 	À partir de quel point on récupère $nb points
+	 *
+	 *	@return Revoie le HTML pour afficher des points supplémentaires à la timeline
+	 */
+
+	public function get_points($nb, $limit) {
+		/* Recupération des $nb points et des commentaires de chaque point */
+		$data['points'] = $this->point_model->getAllPoints($nb, $limit);
+		foreach ($data['points'] as $value) {
+			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+		}
+		$this->load->view('timeline/view_affiche_points.php', $data);
+	}
+
+
+	public function add_point() {
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo "POST<br>";
 			var_dump($this->input->post());
@@ -101,15 +119,6 @@ class Timeline extends CI_Controller {
 	 * 	@return $res 		Retourne 0 si formualaire OK sinon le tableau d'erreurs
 	 */
 	public function _checkFormAddPoint($personnes=null, $point=null, $texte=null, $donneur=null) {
-		echo "<br>CHECK<br>";
-		echo "<br>personnes<br>";
-		var_dump($personnes);
-		echo "<br>point<br>";
-		var_dump($point);
-		echo "<br>texte<br>";
-		var_dump($texte);
-		echo "<br>donneur<br>";
-		var_dump($donneur);
 
 		// Vérif des personnes
 		if (is_null($personnes) OR !$personnes)
@@ -165,15 +174,15 @@ class Timeline extends CI_Controller {
 	*	@param 	$points 		point
 	*	@return vrai si les id existent, false sinon
 	*/
-	public function idExistInModel( $personnes = array(), $point = 0){
+	public function idExistInModel( $personnes = array(), $point = 0) {
 
 		foreach ($personnes as $value) {
-			if ( !$this->profil_model->exist($value->profil_id) ){
+			if (!$this->profil_model->exist($value->profil_id)) {
 				return false;
 			}
 		}
 
-		if ( !$this->point_model->exist($point->typept_id) ){
+		if (!$this->point_model->exist($point->typept_id)) {
 			return false;
 		}
 
