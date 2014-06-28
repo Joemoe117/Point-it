@@ -34,13 +34,14 @@ class Timeline extends CI_Controller {
 	*
 	*/
 	public function retrieve() {
+		$initNbPoints = 5;
 
 		/* Génération des informations du formulaire */
 		$data['form_point'] = $this->point_model->getAllType();
 		$data['form_profil'] = $this->profil_model->getAll();
 			
-		/* Recupération des 10 derniers points et des commentaires de chaque point */
-		$data['points'] = $this->point_model->getAllPoints(5);
+		/* Recupération des $initNbPoints derniers points et des commentaires de chaque point */
+		$data['points'] = $this->point_model->getAllPoints($initNbPoints);
 		foreach ($data['points'] as $value) {
 			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
@@ -52,6 +53,23 @@ class Timeline extends CI_Controller {
 		$this->load->view('timeline/view_timeline.php', $data);
 		$this->load->view('template/footer.php');
 	}
+
+	/**
+	 * 	@param 	$nb 	Le nombre de point à afficher
+	 * 	@param 	$limit 	À partir de quel point on récupère $nb points
+	 *
+	 *	@return Revoie le HTML pour afficher des points supplémentaires à la timeline
+	 */
+
+	public function get_points($nb, $limit) {
+		/* Recupération des $nb points et des commentaires de chaque point */
+		$data['points'] = $this->point_model->getAllPoints($nb, $limit);
+		foreach ($data['points'] as $value) {
+			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+		}
+		$this->load->view('timeline/view_affiche_points.php', $data);
+	}
+
 
 	public function add_point() {
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {

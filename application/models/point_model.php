@@ -30,7 +30,7 @@ class Point_model extends CI_Model{
 
 		// Limit
 		if (isset($nb) AND isset($limit))
-			$allPoints = $allPoints->limit($limit, $nb);
+			$allPoints = $allPoints->limit($nb, $limit);
 		elseif (isset($nb))
 			$allPoints = $allPoints->limit($nb);
 						
@@ -55,7 +55,7 @@ class Point_model extends CI_Model{
 	*	@return		Recupere tous les points et les info associés d'un profil
 	*	
 	*/
-	public function getAllPointsOf( $id, $limit=null, $nb=null) {
+	public function getAllPointsOf( $id, $nb=null, $limit=null) {
 		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, donne.profil_nom AS profil_nom_donne')
 			->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
 			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
@@ -64,7 +64,7 @@ class Point_model extends CI_Model{
 
 		// Limit
 		if (isset($nb) AND isset($limit))
-			$allPoints = $allPoints->limit($limit, $nb);
+			$allPoints = $allPoints->limit($nb, $limit);
 		elseif (isset($nb))
 			$allPoints = $allPoints->limit($nb);
 		
