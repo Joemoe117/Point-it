@@ -18,10 +18,10 @@ class Profil_model extends CI_Model{
 
 
 
-	/* Récupère le profil d'un membre et affiche son compte rendu de point */
-	public function getOne($id){
+	/* Récupère le profil complet d'un membre ou juste un attribut si demandé */
+	public function getOne($id, $attr='*') {
 	
-		return $this->db->select('*')
+		return $this->db->select($attr)
 					->from("profils")
 					->where('profil_id', (int) $id)
 					->get()
