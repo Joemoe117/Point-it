@@ -84,7 +84,7 @@ class Profil extends CI_Controller {
 		// Si le formulaire a été envoyé
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-			// Gestion du formulaire de l'avatar
+			// Gestion du formulaire de l'AVATAR
 			if ($this->input->post('form_name') == 'avatar') {
 
 				// Constantes
@@ -99,8 +99,7 @@ class Profil extends CI_Controller {
 				$avatar_resized_name = 'resized';
 
 				// Détermine la config de "do_upload" pour vérifier le fichier
-				if (!file_exists($avatar_path)) 
-					mkdir($avatar_path);
+				$this->_clearDir($avatar_path);
 				$config['upload_path'] = $avatar_path;
 				$config['allowed_types'] = $avatar_valide_extensions;
 				$config['file_name'] = $avatar_origin_name;
@@ -126,8 +125,30 @@ class Profil extends CI_Controller {
 				}
 			}
 
+			// Gestion du formulaire du NOUVEAU MOT DE PASSE
 			elseif ($this->input->post('form_name') == 'new_password') {
-				
+
+				// Variables
+				$pass_old = $this->input->post('old_pass');
+				$pass_new = $this->input->post('new_pass');
+				$pass_new_check = $this->input->post('new_pass_check');
+				$pass_ok = true;
+
+				if (!$this->profil_model->checkPass($id, $pass_old)) {
+					$pass_ok = false;
+					$data['errors']['new_password'][] = "Votre ancien mot de passe n'est pas correcte";
+				}
+				elseif ($pass_new !== $pass_new_check) {
+					$pass_ok = false;
+					$data['errors']['new_password'][] = "Vous avez mal confirmé votre nouveau mot de passe";
+				}
+
+				if ($pass_ok) {
+					// Hashage et enregistrement du nouveau mot de passe
+					$this->profil_model->setPass($id, $this->password->create_hash($pass_new));
+					$data['success']['new_password'] = "Votre nouveau mot de passe a été enregistré";
+				}
+
 			}
 		}
 
@@ -158,4 +179,22 @@ class Profil extends CI_Controller {
 
 		return imagejpeg($thumb);
 	}
+
+	private function _clearDir($dir, $delete = false) {
+		$dossier = $dir;
+		$dir = opendir($dossier);
+		while($file = readdir($dir)) {
+			if(!in_array($file, array(".", ".."))) {
+				if(is_dir("$dossier/$file"))
+					clear_dir("$dossier/$file", true);
+				else
+					unlink("$dossier/$file");
+			}
+		}
+		closedir($dir);
+		
+		if($delete == true) {
+			rmdir("$dossier/$file");
+		}
+}
 }
