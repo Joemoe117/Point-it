@@ -118,7 +118,7 @@ class Timeline extends CI_Controller {
 	 *	
 	 * 	@return $res 		Retourne 0 si formualaire OK sinon le tableau d'erreurs
 	 */
-	public function _checkFormAddPoint($personnes=null, $point=null, $texte=null, $donneur=null) {
+	private function _checkFormAddPoint($personnes=null, $point=null, $texte=null, $donneur=null) {
 
 		// Vérif des personnes
 		if (is_null($personnes) OR !$personnes)
@@ -174,7 +174,7 @@ class Timeline extends CI_Controller {
 	*	@param 	$points 		point
 	*	@return vrai si les id existent, false sinon
 	*/
-	public function idExistInModel( $personnes = array(), $point = 0) {
+	private function idExistInModel( $personnes = array(), $point = 0) {
 
 		foreach ($personnes as $value) {
 			if (!$this->profil_model->exist($value->profil_id)) {

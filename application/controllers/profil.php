@@ -80,12 +80,6 @@ class Profil extends CI_Controller {
 		$data['profil_nom'] = $this->profil_model->getOne($id, 'profil_nom')[0]->profil_nom;
 		$data['titre'] = 'Configuration du profil';
 
-		// Constantes
-		$avatar_max_size = 10000000;
-		$avatar_max_dimensions[0] = 180;
-		$avatar_max_dimensions[1] = 180;
-		$avatar_valide_extensions = ['jpg', 'jpeg', 'png', 'gif'];
-
 
 		// Si le formulaire a été envoyé
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -93,59 +87,75 @@ class Profil extends CI_Controller {
 			// Gestion du formulaire de l'avatar
 			if ($this->input->post('form_name') == 'avatar') {
 
-				$config['upload_path'] = base_url('/assets/images/avatars');
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
-				$config['file_name'] = $data['profil_nom'];
+				// Constantes
+				$avatar_max_size = '2000';
+				// $avatar_max_dimensions['width'] = '180';
+				// $avatar_max_dimensions['height'] = '180';
+				$avatar_dimensions['width'] = 100;
+				$avatar_dimensions['height'] = 100;
+				$avatar_valide_extensions = 'jpg|jpeg|png|gif';
+				$avatar_path = './assets/images/avatars/'.$id.'_'.$data['profil_nom'];
+				$avatar_origin_name = 'origin';
+				$avatar_resized_name = 'resized';
+
+				// Détermine la config de "do_upload" pour vérifier le fichier
+				if (!file_exists($avatar_path)) 
+					mkdir($avatar_path);
+				$config['upload_path'] = $avatar_path;
+				$config['allowed_types'] = $avatar_valide_extensions;
+				$config['file_name'] = $avatar_origin_name;
 				$config['overwrite'] = true;
-				$config['max_size']	= '10000';
-				$config['max_width']  = '180';
-				$config['max_height']  = '180';
+				$config['max_size']	= $avatar_max_size;
+				// $config['max_width']  = $avatar_max_dimensions['width'];
+				// $config['max_height']  = $avatar_max_dimensions['height'];
 
 				$this->load->library('upload', $config);
 
-				if (!$this->upload->do_upload()) {
+				if (!$this->upload->do_upload('avatar')) {
 					$data['errors']['avatar'][] = "Erreur sur le fichier envoyé";
-					var_dump($this->upload->display_errors());
+					$data['errors']['avatar'][] = $this->upload->display_errors();
 				}
 				else {
+
 					$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
+
+					// if ($this->_resizeImage($avatar_path.'/'.$avatar_origin_name, $avatar_dimensions['width'], $avatar_dimensions['height']))
+					// 	$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
+					// else
+					// 	$data['errors']['avatar'][] = "Erreur de création de l'image... Contactez l'administrateur";
 				}
+			}
 
-
-				// $avatar = $this->input->file('avatar');
-				// // Erreur de transfert
-				// if ($avatar['error'] != UPLOAD_ERR_OK) {
-				// 	if ($avatar['error'] == UPLOAD_ERR_NO_FILE)
-				// 		$data['errors']['avatar'][] = 'Aucun fichier n\'a été téléchargé';
-				// 	else
-				// 		$data['errors']['avatar'][] = 'Le téléchargement de votre fichier a échoué... Veuillez recommencer ou contacter un admin';					
-				// }
-				// // Vérifications du fichier
-				// else {
-				// 	// Taille
-				// 	if ($avatar['size'] > $max_avatar_size)
-				// 		$data['errors']['avatar'][] = 'La taille du fichier est trop grande';
-
-				// 	// Extension
-				// 	$avatar_extension = strtolower(substr(strrchr($avatar['name'], '.'))); // Choppe l'extension sans le . et en minuscule
-				// 	if (!in_array($avatar_extension, $avatar_valide_extensions))
-				// 		$data['errors']['avatar'][] = 'L\'extension n\'est pas correcte';
-
-				// 	// Dimensions de l'image
-				// 	$avatar_dimensions = getimagesize($avatar['tmp_name']);
-				// 	if ($avatar_dimensions[0] > $avatar_max_dimensions[0] OR $avatar_dimensions[1] > $avatar_max_dimensions[1])
-				// 		$data['errors']['avatar'][] = 'Les dimensions de l\'image sont trop grandes';
-
-				// }
+			elseif ($this->input->post('form_name') == 'new_password') {
+				
 			}
 		}
-
-		
-
 
 		// Chargement des vues
 		$this->load->view('template/header.php', $data);
 		$this->load->view('profil/view_config.php', $data);
 		$this->load->view('template/footer.php');
+	}
+
+	// PRIVATE MÉTHODES
+
+	private function _resizeImage($file_name, $new_width, $new_height) {
+
+		list($width, $height) = getimagesize($file_name);
+
+		if($width > $height && $new_height < $height)
+			$new_height = $height / ($width / $new_width);
+		else if ($width < $height && $new_width < $width)
+			$new_width = $width / ($height / $new_height);   
+		else {
+			$new_width = $width;
+			$new_height = $height;
+		}
+
+		$thumb = imagecreatetruecolor($new_width, $new_height);
+		$source = imagecreatefromjpeg($file_name);
+		imagecopyresized($thumb, $source, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+
+		return imagejpeg($thumb);
 	}
 }
