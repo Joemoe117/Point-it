@@ -25,7 +25,7 @@ class Profil_model extends CI_Model{
 					->from("profils")
 					->where('profil_id', (int) $id)
 					->get()
-					->result();
+					->result()[0];
 	}
 	
 
@@ -76,6 +76,18 @@ class Profil_model extends CI_Model{
 			return false;
 	}
 
+
+	/**
+	*	Change l'avatar
+	*
+	*/
+	public function setImage($id, $avatar) {
+
+		$data['profil_image'] = $avatar;
+
+		$this->db->where('profil_id', $id)
+			->update('profils', $data);
+	}
 
 
 	/**

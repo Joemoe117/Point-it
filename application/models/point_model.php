@@ -18,6 +18,21 @@ class Point_model extends CI_Model{
 
 
 	/**
+	*	function 	getOneType
+	*	@return		Recupere un type de point
+	*	
+	*/
+	public function getOneType($id, $attr='*') {
+		return $this->db->select($attr)
+					->from('types_point')
+					->where('typept_id', $id)
+					->order_by('typept_nom')
+					->get()
+					->result()[0];
+	}
+
+
+	/**
 	*	function 	getAllPoints
 	*	@return		Recupere tous les points et les info associés ainsi que les profils qui ont reçu les points
 	*	

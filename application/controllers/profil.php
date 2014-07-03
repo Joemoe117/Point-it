@@ -59,7 +59,7 @@ class Profil extends CI_Controller {
 		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
 
 		// données du header
-		$data['titre'] = "Profil de " . $data['profil'][0]->profil_nom;
+		$data['titre'] = "Profil de " . $data['profil']->profil_nom;
 
 		// chargement des vues
 		$this->load->view('template/header.php', $data);
@@ -77,7 +77,7 @@ class Profil extends CI_Controller {
 	public function config() {
 		// Récupération des informations générales
 		$id = $this->session->userdata('id');
-		$data['profil_nom'] = $this->profil_model->getOne($id, 'profil_nom')[0]->profil_nom;
+		$data['profil_nom'] = $this->profil_model->getOne($id, 'profil_nom')->profil_nom;
 		$data['titre'] = 'Configuration du profil';
 
 
@@ -115,9 +115,10 @@ class Profil extends CI_Controller {
 					$data['errors']['avatar'][] = $this->upload->display_errors();
 				}
 				else {
-
+					$this->profil_model->setImage($id, $avatar_path.'/'.$avatar_origin_name);
 					$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
 
+					// REDIMENSIONNAGE
 					// if ($this->_resizeImage($avatar_path.'/'.$avatar_origin_name, $avatar_dimensions['width'], $avatar_dimensions['height']))
 					// 	$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
 					// else

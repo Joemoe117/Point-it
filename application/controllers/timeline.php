@@ -54,6 +54,7 @@ class Timeline extends CI_Controller {
 		$this->load->view('template/footer.php');
 	}
 
+
 	/**
 	 * 	@param 	$nb 	Le nombre de point à afficher
 	 * 	@param 	$limit 	À partir de quel point on récupère $nb points
@@ -73,8 +74,6 @@ class Timeline extends CI_Controller {
 
 	public function add_point() {
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
-			echo "POST<br>";
-			var_dump($this->input->post());
 
 			// récupération du Post
 			$personnes 		= $this->input->post('personnes', true);
@@ -93,13 +92,14 @@ class Timeline extends CI_Controller {
 				foreach ($personnes as $personne) {
 					$this->point_model->createRecoit($point_id, $personne);
 				}
-			}
-			// Sinon stockage des erreurs
-			elseif (is_array($checkForm)) {
-				$data['errors'] = $checkForm;
-			}
 
-			// TODO transférer les erreurs vers la timeline
+				// Envoie du message de succès
+				$type_point = $this->point_model->getOneType($point);
+				$this->session->set_flashdata('add_point_success', 'Ajout d\'un point '.$type_point->typept_nom.'<br>'.$type_point->typept_success);
+			}
+			// Sinon transfère des erreurs
+			elseif (is_array($checkForm))
+				$this->session->set_flashdata('add_point_errors', $checkForm);
 		}
 		
 		redirect('/timeline', 'refresh');
@@ -163,7 +163,6 @@ class Timeline extends CI_Controller {
 		if (!isset($res))
 			$res = 0;
 
-		var_dump($res);
 		return $res;
 	}
 

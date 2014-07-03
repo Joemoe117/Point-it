@@ -14,3 +14,4 @@ application/config/database.php
 
 application/models/.fuse_hidden*
 application/controllers/.fuse_hidden*
+application/views/profil/.fuse_hidden*

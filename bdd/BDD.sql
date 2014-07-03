@@ -8,7 +8,8 @@ CREATE TABLE `Profils` (
 CREATE TABLE `Types_Point` (
 	`typept_nom` VARCHAR(30) NOT NULL PRIMARY KEY,
 	`typept_description` TEXT NOT NULL,
-	`typept_image` VARCHAR(255)
+	`typept_image` VARCHAR(255),
+	`typept_success` VARCHAR(255)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `Points`(

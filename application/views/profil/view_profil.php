@@ -1,10 +1,9 @@
 <div class="container main">
 	<div class="col-md-7">
 
-	<?php foreach ($profil as $value): ?>
-		<img src="<?=$value->profil_image ?>" alt="..." class="img-circle"  width="200px" height="200px">
-		<h1 style="display:inline-block; vertical-align:bottom"><?=$value->profil_nom ?></h1>	<br>	
-	<?php endforeach ?>
+	<img src="<?=$profil->profil_image ?>" alt="..." class="img-circle"  width="200px" height="200px">
+	<h1 style="display:inline-block; vertical-align:bottom"><?=$profil->profil_nom ?></h1>	<br>
+		
 	<div class="separateur"></div>
 
 	<?php foreach ($points as $point): ?>
