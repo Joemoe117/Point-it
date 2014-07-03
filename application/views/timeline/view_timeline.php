@@ -110,7 +110,20 @@
 				  	<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
 			</div>
-		</div> 
+		</div>
+
+		<?php if ($this->session->flashdata('add_point_errors')): ?>
+			<div class="alert alert-danger">
+				<?php foreach ($this->session->flashdata('add_point_errors') as $error): ?>
+					<p><?= $error ?></p>
+				<?php endforeach ?>
+			</div>	 	
+		<?php endif ?>
+		<?php if ($this->session->flashdata('add_point_success')): ?>
+			<div class="alert alert-success">
+				<p><?= $this->session->flashdata('add_point_success') ?></p>
+			</div>
+		<?php endif ?>
 	</div>
 
 	<script type="text/javascript">

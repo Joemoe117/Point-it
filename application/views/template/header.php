@@ -34,7 +34,7 @@
             <a class="menu" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> Profil</a>
             <a class="menu" href=""><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>
             <a class="menu pull-right" href="<?= site_url("login/logout"); ?>"><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
-            <a class="menu pull-right" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-cog"></span></a>
+            <a class="menu pull-right" class="btn btn-primary btn-lg" href="<?= site_url("profil/config"); ?>"> <span class="glyphicon glyphicon-cog"></span></a>
         </div>
     </div>
 
@@ -43,7 +43,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -73,4 +73,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

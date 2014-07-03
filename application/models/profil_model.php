@@ -18,14 +18,14 @@ class Profil_model extends CI_Model{
 
 
 
-	/* Récupère le profil d'un membre et affiche son compte rendu de point */
-	public function getOne($id){
+	/* Récupère le profil complet d'un membre ou juste un attribut si demandé */
+	public function getOne($id, $attr='*') {
 	
-		return $this->db->select('*')
+		return $this->db->select($attr)
 					->from("profils")
 					->where('profil_id', (int) $id)
 					->get()
-					->result();
+					->result()[0];
 	}
 	
 
@@ -36,7 +36,7 @@ class Profil_model extends CI_Model{
 	*
 	*
 	*/
-	public function checkLogin($login, $password){
+	public function checkLogin($login, $password) {
 
 		$this->db->select();
 		$this->db->where('profil_nom', $login);
@@ -58,9 +58,49 @@ class Profil_model extends CI_Model{
 	}
 
 
+	/**
+	*	Vérifie si le mdp d'un profil_id est correcte
+	*
+	*	@return bool 	true si bon, false si faux
+	*/
+	public function checkPass($id, $password) {
+
+		$this->db->select();
+		$this->db->where('profil_id', $id);
+		$query = $this->db->get('profils');
+		$row = $query->row();
+
+		if (!empty($row) && $this->password->validate_password($password, $row->profil_pass))
+			return true;
+		else
+			return false;
+	}
 
 
+	/**
+	*	Change l'avatar
+	*
+	*/
+	public function setImage($id, $avatar) {
 
+		$data['profil_image'] = $avatar;
+
+		$this->db->where('profil_id', $id)
+			->update('profils', $data);
+	}
+
+
+	/**
+	*	Change le mot de passe
+	*
+	*/
+	public function setPass($id, $password) {
+
+		$data['profil_pass'] = $password;
+
+		$this->db->where('profil_id', $id)
+			->update('profils', $data);
+	}
 
 
 
