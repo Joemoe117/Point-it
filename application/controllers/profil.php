@@ -92,31 +92,51 @@ class Profil extends CI_Controller {
 
 			// Gestion du formulaire de l'avatar
 			if ($this->input->post('form_name') == 'avatar') {
-				$avatar = $this->input->file('avatar');
-				// Erreur de transfert
-				if ($avatar['error'] != UPLOAD_ERR_OK) {
-					if ($avatar['error'] == UPLOAD_ERR_NO_FILE)
-						$data['errors']['avatar'][] = 'Aucun fichier n\'a été téléchargé';
-					else
-						$data['errors']['avatar'][] = 'Le téléchargement de votre fichier a échoué... Veuillez recommencer ou contacter un admin';					
+
+				$config['upload_path'] = base_url('/assets/images/avatars');
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['file_name'] = $data['profil_nom'];
+				$config['overwrite'] = true;
+				$config['max_size']	= '10000';
+				$config['max_width']  = '180';
+				$config['max_height']  = '180';
+
+				$this->load->library('upload', $config);
+
+				if (!$this->upload->do_upload()) {
+					$data['errors']['avatar'][] = "Erreur sur le fichier envoyé";
+					var_dump($this->upload->display_errors());
 				}
-				// Vérifications du fichier
 				else {
-					// Taille
-					if ($avatar['size'] > $max_avatar_size)
-						$data['errors']['avatar'][] = 'La taille du fichier est trop grande';
-
-					// Extension
-					$avatar_extension = strtolower(substr(strrchr($avatar['name'], '.'))); // Choppe l'extension sans le . et en minuscule
-					if (!in_array($avatar_extension, $avatar_valide_extensions))
-						$data['errors']['avatar'][] = 'L\'extension n\'est pas correcte';
-
-					// Dimensions de l'image
-					$avatar_dimensions = getimagesize($avatar['tmp_name']);
-					if ($avatar_dimensions[0] > $avatar_max_dimensions[0] OR $avatar_dimensions[1] > $avatar_max_dimensions[1])
-						$data['errors']['avatar'][] = 'Les dimensions de l\'image sont trop grandes';
-
+					$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
 				}
+
+
+				// $avatar = $this->input->file('avatar');
+				// // Erreur de transfert
+				// if ($avatar['error'] != UPLOAD_ERR_OK) {
+				// 	if ($avatar['error'] == UPLOAD_ERR_NO_FILE)
+				// 		$data['errors']['avatar'][] = 'Aucun fichier n\'a été téléchargé';
+				// 	else
+				// 		$data['errors']['avatar'][] = 'Le téléchargement de votre fichier a échoué... Veuillez recommencer ou contacter un admin';					
+				// }
+				// // Vérifications du fichier
+				// else {
+				// 	// Taille
+				// 	if ($avatar['size'] > $max_avatar_size)
+				// 		$data['errors']['avatar'][] = 'La taille du fichier est trop grande';
+
+				// 	// Extension
+				// 	$avatar_extension = strtolower(substr(strrchr($avatar['name'], '.'))); // Choppe l'extension sans le . et en minuscule
+				// 	if (!in_array($avatar_extension, $avatar_valide_extensions))
+				// 		$data['errors']['avatar'][] = 'L\'extension n\'est pas correcte';
+
+				// 	// Dimensions de l'image
+				// 	$avatar_dimensions = getimagesize($avatar['tmp_name']);
+				// 	if ($avatar_dimensions[0] > $avatar_max_dimensions[0] OR $avatar_dimensions[1] > $avatar_max_dimensions[1])
+				// 		$data['errors']['avatar'][] = 'Les dimensions de l\'image sont trop grandes';
+
+				// }
 			}
 		}
 
