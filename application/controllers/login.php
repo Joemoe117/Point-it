@@ -5,10 +5,6 @@ class Login extends CI_Controller {
 
 	public function __construct()	{
 		parent::__construct();
-		
-		// Si l'utilisateur est déjà connecté le rediriger vers la timeline
-		if ($this->session->userdata('id'))
-			redirect('/timeline', 'refresh');
 
 		// Chargement des models
 		$this->load->model('profil_model');
@@ -28,6 +24,9 @@ class Login extends CI_Controller {
 	*
 	*/
 	public function login() {
+		// Si l'utilisateur est déjà connecté le rediriger vers la timeline
+		if ($this->session->userdata('id'))
+			redirect('/timeline', 'refresh');
 
 		// Si le formulaire a été envoyé
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -97,10 +96,65 @@ class Login extends CI_Controller {
 
 
 	/**
+	 *	Inscription
+	 *
+	 *
+	 */
+	public function inscription() {
+		// Si l'utilisateur est déjà connecté le rediriger vers la timeline
+		if ($this->session->userdata('id'))
+			redirect('/timeline', 'refresh');
+
+		$data['titre'] = 'Inscription';
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+			$login = $this->input->post('login');
+			$pass = $this->input->post('pass');
+			$pass_check = $this->input->post('pass_check');
+
+			// Vérif nom dispo
+			if ($this->profil_model->existNom($login)) {
+				$data['errors']['login'] = "Quelqu'un a déjà pris ce nom ou t'as usurpé";
+				$data['retry']['login'] = $login;
+			}
+			// Vérif mots de passes similaires
+			elseif ($pass != $pass_check) {
+				$data['errors']['pass'] = "Tu fais donc partie des gens pas doués, ton mot de passe est mal confirmé";
+				$data['retry']['login'] = $login;
+			}
+
+
+			// Formulaire bon
+			if (!isset($data['errors'])) {
+				$id = $this->profil_model->create($login, $this->password->create_hash($pass), false);
+
+				// Mise en place des sessions
+				$this->session->set_userdata('id', $id);
+				$this->session->set_userdata('login', $login);
+				$this->session->set_userdata('image', null);
+
+				// Mise en place des cookies, pas encore utilisé
+				set_cookie("id", $id, 86500, "/");
+				set_cookie("login", $login, 86500, "/");
+				set_cookie("image", null, 86500, "/");
+
+				// Redirection vers la timeline
+				redirect('/timeline', 'refresh');
+			}
+		}
+
+		$this->load->view('template/header_logout.php', $data);
+		$this->load->view('login/view_inscription.php');
+		$this->load->view('template/footer.php');
+	}
+
+
+	/**
 	* @return Hashage du mot de passe
 	*
 	*/
-	public function hashpwd( $password ){
+	private function hashpwd( $password ){
 		$hashP = $this->password->create_hash($password);
 		echo $hashP;
 	}

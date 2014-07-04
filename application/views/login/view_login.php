@@ -1,6 +1,3 @@
-
-
-
 <div class="container main">
 	<div class="col-md-6">
 		<h1>Bienvenue sur Point-it !</h1>
@@ -30,6 +27,8 @@
 				<br>
 			</form>
 		</div>
+
+		<a class="btn btn-primary" href="<?= site_url('login/inscription') ?>">Inscription !!!</a>
 
 		<h2>Statistiques générales</h2>
 		<p> Point-it rassemble déjà <?= $nb_profil ?> connards. </p>
