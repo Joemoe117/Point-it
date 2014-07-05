@@ -139,6 +139,8 @@ class Login extends CI_Controller {
 				set_cookie("login", $login, 86500, "/");
 				set_cookie("image", null, 86500, "/");
 
+				$this->session->set_flashdata('first_visit', true);
+
 				// Redirection vers la timeline
 				redirect('/timeline', 'refresh');
 			}

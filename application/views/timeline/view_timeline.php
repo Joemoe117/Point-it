@@ -1,7 +1,18 @@
 <div class="container main">
+	<?php if ($this->session->flashdata('first_visit')): ?>
+		<div class="alert alert-info">
+			Tu es maintenant inscrit et connecté. Bravo !!!
+		</div>
+	<?php endif ?>
 	<div class="col-md-7" id="points_block">
 		<h1>Timeline</h1>
-		<div>	
+		<div>
+			<?php if ($this->session->flashdata('first_visit')): ?>
+				<div class="alert alert-info">
+					Voici la Timeline, c'est ici que tu verras les exploits de tes petits copains et les commentaires d'encouragement qui vont avec.
+				</div>
+			<?php endif ?>
+
 			<?php foreach ($points as $point): ?>
 				<div class="point">
 
@@ -111,6 +122,12 @@
 				</form>
 			</div>
 		</div>
+
+		<?php if ($this->session->flashdata('first_visit')): ?>
+			<div class="alert alert-info">
+				Ici c'est le formulaire pour donner des points. Libre à toi de balancer tes amis ou de vanter tes anecdotes.
+			</div>
+		<?php endif ?>
 
 		<?php if ($this->session->flashdata('add_point_errors')): ?>
 			<div class="alert alert-danger">
