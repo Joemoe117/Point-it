@@ -1,12 +1,12 @@
 CREATE TABLE `Profils` (
 	`profil_id` INT AUTO_INCREMENT PRIMARY KEY,
-	`profil_nom` VARCHAR(30) NOT NULL,
+	`profil_nom` VARCHAR(30) NOT NULL UNIQUE,
 	`profil_pass` VARCHAR(20) NOT NULL,
 	`profil_image` VARCHAR(255)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `Types_Point` (
-	`typept_nom` VARCHAR(30) NOT NULL PRIMARY KEY,
+	`typept_nom` VARCHAR(30) PRIMARY KEY,
 	`typept_description` TEXT NOT NULL,
 	`typept_image` VARCHAR(255),
 	`typept_success` VARCHAR(255)

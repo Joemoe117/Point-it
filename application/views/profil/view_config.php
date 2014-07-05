@@ -9,8 +9,8 @@
 			<input type="hidden" name="form_name" value="avatar">
 			<div class="form-group">
 				<label for="avatar">Nouvelle photo de profil</label>
-				<input type="file" class="form-control" id="avatar" name="avatar" required>
-				<p class="help-block">Format accepté : gif, png, jpeg, jpg</p>
+				<input type="file" id="avatar" name="avatar" required>
+				<p class="help-block">Formats acceptés : gif, png, jpeg, jpg</p>
 				<p class="help-block">Image de moins de 2Mo</p>
 			</div>
 			

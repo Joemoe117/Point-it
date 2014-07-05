@@ -29,6 +29,36 @@ class Profil_model extends CI_Model{
 	}
 	
 
+	/**
+	 *	Ajouter un compte
+	 *
+	 *	@param 		$nom 	Nom du profil	
+	 *	@param 		$pass 	Mot de passe du profil
+	 *	@param 		$image 	Avatar du profil (optionel)
+	 *	
+	 *	@return 	ID du profil ou false pour un échec
+	 */
+	public function create($nom, $pass, $image=false) {
+		$data['profil_nom'] = $nom;
+		$data['profil_pass'] = $pass;
+		if ($image)
+			$data['profil_image'] = $image;
+
+		$this->db->insert('profils', $data);
+
+		// Récupération ID
+		$query = $this->db->select('profil_id')
+			->from('profils')
+			->where('profil_nom', $nom)
+			->limit(1)
+			->get()
+			->result();
+
+		if (!empty($query))
+			return $query[0]->profil_id;
+		else
+			return false;
+	}
 
 
 	/**
@@ -156,4 +186,19 @@ class Profil_model extends CI_Model{
 		}
 	}
 
+
+	/**
+	*	@return 	Verifie que le nom d'un profil existe déjà dans la BDD
+	*
+	*/
+	public function existNom($nom) {
+		$nb = $this->db->from("profils")
+				->where('profil_nom', $nom)
+				->count_all_results();
+
+		if ($nb == 0)
+			return false;
+		else
+			return true;
+	}
 }
