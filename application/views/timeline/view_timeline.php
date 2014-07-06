@@ -53,18 +53,19 @@
 
 
 					<!-- COMMENTAIRE -->
+					
 					<div class="zone_commentaire">
 						<?php foreach ($commentaires as $commentaire): ?>
 							<?php foreach ($commentaire as $com): ?>
-								<?php if ($com->point_id == $point->point_id): ?>
-									<div class="commentaire">
-										<img src="<?=$com->profil_image ?>" alt="test" class="img-rounded image_commentaire">
-										<a href="<?php echo site_url("profil/get/"); echo "/".$com->profil_id; ?>"><?=$com->profil_nom?></a>
-										<span class="point_date pull-right">
-											<?php echo "Le ".date("d/m/y à H:i", mysql_to_unix($com->com_date)); ?>
-										</span>	
-										<br>
-										<?=$com->com_texte?>
+								<?php if ($com->point_id == $point->point_id): ?>						
+									<div class="media">
+										<a class="pull-left" href="#">
+											<img class="media-object img-rounded" src="<?=$com->profil_image ?>" alt="..." width="35">
+										</a>
+										<div class="media-body">
+										<a href="<?php echo site_url("profil/get/"); echo "/".$com->profil_id; ?>"><div class="media-heading"><?=$com->profil_nom?></div></a>
+											<?=$com->com_texte?>
+										</div>
 									</div>
 								<?php endif ?>
 							<?php endforeach ?>
@@ -72,8 +73,8 @@
 
 						<form id="form<?php echo $point->point_id?>" method="post" action="<?= site_url("commentaire/create"); ?>">
 							<div class="container-fluid" style="margin:0px; padding:0px;" >
-							    <textarea id="textarea<?php echo $point->point_id?>" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="1" required></textarea>
-							    <input class="btn btn-primary form-control pull-right" value="Poster" type="submit">
+								<textarea id="textarea<?php echo $point->point_id?>" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="1" required></textarea>
+								<input class="btn btn-primary form-control pull-right" value="Poster" type="submit">
 							</div>
 							<input name="point_id" type="hidden" value="<?=$point->point_id?>">
 						</form>
@@ -93,7 +94,7 @@
 					<div class="control-group">
 						<label for="multiple" class="control-label">Personne(s)</label>
 						<div class="controls">
-							<select id="select_nom" class="select2" multiple name="personnes[]" style="width:100%;">
+							<select id="select_nom" class="select2" multiple name="personnes[]" style="width:100%;" minlengt="20" required>
 								<?php foreach ($form_profil as $value): ?>
 									<option value="<?=$value->profil_id?>">  <?=$value->profil_nom?> </option>
 								<?php endforeach ?>
@@ -101,23 +102,23 @@
 						</div>
 					</div>
 
-				  	<div class="form-group">
-				    <label>Point</label>
+					<div class="form-group">
+					<label>Point</label>
 
-				    <!-- Génération de la dropdown des points -->
-				    <select class="form-control" name="point">
-				    	<?php foreach ($form_point as $value): ?>
-				    		<option value="<?=$value->typept_id?>">Point <?=$value->typept_nom?> </option>
-				    	<?php endforeach ?>
+					<!-- Génération de la dropdown des points -->
+					<select class="form-control" name="point" required>
+						<?php foreach ($form_point as $value): ?>
+							<option value="<?=$value->typept_id?>">Point <?=$value->typept_nom?> </option>
+						<?php endforeach ?>
 					</select>
 
-				    <label>Description</label>
-				    <textarea placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
-				  	</div>
-				  	<?php if (isset($error) ): ?>
+					<label>Description</label>
+					<textarea placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
+					</div>
+					<?php if (isset($error) ): ?>
 						<div class="alert alert-danger"><?=$error?></div>
 					<?php endif ?>
-				  	<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
+					<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
 			</div>
 		</div>
