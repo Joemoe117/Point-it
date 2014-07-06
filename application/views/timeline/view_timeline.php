@@ -4,8 +4,10 @@
 			Tu es maintenant inscrit et connecté. Bravo !!!
 		</div>
 	<?php endif ?>
+
+
 	<div class="col-md-7" id="points_block">
-		<h1>Timeline</h1>
+		<h2>Timeline</h2>
 		<div>
 			<?php if ($this->session->flashdata('first_visit')): ?>
 				<div class="alert alert-info">
@@ -25,7 +27,7 @@
 					<!-- Affichage des noms -->
 					<span class="name">
 						<?php foreach ($point->recoit as $pointInfo): ?>
-							<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><?=$pointInfo->profil_nom?></a>
+							<a href="<?= site_url("profil/get/")."/".$pointInfo->profil_id ?>"><?=$pointInfo->profil_nom?></a>
 							<?php if ( $i < (count($point->recoit)-1) && $i !=(count($point->recoit)-1) ): ?>
 								et
 							<?php endif ?>
@@ -49,6 +51,8 @@
 
 					<div class="point_description"><?=$point->point_description?></div>
 
+
+					<!-- COMMENTAIRE -->
 					<div class="zone_commentaire">
 						<?php foreach ($commentaires as $commentaire): ?>
 							<?php foreach ($commentaire as $com): ?>
@@ -66,15 +70,10 @@
 							<?php endforeach ?>
 						<?php endforeach ?>
 
-
-						<form method="post" action="<?= site_url("commentaire/create"); ?>">
+						<form id="form<?php echo $point->point_id?>" method="post" action="<?= site_url("commentaire/create"); ?>">
 							<div class="container-fluid" style="margin:0px; padding:0px;" >
-								<div class="row col-xs-10" style="margin:0px; padding:0px;" >
-								    <textarea name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="2"></textarea>
-								</div>
-								<div class="row col-xs-2" style="margin:0px; padding:0px;">
-								    <input class="btn btn-primary form-control pull-right" value="Poster" type="submit">
-							  	</div>
+							    <textarea id="textarea<?php echo $point->point_id?>" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="1" required></textarea>
+							    <input class="btn btn-primary form-control pull-right" value="Poster" type="submit">
 							</div>
 							<input name="point_id" type="hidden" value="<?=$point->point_id?>">
 						</form>
@@ -82,7 +81,7 @@
 				</div>
 			<?php endforeach ?>
 		</div>
-		<button id="add_old_points" class="btn">Afficher 10 anciens points</button>
+		<button id="add_old_points" class="btn btn-primary pull-right">Afficher 10 anciens points</button>
 	</div>
 
 
@@ -154,6 +153,7 @@
 			limit: 5
 		};
 	</script>
+
 	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
 
 </div>

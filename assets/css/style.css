@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6{
 	background-image:linear-gradient(rgb(38,38,38), rgb(10,10,10));
 	border-bottom: 1px solid grey;
 	color: white;
-	padding: 13px;	
+	padding: 16px;	
 	margin-bottom: 15px;
 }
 
@@ -24,12 +24,13 @@ h1, h2, h3, h4, h5, h6{
 	font-size: 1.3em;
 	margin-right: 10px;
 }
+
 .menu:hover{
+	border-bottom: 2px solid white;
+	color: white;
 	font-size: 1.3em;
 	margin-right: 10px;
-	color: white;
 	text-decoration: none;
-	border-bottom: 3px solid white;
 }
 
 .active{
@@ -64,13 +65,14 @@ h1, h2, h3, h4, h5, h6{
 	background: white;
 	border: 1px solid grey;
 	border-radius: 7px;
+	padding-top: 15px;
 }
 
 /* AFFICHAGE DES POINTS */
 .point{
 	border: 1px solid lightgrey;
 	border-radius: 7px;
-	padding: 4px;
+	padding: 10px;
 	margin-top: 10px;
 	vertical-align: top;
 }	
@@ -83,7 +85,9 @@ h1, h2, h3, h4, h5, h6{
 
 .point_description{
 	font-size: 1.2em;
-	padding: 5px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid lightgrey;
 }
 
 .name{
@@ -95,10 +99,6 @@ h1, h2, h3, h4, h5, h6{
 /* AFFICHAGE DES COMMENTAIRE */
 
 .zone_commentaire{
-	background: rgb(235,235,235);
-	border: 1px solid lightgrey;
-	border-radius: 7px;
-	padding: 5px;
 }
 
 .commentaire{
@@ -151,7 +151,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-
+#add_old_points{
+	margin: 10px;
+}
 
 
 
