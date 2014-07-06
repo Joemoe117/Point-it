@@ -157,4 +157,17 @@
 
 	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
 
+
+	<script>
+		$(function() {
+			$( ".zone_commentaire" ).hide("hide", 0 );
+	  	});
+	</script>
+
+	<script>
+		$( ".point" ).click(function() {
+			$(this).find(".zone_commentaire" ).toggle( "blind", 400 );
+		});
+	</script>
+
 </div>
