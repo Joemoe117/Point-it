@@ -88,7 +88,7 @@ h1, h2, h3, h4, h5, h6{
 	font-size: 1.2em;
 	padding-top: 15px;
 	padding-bottom: 10px;
-	border-bottom: 1px solid lightgrey;
+	
 	margin-bottom: 5px;
 }
 
@@ -101,6 +101,9 @@ h1, h2, h3, h4, h5, h6{
 /* AFFICHAGE DES COMMENTAIRE */
 
 .zone_commentaire{
+	border-top: 1px solid lightgrey;
+	padding-top: 5px;
+	display: none;
 }
 
 
