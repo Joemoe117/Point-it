@@ -27,9 +27,9 @@
 				<br>
 			</form>
 		</div>
-
-		<a class="btn btn-primary" href="<?= site_url('login/inscription') ?>">Inscription !!!</a>
-
+	
+		<a class="btn btn-primary pull-right inscription" href="<?= site_url('login/inscription') ?>">Inscription</a>
+		<br>
 		<h2>Statistiques générales</h2>
 		<p> Point-it rassemble déjà <?= $nb_profil ?> connards. </p>
 		<p> Déjà <?= $nb_point ?> points ont été distribué et <?= $nb_commentaire ?> commentaires ont été rajouté</p>
