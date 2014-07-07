@@ -1,5 +1,5 @@
 <div class="point">
-
+	
 	<!-- Affichage des avatars -->
 	<?php foreach ($point->recoit as $pointInfo): ?>
 		<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" ></a>	
