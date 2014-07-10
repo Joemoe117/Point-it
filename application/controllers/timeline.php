@@ -46,7 +46,7 @@ class Timeline extends CI_Controller {
 		/* Recupération des $initNbPoints derniers points et des commentaires de chaque point */
 		$data['points'] = $this->point_model->getAllPoints(self::POINT_BY_PAGE);
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
 
 		

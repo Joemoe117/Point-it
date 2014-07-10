@@ -144,6 +144,10 @@ h1, h2, h3, h4, h5, h6{
 	color: white;
 }
 
+.bleu{
+	color: rgb(7,105,173);
+}
+
 .icone{
 	color: rgb(7,105,173);
 	font-size: 5.0em;

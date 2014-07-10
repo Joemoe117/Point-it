@@ -16,6 +16,7 @@
 			<?php endif ?>
 
 		<?php foreach ($points as $point): ?>
+			<?php //var_dump($point) ?>
 			<?php $data["point"] = $point; ?>
 			<?php $this->load->view("component/component_point.php", $data );?>
 		<?php endforeach ?>

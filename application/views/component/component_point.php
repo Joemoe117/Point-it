@@ -33,12 +33,18 @@
 
 		<div class="point_description"><?=$point->point_description?></div>
 
+		<!-- Affichage du nombre de commentaire -->
+		<p class="nbCommentaire" style="text-align:right">
+			<?php printf(ngettext("%d commentaire", "%d commentaires", count($commentaires[$point->point_id])), count($commentaires[$point->point_id])) ?>
+		</p>
+		
 
 		<!-- COMMENTAIRE -->
 	</div>	
 	<div class="zone_commentaire">
 		
 		<?php foreach ($commentaires as $commentaire): ?>
+
 			<div class="commentaire_texte">
 				<?php foreach ($commentaire as $com): ?>
 					<?php if ($com->point_id == $point->point_id): ?>						
@@ -52,6 +58,7 @@
 							</div>
 						</div>
 					<?php endif ?>
+					
 				<?php endforeach ?>
 			</div>
 		<?php endforeach ?>
