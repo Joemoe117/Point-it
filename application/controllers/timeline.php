@@ -1,8 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Classe permettant d'afficher la timeline du site résumant les derniers
+ * points ajoutés au site et également a donner de points
+ */
 class Timeline extends CI_Controller {
 
-
+	// Déclaration des constantes
+	const POINT_BY_PAGE = 5;
 
 	public function __construct()	{
 		parent::__construct();
@@ -17,7 +22,6 @@ class Timeline extends CI_Controller {
 		$this->load->model('point_model');
 		$this->load->model('commentaire_model');
 
-		
 	}
 
 	public function index()	{
@@ -34,14 +38,13 @@ class Timeline extends CI_Controller {
 	*
 	*/
 	public function retrieve() {
-		$initNbPoints = 5;
 
 		/* Génération des informations du formulaire */
 		$data['form_point'] = $this->point_model->getAllType();
 		$data['form_profil'] = $this->profil_model->getAll();
 			
 		/* Recupération des $initNbPoints derniers points et des commentaires de chaque point */
-		$data['points'] = $this->point_model->getAllPoints($initNbPoints);
+		$data['points'] = $this->point_model->getAllPoints(self::POINT_BY_PAGE);
 		foreach ($data['points'] as $value) {
 			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
@@ -61,7 +64,6 @@ class Timeline extends CI_Controller {
 	 *
 	 *	@return Revoie le HTML pour afficher des points supplémentaires à la timeline
 	 */
-
 	public function get_points($nb, $limit) {
 		/* Recupération des $nb points et des commentaires de chaque point */
 		$data['points'] = $this->point_model->getAllPoints($nb, $limit);
@@ -104,6 +106,17 @@ class Timeline extends CI_Controller {
 		
 		redirect('/timeline', 'refresh');
 	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 	///////////////////////////////////////////////////////////////////////////

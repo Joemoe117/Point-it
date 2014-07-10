@@ -21,7 +21,7 @@ class Profil extends CI_Controller {
 
 
 	public function index()	{
-		$this->load->view('profil/exemple.php');
+		$this->get($this->session->userdata('id'));
 	}
 
 
@@ -53,7 +53,6 @@ class Profil extends CI_Controller {
 		}
 
 		
-
 		// statistique
 		$data['nbPoint'] 		= $this->profil_model->getNbPoint($id);
 		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
@@ -159,7 +158,24 @@ class Profil extends CI_Controller {
 		$this->load->view('template/footer.php');
 	}
 
-	// PRIVATE MÉTHODES
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/////////////////////////////////////////////////////////////////////////
+	///							PRIVATE METHODS 						  ///
+	/////////////////////////////////////////////////////////////////////////
 
 	private function _resizeImage($file_name, $new_width, $new_height) {
 
