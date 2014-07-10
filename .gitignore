@@ -21,3 +21,7 @@ application/views/timeline/.fuse_hidden*
 *.fuse_hid*
 application/config/config.php
 todo.html
+application/config/config.php
+application/views/timeline/view_timeline_test.php
+todo.html
+application/config/config.php
