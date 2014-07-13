@@ -1,5 +1,5 @@
 <div class="container main">
-	<div class="col-md-7" id="points_block">
+	<div class="col-md-7">
 	<h2>Leaderboard</h2>
 	<p>Ceci n'est pas très explicite. Va falloir revoir ta vue mon Thoumou.</p>
 	<table class="table table-bordered">
@@ -14,7 +14,7 @@
 		<?php endforeach ?>	
 	</table>
 	</div>
-	<div class="col-md-5" id="points_block">
+	<div class="col-md-5">
 		<h3>Changer de filtre</h3>
 			<div class="panel-body">
 				<form role="form" method="post" action="<?php echo site_url("timeline/add_point"); ?>">
