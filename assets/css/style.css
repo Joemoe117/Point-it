@@ -21,26 +21,20 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .menu{
-	font-size: 1.3em;
+	font-size: 1.4em;
 	margin-right: 10px;
 }
 
 .menu:hover{
 	border-bottom: 2px solid white;
 	color: white;
-	font-size: 1.3em;
+	font-size: 1.4em;
 	margin-right: 10px;
 	text-decoration: none;
 }
 
 .active{
-	background-image:radial-gradient(rgb(70,70,70), rgb(0,0,0));
-	border: 1px solid grey;
-	border-radius: 7px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
+	color: white;
 }
 
 

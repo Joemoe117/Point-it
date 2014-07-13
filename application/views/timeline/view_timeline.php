@@ -53,10 +53,10 @@
 					</select>
 
 					<label>Description</label>
-					<textarea placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
+					<textarea id="textarea" placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
 					</div>
 					<?php if (isset($error) ): ?>
-						<div class="alert alert-danger"><?=$error?></div>
+						<div id="alert_form_add" class="alert alert-danger"><?=$error?></div>
 					<?php endif ?>
 					<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
@@ -81,6 +81,8 @@
 				<p><?= $this->session->flashdata('add_point_success') ?></p>
 			</div>
 		<?php endif ?>
+		<div id="error_add" class="alert alert-danger" style="display:none">
+		</div>
 	</div>
 
 	<script type="text/javascript">
@@ -96,6 +98,9 @@
 	</script>
 
 	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
+
+	<script type="text/javascript" src="<?= base_url('/assets/js/form_valid_add.js') ?>"></script>
+
 
 	<script>
 		$( ".point_haut" ).click(function() {
