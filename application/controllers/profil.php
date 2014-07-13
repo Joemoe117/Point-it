@@ -59,6 +59,7 @@ class Profil extends CI_Controller {
 
 		// données du header
 		$data['titre'] = "Profil de " . $data['profil']->profil_nom;
+		$data['menu'] = "profil";
 
 		// chargement des vues
 		$this->load->view('template/header.php', $data);

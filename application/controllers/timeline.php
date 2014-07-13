@@ -51,7 +51,8 @@ class Timeline extends CI_Controller {
 
 		
 		// chargement des vues
-		$data['titre'] = "Timeline";
+		$data['titre'] 	= "Timeline";
+		$data['menu']	= "timeline";
 		$this->load->view('template/header.php', $data);
 		$this->load->view('timeline/view_timeline.php', $data);
 		$this->load->view('template/footer.php');
