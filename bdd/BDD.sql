@@ -40,3 +40,12 @@ CREATE TABLE `Commentaires` (
 	FOREIGN KEY (`point_id`) REFERENCES `Points`(`point_id`),
 	FOREIGN KEY (`profil_id`) REFERENCES `Profils`(`profil_id`)
 ) ENGINE = InnoDB;
+
+CREATE VIEW `Liste_Points` AS
+	SELECT `profil_id`, `point_id`, `typept_nom`
+	FROM `Recoit`
+	NATURAL JOIN `Profils`
+	NATURAL JOIN `Points`
+	NATURAL JOIN `Types_Point`
+	ORDER BY `profil_id`;
+	
