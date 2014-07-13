@@ -8,7 +8,6 @@
 
 	<div class="col-md-7" id="points_block">
 		<h2>Timeline</h2>
-		<div>
 			<?php if ($this->session->flashdata('first_visit')): ?>
 				<div class="alert alert-info">
 					Voici la Timeline, c'est ici que tu verras les exploits de tes petits copains et les commentaires d'encouragement qui vont avec.
@@ -16,12 +15,10 @@
 			<?php endif ?>
 
 		<?php foreach ($points as $point): ?>
-			<?php //var_dump($point) ?>
 			<?php $data["point"] = $point; ?>
 			<?php $this->load->view("component/component_point.php", $data );?>
 		<?php endforeach ?>
 
-		</div>
 		<button id="add_old_points" class="btn btn-primary pull-right">Afficher 10 anciens points</button>
 	</div>
 
@@ -96,12 +93,10 @@
 			limit: 5
 		};
 	</script>
+	
 
 	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
-
 	<script type="text/javascript" src="<?= base_url('/assets/js/form_valid_add.js') ?>"></script>
-
-
 	<script>
 		$( ".point_haut" ).click(function() {
 			$(this).next(".zone_commentaire" ).toggle( "blind", 400 );

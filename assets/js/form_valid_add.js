@@ -8,7 +8,7 @@
  */
 
 $('form').submit(function () {
-var textarea = $.trim($('#textarea').val());
+	var textarea = $.trim($('#textarea').val());
 
     // Check if description is larger than 20 characters and not empty
     if (name  === '' && textarea.length < 20 ) {
@@ -16,6 +16,4 @@ var textarea = $.trim($('#textarea').val());
     	$('#error_add').text("Veuillez donner une description plus longue");
         return false;
     }
-
-
 });
