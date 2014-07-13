@@ -26,6 +26,9 @@ class Leaderboard extends CI_Controller {
 		$data['classement'] = $this->classement_model->general();
 		$data['types_point'] = $this->point_model->getAlltype();
 
+		
+		$data['form_point'] = $this->point_model->getAllType();
+
 		// Chargement de la vue
 		$data['titre'] 	= 'Leaderboard';
 		$data['menu']	= 'leaderboard';
