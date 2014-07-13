@@ -56,6 +56,7 @@ class Profil extends CI_Controller {
 		// statistique
 		$data['nbPoint'] 		= $this->profil_model->getNbPoint($id);
 		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
+		$data['table_point']	= $this->profil_model->getNumberOfPointByType($id);
 
 		// données du header
 		$data['titre'] = "Profil de " . $data['profil']->profil_nom;
@@ -79,6 +80,7 @@ class Profil extends CI_Controller {
 		$id = $this->session->userdata('id');
 		$data['profil_nom'] = $this->profil_model->getOne($id, 'profil_nom')->profil_nom;
 		$data['titre'] = 'Configuration du profil';
+		$data['menu'] = 'profil';
 
 
 		// Si le formulaire a été envoyé

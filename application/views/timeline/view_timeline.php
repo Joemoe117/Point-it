@@ -19,7 +19,7 @@
 			<?php $this->load->view("component/component_point.php", $data );?>
 		<?php endforeach ?>
 
-		<button id="add_old_points" class="btn btn-primary pull-right">Afficher 10 anciens points</button>
+		<button id="add_old_points" class="btn btn-primary pull-right">Points plus anciens</button>
 	</div>
 
 

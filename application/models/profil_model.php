@@ -201,4 +201,19 @@ class Profil_model extends CI_Model{
 		else
 			return true;
 	}
+
+
+	/**
+	 * [getNumberOfPointByType description]
+	 * @param  integer $id [description]
+	 * @return [type]      [description]
+	 */
+	public function getNumberOfPointByType( $id=0 ){
+		return $this->db->select('profil_nom, typept_nom, count(typept_nom) AS nombre')
+			->from('recoit NATURAL JOIN profils NATURAL JOIN points NATURAL JOIN types_point')
+			->where('recoit.profil_id', (int) $id)
+			->group_by('typept_nom')
+			->get()
+			->result();
+	}
 }
