@@ -24,6 +24,9 @@
         <script type="text/javascript" src="<?= base_url("/assets/js/jquery-ui-1.10.4.custom.min.js");  ?>"></script>
         <script type="text/javascript" src="<?= base_url("/assets/js/select2.min.js");  ?>"></script>
         <script type="text/javascript" src="<?= base_url("/assets/js/bootstrap.min.js");  ?>"></script>
+
+        <!-- icone -->
+        <link rel="icon" type="image/png" href="<?= base_url("/assets/images/icones/favicon.bmp");  ?>" />
     </head>
 
   <body>
