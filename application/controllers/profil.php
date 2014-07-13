@@ -96,9 +96,9 @@ class Profil extends CI_Controller {
 				$avatar_dimensions['width'] = 100;
 				$avatar_dimensions['height'] = 100;
 				$avatar_valide_extensions = 'jpg|jpeg|png|gif';
-				$avatar_path = './assets/images/avatars/'.$id.'_'.$data['profil_nom'];
-				$avatar_origin_name = 'origin';
-				$avatar_resized_name = 'resized';
+				$avatar_path = "./assets/images/avatars/".$id.'_'.$data['profil_nom'];  
+				$avatar_origin_name = 'origin.jpg';
+				$avatar_resized_name = 'resized.jpg';
 
 				// Détermine la config de "do_upload" pour vérifier le fichier
 				$this->_clearDir($avatar_path);
@@ -110,14 +110,14 @@ class Profil extends CI_Controller {
 				// $config['max_width']  = $avatar_max_dimensions['width'];
 				// $config['max_height']  = $avatar_max_dimensions['height'];
 
+
 				$this->load->library('upload', $config);
 
 				if (!$this->upload->do_upload('avatar')) {
 					$data['errors']['avatar'][] = "Erreur sur le fichier envoyé";
 					$data['errors']['avatar'][] = $this->upload->display_errors();
-				}
-				else {
-					$this->profil_model->setImage($id, $avatar_path.'/'.$avatar_origin_name);
+				} else {
+					$this->profil_model->setImage($id, base_url("/assets/images/avatars")."/".$id.'_'.$data['profil_nom'].'/'.$avatar_origin_name);
 					$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
 
 					// REDIMENSIONNAGE
@@ -180,6 +180,13 @@ class Profil extends CI_Controller {
 	///							PRIVATE METHODS 						  ///
 	/////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * [_resizeImage description]
+	 * @param  [type] $file_name  [description]
+	 * @param  [type] $new_width  [description]
+	 * @param  [type] $new_height [description]
+	 * @return [type]             [description]
+	 */
 	private function _resizeImage($file_name, $new_width, $new_height) {
 
 		list($width, $height) = getimagesize($file_name);
@@ -200,6 +207,12 @@ class Profil extends CI_Controller {
 		return imagejpeg($thumb);
 	}
 
+	/**
+	 * [_clearDir description]
+	 * @param  [type]  $dir    [description]
+	 * @param  boolean $delete [description]
+	 * @return [type]          [description]
+	 */
 	private function _clearDir($dir, $delete = false) {
 		$dossier = $dir;
 		$dir = opendir($dossier);
