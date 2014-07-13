@@ -49,7 +49,7 @@ class Profil extends CI_Controller {
 
 		/* Récupération des commentaires de chaque point */
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
 
 		

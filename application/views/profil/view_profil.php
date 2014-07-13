@@ -31,8 +31,8 @@
 </div>
 
 <script>
-	$( ".point" ).click(function() {
-		$(this).find(".zone_commentaire" ).toggle( "blind", 400 );
+	$( ".point_haut" ).click(function() {
+		$(this).next(".zone_commentaire" ).toggle( "blind", 400 );
 	});
 </script>
 

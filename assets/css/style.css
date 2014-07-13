@@ -87,10 +87,9 @@ h1, h2, h3, h4, h5, h6{
 
 .point_description{
 	font-size: 1.2em;
+	margin-bottom: 5px;
 	padding-top: 15px;
 	padding-bottom: 10px;
-	
-	margin-bottom: 5px;
 }
 
 .name{
@@ -109,6 +108,11 @@ h1, h2, h3, h4, h5, h6{
 
 .commentaire_texte{
 	padding-bottom: 2px;
+}
+
+.nbCommentaire{
+	color: rgb(7,105,173);
+	font-size: 0.8em;
 }
 
 
