@@ -33,15 +33,15 @@
             <?php if (strcmp($menu, 'timeline') == 0): ?>
                 <a class="menu active" href="<?= site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> Accueil</a>
                 <a class="menu" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> Profil</a>
-                <a class="menu" href=""><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>    
+                <a class="menu" href="<?= site_url("leaderboard/"); ?>"><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>    
             <?php elseif (strcmp($menu, 'profil') == 0): ?>
                 <a class="menu" href="<?= site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> Accueil</a>
                 <a class="menu active" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> Profil</a>
-                <a class="menu" href=""><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>    
+                <a class="menu" href="<?= site_url("leaderboard/"); ?>"><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>    
             <?php else: ?>
                 <a class="menu" href="<?= site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> Accueil</a>
                 <a class="menu" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> Profil</a>
-                <a class="menu active" href=""><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>
+                <a class="menu active" href="<?= site_url("leaderboard/"); ?>"><span class="glyphicon glyphicon-list-alt"></span> Leaderboard</a>
             <?php endif ?>
             <a class="menu pull-right" href="<?= site_url("login/logout"); ?>"><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
             <a class="menu pull-right" class="btn btn-primary btn-lg" href="<?= site_url("profil/config"); ?>"> <span class="glyphicon glyphicon-cog"></span></a>
