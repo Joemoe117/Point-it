@@ -1,35 +1,49 @@
 <div class="container main">
+
+
 	<div class="col-md-7">
-	<h2>Leaderboard</h2>
-	<p>Ceci n'est pas très explicite. Va falloir revoir ta vue mon Thoumou.</p>
-	<table class="table table-bordered">
-		<th>Personne</th>
-		<th>Total de points</th>
+		<h2>Classement 
+			<?php if (is_null($type_point)): ?>
+				général
+			<?php else: ?>
+				du point <?= $type_point ?>
+			<?php endif ?>
+		</h2>
 
-		<?php foreach ($classement as $key => $value): ?>
-			<tr>
-				<td><?= $value->profil_id?></td>
-				<td><?= $value->nb_points?></td>
-			</tr>
-		<?php endforeach ?>	
-	</table>
-	</div>
-	<div class="col-md-5">
-		<h3>Changer de filtre</h3>
-			<div class="panel-body">
-				<form role="form" method="post" action="<?php echo site_url("timeline/add_point"); ?>">
+		<div class="row">
+			<?php for ($i=0; $i < 3; $i++): ?>
+				<div class="leader leader-<?= $i+1 ?> col-md-3 col-md-offset-1">
+					<p><?= $classement[$i]->profil_nom ?></p>
+					<img src="<?= $classement[$i]->profil_image ?>" height="100%" width="100%">
+					<p><?= $classement[$i]->nb_points ?> POINTS</p>
+				</div>
+			<?php endfor ?>
+		</div>
 
-					<div class="form-group">
-					<label>Point</label>
-
-					<!-- Génération de la dropdown des points -->
-					<select class="form-control" name="point" required>
-						<?php foreach ($form_point as $value): ?>
-							<option value="<?=$value->typept_id?>">Point <?=$value->typept_nom?> </option>
-						<?php endforeach ?>
-					</select>
-					</div>
-				</form>
+		<h3>Les autres personnes sans importance</h3>
+		
+		<?php for ($i=3; $i<count($classement); $i++): ?>
+			<div class="row">
+				<div class="col-md-1"><?= $i+1 ?></div>
+				<div class="col-md-2"><?= $classement[$i]->profil_nom ?></div>
+				<div class="col-md-3"><?= $classement[$i]->nb_points ?> Points</div>
 			</div>
+		<?php endfor ?>
+	</div>
+
+	<!-- Barre à droite -->
+	<div class="col-md-5">
+		<h3>Par type de point</h3>
+
+		<div><a href="<?= site_url('leaderboard') ?>" class="btn btn-default btn-lg btn-block <? if(is_null($type_point)) echo 'active' ?>">
+			Classement général
+		</a></div>
+		<?php foreach ($types_point as $key => $value): ?>
+			<div>
+				<a href="<?= site_url('leaderboard/index/'.$value->typept_nom) ?>" class="btn btn-default btn-lg btn-block <? if($type_point == $value->typept_nom) echo 'active' ?>">
+					<?= $value->typept_nom ?>
+				</a>
+			</div>
+		<?php endforeach ?>
 	</div>
 </div>

@@ -4,8 +4,8 @@
 class Classement_model extends CI_Model {
 
 	public function general($nb=0) {
-		$query = $this->db->select('profil_id, count(*) AS nb_points')
-			->from('liste_points')
+		$query = $this->db->select('*, count(*) AS nb_points')
+			->from('liste_points NATURAL JOIN profils')
 			->group_by('profil_id')
 			->order_by('nb_points', 'desc');
 
@@ -19,8 +19,8 @@ class Classement_model extends CI_Model {
 	}
 
 	public function byTypePoint($type_point, $nb=0) {
-		$query = $this->db->select('profil_id, count(*) AS nb_points')
-			->from('liste_points')
+		$query = $this->db->select('*, count(*) AS nb_points')
+			->from('liste_points NATURAL JOIN profils')
 			->where('typept_nom', $type_point)
 			->group_by('profil_id')
 			->order_by('nb_points', "desc");
