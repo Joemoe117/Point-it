@@ -46,12 +46,13 @@ class Timeline extends CI_Controller {
 		/* Recupération des $initNbPoints derniers points et des commentaires de chaque point */
 		$data['points'] = $this->point_model->getAllPoints(self::POINT_BY_PAGE);
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
 
 		
 		// chargement des vues
-		$data['titre'] = "Timeline";
+		$data['titre'] 	= "Timeline";
+		$data['menu']	= "timeline";
 		$this->load->view('template/header.php', $data);
 		$this->load->view('timeline/view_timeline.php', $data);
 		$this->load->view('template/footer.php');
@@ -68,7 +69,7 @@ class Timeline extends CI_Controller {
 		/* Recupération des $nb points et des commentaires de chaque point */
 		$data['points'] = $this->point_model->getAllPoints($nb, $limit);
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
 		$this->load->view('timeline/view_affiche_points.php', $data);
 	}

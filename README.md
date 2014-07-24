@@ -1,40 +1,25 @@
 Point-it
 ========
 
-#Structure du projet
-/application : c'est ici qu'on intervient, et seulement dans les dossiers controllers, models et views 
-
-/system : fichiers du frameword : ne pas modifier 
-
-/assets : contient tous les fichiers de ressources utiles au projet ( css, images, javascript ) 
-
-/bdd : contient le modele et la base de données 
-
+#Description générale
+Point-!t est un site permettant de facilement trainer dans la boue, ou au contraire souligner les exploits de vos amis.
 
 ##Framework PHP
 Point-!t utilise le framework Codeigniter pour gérer toute la partie PHP. il ne faut modifier que les fichiers non créée par le framework
-Les trois grandes parties du projet sont à développer se trouve dans le dossier application
-
-###Model
-Gère la persistance en enregistrant les données dans une base de données. Ici on utilises MySQL ainsi que l'Active Record offert par le framework
-
-###View
-Gère tout ce qui est affichage. Pour le design, c'est par la !
-
-###Controller
-Gère l'interaction avec la base de données ainsi que les actions de l'utilisateur. 
+Pour les graphistes/design, la seule chose que vous devez toucher c'est le dossier views
 
 ##CSS
-Bootstrap gère la partie CSS. 
-Un style perso de CSS est utiulisé en plus pour personnaliser davantage le site
+Point-!t utilise Bootstrap. Si tu sais pas ce que c'est, check ça sur Google. Ca nous permet d'avoir une interface potable et en plus d'etre responsive design.
 
 ##Javascript
-Jquery, parce que le javascript c'est de la merde ♥
+On utilise Jquery, parce que fuck off le javascript
 
 #Comment installer le projet
-Il faut tout d'abord installer WAMP pour permettre à votre ordinateur d'avoir un serveur local de test
-Il faut ensuite déposer l'intégralité du dossier dans le dossier C:/wamp/ww
-Il faut ensuite lancer phpMyAdmin et charger le fichier de base de données
-Se rendre à l'adresse "http://localhost/Point-it/index.php/login" (en fonction de comment vous avez nommé vos fichiers)
+Si tu es développeur, tu es un grand garçon, sinon voici en gros les étapes sur Windows
+* Il faut tout d'abord installer le logiciel [Wamp](http://sourceforge.net/projects/wampserver/files/WampServer%202/Wampserver%202.5/wampserver2.5-Apache-2.4.9-Mysql-5.6.17-php5.5.12-32b.exe/download) pour permettre à votre ordinateur d'avoir un serveur local de test.
+* Tu télécharges [GitHub for Windows](https://windows.github.com/). Et j'écrirai la suite plus tard =)
+* Il faut ensuite déposer l'intégralité du dossier dans le dossier C:/wamp/www/Point-it/
+* Il faut ensuite lancer phpMyAdmin et charger le fichier de base de données BDD.sql
+* Se rendre à l'adresse "http://localhost/Point-it/index.php/login" (en fonction de comment vous avez nommé vos fichiers)
 
 

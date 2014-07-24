@@ -8,7 +8,6 @@
 
 	<div class="col-md-7" id="points_block">
 		<h2>Timeline</h2>
-		<div>
 			<?php if ($this->session->flashdata('first_visit')): ?>
 				<div class="alert alert-info">
 					Voici la Timeline, c'est ici que tu verras les exploits de tes petits copains et les commentaires d'encouragement qui vont avec.
@@ -20,8 +19,7 @@
 			<?php $this->load->view("component/component_point.php", $data );?>
 		<?php endforeach ?>
 
-		</div>
-		<button id="add_old_points" class="btn btn-primary pull-right">Afficher 10 anciens points</button>
+		<button id="add_old_points" class="btn btn-primary pull-right">Points plus anciens</button>
 	</div>
 
 
@@ -52,10 +50,10 @@
 					</select>
 
 					<label>Description</label>
-					<textarea placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
+					<textarea id="textarea" placeholder="Allez là !" class="form-control" name="texte_point" rows="3" cols="50"></textarea>
 					</div>
 					<?php if (isset($error) ): ?>
-						<div class="alert alert-danger"><?=$error?></div>
+						<div id="alert_form_add" class="alert alert-danger"><?=$error?></div>
 					<?php endif ?>
 					<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
@@ -80,6 +78,8 @@
 				<p><?= $this->session->flashdata('add_point_success') ?></p>
 			</div>
 		<?php endif ?>
+		<div id="error_add" class="alert alert-danger" style="display:none">
+		</div>
 	</div>
 
 	<script type="text/javascript">
@@ -93,12 +93,13 @@
 			limit: 5
 		};
 	</script>
+	
 
 	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
-
+	<script type="text/javascript" src="<?= base_url('/assets/js/form_valid_add.js') ?>"></script>
 	<script>
-		$( ".point" ).click(function() {
-			$(this).find(".zone_commentaire" ).toggle( "blind", 400 );
+		$( ".point_haut" ).click(function() {
+			$(this).next(".zone_commentaire" ).toggle( "blind", 400 );
 		});
 	</script>
 

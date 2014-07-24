@@ -21,35 +21,21 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .menu{
-	font-size: 1.3em;
+	font-size: 1.4em;
 	margin-right: 10px;
 }
 
 .menu:hover{
 	border-bottom: 2px solid white;
 	color: white;
-	font-size: 1.3em;
+	font-size: 1.4em;
 	margin-right: 10px;
 	text-decoration: none;
 }
 
 .active{
-	background-image:radial-gradient(rgb(70,70,70), rgb(0,0,0));
-	border: 1px solid grey;
-	border-radius: 7px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
+	color: white;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -78,7 +64,7 @@ h1, h2, h3, h4, h5, h6{
 	vertical-align: top;
 	cursor: pointer;
 }	
-
+	
 .point_date{
 	font-size: 0.75em;
 	text-align: right;
@@ -87,16 +73,39 @@ h1, h2, h3, h4, h5, h6{
 
 .point_description{
 	font-size: 1.2em;
-	padding-top: 15px;
-	padding-bottom: 10px;
-	
 	margin-bottom: 5px;
+	padding-top: 7px;
+	padding-bottom: 10px;
 }
 
 .name{
 	vertical-align: top;
 }
 
+
+/* LEADERBOARD */
+.leader {
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 15px;
+
+	text-align: center;
+}
+
+.leader-1 {
+	border-color: goldenrod;
+	background: gold;
+}
+
+.leader-2 {
+	border-color: slategray;
+	background: silver;
+}
+
+.leader-3 {
+	border-color: saddlebrown;
+	background: peru;
+}
 
 
 /* AFFICHAGE DES COMMENTAIRE */
@@ -106,6 +115,16 @@ h1, h2, h3, h4, h5, h6{
 	padding-top: 5px;
 	display: none;
 }
+
+.commentaire_texte{
+	padding-bottom: 2px;
+}
+
+.nbCommentaire{
+	color: rgb(7,105,173);
+	font-size: 0.8em;
+}
+
 
 
 
@@ -137,6 +156,10 @@ h1, h2, h3, h4, h5, h6{
 
 .blanc{
 	color: white;
+}
+
+.bleu{
+	color: rgb(7,105,173);
 }
 
 .icone{

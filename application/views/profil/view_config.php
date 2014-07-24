@@ -2,37 +2,9 @@
 	<h1>Configuration du profil de <?= $profil_nom ?></h1>
 	<hr>
 
-	<div>
-		<h2>Changer de photo de profil</h2>
-		<form method="post" enctype="multipart/form-data">
+	
 
-			<input type="hidden" name="form_name" value="avatar">
-			<div class="form-group">
-				<label for="avatar">Nouvelle photo de profil</label>
-				<input type="file" id="avatar" name="avatar" required>
-				<p class="help-block">Formats acceptés : gif, png, jpeg, jpg</p>
-				<p class="help-block">Image de moins de 2Mo</p>
-			</div>
-			
-			<button type="submit" class="btn btn-default">Envoyer</button>
-
-		</form>
-
-		<?php if (isset($errors['avatar'])): ?>
-			<div class="alert alert-danger">
-			<?php foreach ($errors['avatar'] as $error): ?>
-				<p><?= $error ?></p>
-			<?php endforeach ?>
-			</div>
-		<?php elseif (isset($success['avatar'])): ?>
-			<div class="alert alert-success">
-				<p><?= $success['avatar'] ?></p>
-			</div>
-		<?php endif ?>
-	</div>
-
-
-	<div>
+	<div class="col-md-6">
 		<h2>Changer de mot de passe</h2>
 		<form method="post">
 
@@ -63,6 +35,34 @@
 		<?php elseif (isset($success['new_password'])): ?>
 			<div class="alert alert-success">
 				<p><?= $success['new_password'] ?></p>
+			</div>
+		<?php endif ?>
+	</div>
+	<div class="col-md-6">
+		<h2>Changer de photo de profil</h2>
+		<form method="post" enctype="multipart/form-data">
+
+			<input type="hidden" name="form_name" value="avatar">
+			<div class="form-group">
+				<label for="avatar">Nouvelle photo de profil</label>
+				<input type="file" id="avatar" name="avatar" required>
+				<p class="help-block">Formats acceptés : gif, png, jpeg, jpg</p>
+				<p class="help-block">Image de moins de 2Mo</p>
+			</div>
+			
+			<button type="submit" class="btn btn-default">Envoyer</button>
+
+		</form>
+
+		<?php if (isset($errors['avatar'])): ?>
+			<div class="alert alert-danger">
+			<?php foreach ($errors['avatar'] as $error): ?>
+				<p><?= $error ?></p>
+			<?php endforeach ?>
+			</div>
+		<?php elseif (isset($success['avatar'])): ?>
+			<div class="alert alert-success">
+				<p><?= $success['avatar'] ?></p>
 			</div>
 		<?php endif ?>
 	</div>
