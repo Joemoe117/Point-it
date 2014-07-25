@@ -11,7 +11,7 @@
 		</h2>
 
 		<div class="row">
-			<?php for ($i=0; $i < 3; $i++): ?>
+			<?php for ($i=0; $i < $leader_limit; $i++): ?>
 				<div class="leader leader-<?= $i+1 ?> col-md-3 col-md-offset-1">
 					<p><?= $classement[$i]->profil_nom ?></p>
 					<img src="<?= $classement[$i]->profil_image ?>" height="100%" width="100%">
@@ -20,15 +20,16 @@
 			<?php endfor ?>
 		</div>
 
-		<h3>Les autres personnes sans importance</h3>
-		
-		<?php for ($i=3; $i<count($classement); $i++): ?>
-			<div class="row">
-				<div class="col-md-1"><?= $i+1 ?></div>
-				<div class="col-md-2"><?= $classement[$i]->profil_nom ?></div>
-				<div class="col-md-3"><?= $classement[$i]->nb_points ?> Points</div>
-			</div>
-		<?php endfor ?>
+		<?php if ($nb_elem_class > 3): ?>
+			<h3>Les autres personnes sans importance</h3>
+			<?php for ($i=3; $i<$nb_elem_class; $i++): ?>
+				<div class="row">
+					<div class="col-md-1"><?= $i+1 ?></div>
+					<div class="col-md-2"><?= $classement[$i]->profil_nom ?></div>
+					<div class="col-md-3"><?= $classement[$i]->nb_points ?> Points</div>
+				</div>
+			<?php endfor ?>	
+		<?php endif ?>
 	</div>
 
 	<!-- Barre à droite -->
@@ -40,7 +41,7 @@
 		</a></div>
 		<?php foreach ($types_point as $key => $value): ?>
 			<div>
-				<a href="<?= site_url('leaderboard/index/'.$value->typept_nom) ?>" class="btn btn-default btn-lg btn-block <? if($type_point == $value->typept_nom) echo 'active' ?>">
+				<a href="<?= site_url('leaderboard/index/'.$value->typept_id) ?>" class="btn btn-default btn-lg btn-block <? if($type_point == $value->typept_id) echo 'active' ?>">
 					<?= $value->typept_nom ?>
 				</a>
 			</div>

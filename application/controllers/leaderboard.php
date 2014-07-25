@@ -26,32 +26,35 @@ class Leaderboard extends CI_Controller {
 		$NB_PERSONNES = 20;
 		$allTypePoint = $this->point_model->getAllType();
 
+		// Si aucun type de point n'est demandé
 		if (is_null($type_point))
 			$data['classement'] = $this->classement_model->general($NB_PERSONNES);
-		else {
-			$exist = false;
-			foreach ($allTypePoint as $value) {
-				if ($type_point == $value->typept_nom) {
-					$exist = true;
-					break;
-				}
-			}
 
-			if ($exist)
+		else {
+			if ($this->point_model->typePointExist($type_point))
 				$data['classement'] = $this->classement_model->byTypePoint($type_point, $NB_PERSONNES);
 			else
-				redirect('/leaderboard', 'refresh');
+				redirect('leaderboard', 'refresh');
 		}
+
+		$nb_elem_class = count($data['classement']);
+		// Indiquer à la vue le nombre de personnes qu'elle doit afficher sur le podium
+		if ($nb_elem_class < 3)
+			$data['leader_limit'] = $nb_elem_class;
+		else
+			$data['leader_limit'] = 3;
+
+		
 		// echo '<pre>';
 		// var_dump($data['classement']);
 		// echo '</pre>';
-		
 
 		// Chargement de la vue
 		$data['titre'] 	= 'Leaderboard';
 		$data['menu']	= 'leaderboard';
 		$data['type_point']	= $type_point;
 		$data['types_point'] = $this->point_model->getAllType();
+		$data['nb_elem_class'] = $nb_elem_class;
 
 		$this->load->view('template/header.php', $data);
 		$this->load->view('leaderboard/view_index.php', $data);

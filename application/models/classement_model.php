@@ -21,7 +21,7 @@ class Classement_model extends CI_Model {
 	public function byTypePoint($type_point, $nb=0) {
 		$query = $this->db->select('*, count(*) AS nb_points')
 			->from('liste_points NATURAL JOIN profils')
-			->where('typept_nom', $type_point)
+			->where('typept_id', $type_point)
 			->group_by('profil_id')
 			->order_by('nb_points', "desc");
 
