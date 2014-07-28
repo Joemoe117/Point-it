@@ -24,6 +24,9 @@
 				ont
 			<?php endif ?>
 			gagné un Point <?=$point->typept_nom?>
+			<?php if ($point->point_epique): ?>
+				 EPIQUE
+			<?php endif ?>
 		</span>
 		<span class="point_date pull-right">
 			<?php

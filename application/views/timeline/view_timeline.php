@@ -5,7 +5,7 @@
 		</div>
 	<?php endif ?>
 
-
+	<!-- Timeline -->
 	<div class="col-md-7" id="points_block">
 		<h2>Timeline</h2>
 			<?php if ($this->session->flashdata('first_visit')): ?>
@@ -22,7 +22,7 @@
 		<button id="add_old_points" class="btn btn-primary pull-right">Points plus anciens</button>
 	</div>
 
-
+	<!-- Formulaire d'ajout de point -->
 	<div class="col-md-5">
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
@@ -55,6 +55,21 @@
 					<?php if (isset($error) ): ?>
 						<div id="alert_form_add" class="alert alert-danger"><?=$error?></div>
 					<?php endif ?>
+
+					<label>Ce point est-il particulièrement épique ?</label><br>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="epique" value="false" checked required>
+							Non
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="epique" value="true" required>
+							Oui
+						</label>
+					</div>					
+
 					<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
 			</div>
@@ -88,9 +103,9 @@
 	<script type="text/javascript">
 		// On déclare les variables globales ainsi que l'URL pour le script "get_points.js" pour que PHP interprete l'URL à appeler
 		var getPointsVar = {
-			url: '<?php echo site_url("timeline/get_points/") ?>',
-			nb: 10,
-			limit: 5
+			url: '<?= site_url("timeline/get_points/") ?>',
+			nb: <?= $point_by_page_add ?>,
+			limit: <?= $point_by_page ?>
 		};
 	</script>
 	

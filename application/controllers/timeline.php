@@ -8,6 +8,7 @@ class Timeline extends CI_Controller {
 
 	// Déclaration des constantes
 	const POINT_BY_PAGE = 5;
+	const POINT_BY_PAGE_ADD = 10;
 
 	public function __construct()	{
 		parent::__construct();
@@ -53,6 +54,8 @@ class Timeline extends CI_Controller {
 		// chargement des vues
 		$data['titre'] 	= "Timeline";
 		$data['menu']	= "timeline";
+		$data['point_by_page']	= self::POINT_BY_PAGE;
+		$data['point_by_page_add']	= self::POINT_BY_PAGE_ADD;
 		$this->load->view('template/header.php', $data);
 		$this->load->view('timeline/view_timeline.php', $data);
 		$this->load->view('template/footer.php');
@@ -83,13 +86,19 @@ class Timeline extends CI_Controller {
 			$point 			= $this->input->post('point', true);
 			$texte	 		= nl2br($this->input->post('texte_point', true)); // Ajoute un <br> pour chaque retour à la ligne
 			$donneur 		= $this->session->userdata('id');
+			// Comme le typage en PHP c'est de la merde, je le fais à la main
+			if ($this->input->post('epique', true) == 'true')
+				$epique = true;
+			else
+				$epique = false;
 
-			$checkForm = $this->_checkFormAddPoint($personnes, $point, $texte, $donneur);
+
+			$checkForm = $this->_checkFormAddPoint($personnes, $point, $texte, $epique, $donneur);
 
 			// Si $checkForm vaut 0 Alors le formulaire est bon
 			if ($checkForm === 0) {
 				// On créér d'abord le point
-				$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
+				$point_id = $this->point_model->createPoint( $point, $donneur, $texte, $epique);
 
 				// On ajoute ensuite les différentes personnes dans la distribution
 				foreach ($personnes as $personne) {
@@ -113,13 +122,6 @@ class Timeline extends CI_Controller {
 
 
 
-
-
-
-
-
-
-
 	///////////////////////////////////////////////////////////////////////////
 	//							FONCTIONS PRIVEES 							 //
 	///////////////////////////////////////////////////////////////////////////
@@ -132,7 +134,7 @@ class Timeline extends CI_Controller {
 	 *	
 	 * 	@return $res 		Retourne 0 si formualaire OK sinon le tableau d'erreurs
 	 */
-	private function _checkFormAddPoint($personnes=null, $point=null, $texte=null, $donneur=null) {
+	private function _checkFormAddPoint($personnes=null, $point=null, $texte=null, $epique=null, $donneur=null) {
 
 		// Vérif des personnes
 		if (is_null($personnes) OR !$personnes)
@@ -165,12 +167,15 @@ class Timeline extends CI_Controller {
 		if (is_null($texte) OR !$texte)
 			$res[] = "Veuillez entrer une description";
 
+		if (is_null($epique) OR !is_bool($epique))
+			$res[] = "Veuiller dire si le point est épique ou non";
+
 		// Vérif du donneur
 		if (is_null($donneur) OR
 				!$donneur OR
 				!$this->profil_model->exist($donneur)
 		) {
-			$res[] = "Qui t'as dit de toucher aux cookies ?";
+			$res[] = "Stope tes magouilles jeune branleur";
 		}
 
 		// Si pas d'erreurs on envoie 0 valeur de réussite

@@ -18,6 +18,7 @@ CREATE TABLE `points`(
 	`typept_id` INT NOT NULL,
 	`profil_id_donne` INT NOT NULL,
 	`point_description` TEXT NOT NULL,
+	`point_epique` BOOLEAN NOT NULL,
 	`point_date_crea` TIMESTAMP NOT NULL,
 	`point_date_evenement` TIMESTAMP,
 	FOREIGN KEY (`typept_id`) REFERENCES `types_point`(`typept_id`),
