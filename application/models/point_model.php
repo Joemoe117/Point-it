@@ -38,7 +38,7 @@ class Point_model extends CI_Model{
 	*	
 	*/
 	public function getAllPoints ($nb=null, $limit=null) {
-		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, donne.profil_nom AS profil_nom_donne')
+		$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
 			->from('points NATURAL JOIN types_point')
 			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
 			->order_by('point_date_actualite', 'desc');
@@ -136,10 +136,13 @@ class Point_model extends CI_Model{
 	*	TODO
 	*
 	*/
-	public function createPoint( $typept_id, $profil_id_donne, $texte ){
+	public function createPoint( $typept_id, $profil_id_donne, $texte, $epique, $date = false){
 		$this->db->set('typept_id', $typept_id);
 		$this->db->set('profil_id_donne', $profil_id_donne);
 		$this->db->set('point_description', $texte);
+		$this->db->set('point_epique', $epique);
+		if ($date)
+			$this->db->set('point_date_evenement', $date);
 		$this->db->insert('points');
 
 		// on renvoie l'id de la transaction

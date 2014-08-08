@@ -24,11 +24,16 @@
 				ont
 			<?php endif ?>
 			gagné un Point <?=$point->typept_nom?>
+			<?php if ($point->point_epique): ?>
+				 EPIQUE
+			<?php endif ?>
 		</span>
 		<span class="point_date pull-right">
-			<?php
-				echo "Le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea));
-			?>
+			<?= "Créé le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea)); ?>
+			<br>
+			<?php if (!is_null($point->point_date_evenement)): ?>
+				<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>	
+			<?php endif ?>
 		</span>
 
 		<div class="point_description"><?=$point->point_description?></div>

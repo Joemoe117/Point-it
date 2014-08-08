@@ -8,6 +8,7 @@ class Timeline extends CI_Controller {
 
 	// Déclaration des constantes
 	const POINT_BY_PAGE = 5;
+	const POINT_BY_PAGE_ADD = 10;
 
 	public function __construct()	{
 		parent::__construct();
@@ -48,11 +49,16 @@ class Timeline extends CI_Controller {
 		foreach ($data['points'] as $value) {
 			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
 		}
+		// echo "<pre>";
+		// var_dump($data['points']);
+		// echo "</pre>";
 
 		
 		// chargement des vues
 		$data['titre'] 	= "Timeline";
 		$data['menu']	= "timeline";
+		$data['point_by_page']	= self::POINT_BY_PAGE;
+		$data['point_by_page_add']	= self::POINT_BY_PAGE_ADD;
 		$this->load->view('template/header.php', $data);
 		$this->load->view('timeline/view_timeline.php', $data);
 		$this->load->view('template/footer.php');
@@ -83,13 +89,28 @@ class Timeline extends CI_Controller {
 			$point 			= $this->input->post('point', true);
 			$texte	 		= nl2br($this->input->post('texte_point', true)); // Ajoute un <br> pour chaque retour à la ligne
 			$donneur 		= $this->session->userdata('id');
+			$date			= $this->input->post('date', true);
+			// Comme le typage en PHP c'est de la merde, je le fais à la main
 
-			$checkForm = $this->_checkFormAddPoint($personnes, $point, $texte, $donneur);
+			if ($this->input->post('epique', true) == 'true')
+				$epique 	= true;
+			else
+				$epique 	= false;
+				
+
+
+
+
+			$checkForm = $this->_checkFormAddPoint($personnes, $point, $texte, $epique, $donneur, $date);
 
 			// Si $checkForm vaut 0 Alors le formulaire est bon
 			if ($checkForm === 0) {
-				// On créér d'abord le point
-				$point_id = $this->point_model->createPoint( $point, $donneur, $texte);
+				// Si il existe une date d'évenement, la convertir en timestamp et enregistrer le point
+				if (!(is_null($date) OR empty($date) OR !$date))
+					$point_id = $this->point_model->createPoint( $point, $donneur, $texte, $epique, $date);
+				// Sinon on crée juste le point
+				else
+					$point_id = $this->point_model->createPoint( $point, $donneur, $texte, $epique);
 
 				// On ajoute ensuite les différentes personnes dans la distribution
 				foreach ($personnes as $personne) {
@@ -105,15 +126,9 @@ class Timeline extends CI_Controller {
 				$this->session->set_flashdata('add_point_errors', $checkForm);
 		}
 		
+
 		redirect('/timeline', 'refresh');
 	}
-
-
-
-
-
-
-
 
 
 
@@ -132,7 +147,7 @@ class Timeline extends CI_Controller {
 	 *	
 	 * 	@return $res 		Retourne 0 si formualaire OK sinon le tableau d'erreurs
 	 */
-	private function _checkFormAddPoint($personnes=null, $point=null, $texte=null, $donneur=null) {
+	private function _checkFormAddPoint($personnes=false, $point=false, $texte=false, $epique=false, $donneur=false, $date=false) {
 
 		// Vérif des personnes
 		if (is_null($personnes) OR !$personnes)
@@ -165,19 +180,38 @@ class Timeline extends CI_Controller {
 		if (is_null($texte) OR !$texte)
 			$res[] = "Veuillez entrer une description";
 
+		if (is_null($epique) OR !is_bool($epique))
+			$res[] = "Veuiller dire si le point est épique ou non";
+
 		// Vérif du donneur
 		if (is_null($donneur) OR
 				!$donneur OR
 				!$this->profil_model->exist($donneur)
 		) {
-			$res[] = "Qui t'as dit de toucher aux cookies ?";
+			$res[] = "Stope tes magouilles jeune branleur";
 		}
+
+		// Vérif de la date de l'évenement
+		if (!(is_null($date) OR empty($date) OR !$date)) {
+			if (!$this->_validateDate($date))
+				$res[] = "La date n'est pas dans le bon format";
+		}
+
+
 
 		// Si pas d'erreurs on envoie 0 valeur de réussite
 		if (!isset($res))
 			$res = 0;
 
 		return $res;
+	}
+
+	private function _validateDate($date) {
+		// On regarde si le format est bien en aaaa-mm-jj et que la date existe
+		if (preg_match('#^([0-9]{4})-([0-9]{2})-([0-9]{2})$#', $date, $checkDate) AND checkdate($checkDate[2], $checkDate[3], $checkDate[1])) 
+			return true;
+		else
+			return false;
 	}
 
 
@@ -187,7 +221,7 @@ class Timeline extends CI_Controller {
 	*	@param 	$points 		point
 	*	@return vrai si les id existent, false sinon
 	*/
-	private function idExistInModel( $personnes = array(), $point = 0) {
+	private function _idExistInModel( $personnes = array(), $point = 0) {
 
 		foreach ($personnes as $value) {
 			if (!$this->profil_model->exist($value->profil_id)) {
