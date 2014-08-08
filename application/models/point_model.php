@@ -136,11 +136,13 @@ class Point_model extends CI_Model{
 	*	TODO
 	*
 	*/
-	public function createPoint( $typept_id, $profil_id_donne, $texte, $epique){
+	public function createPoint( $typept_id, $profil_id_donne, $texte, $epique, $date = false){
 		$this->db->set('typept_id', $typept_id);
 		$this->db->set('profil_id_donne', $profil_id_donne);
 		$this->db->set('point_description', $texte);
 		$this->db->set('point_epique', $epique);
+		if ($date)
+			$this->db->set('point_date_evenement', $date);
 		$this->db->insert('points');
 
 		// on renvoie l'id de la transaction

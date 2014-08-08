@@ -68,7 +68,10 @@
 							<input type="radio" name="epique" value="true" required>
 							Oui
 						</label>
-					</div>					
+					</div>
+
+					<label>Quelle est la date de l'évenement ? (facultatif)</label>
+					<input type="date" name="date" placeholder="aaaa-mm-jj">
 
 					<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
