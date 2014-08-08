@@ -34,6 +34,7 @@
 				id			="pass"
 				name		="pass"
 				placeholder	="Entrez votre mot de passe"
+				value		= "<?php if (isset($retry['pass'])) echo $retry['pass']; ?>"
 				required
 			>
 		</div>
@@ -45,6 +46,19 @@
 				id			="pass_check"
 				name		="pass_check"
 				placeholder	="On sais qu'il y a des pas doués, alors confirme le ici"
+				value		= "<?php if (isset($retry['pass_check'])) echo $retry['pass_check']; ?>"
+				required
+			>
+		</div>
+		<div class="form-group  <?php if (isset($errors['pass'])) echo 'has-error'; ?>">
+			<label class="control-label" for="antibot_reponse"><?= $antibot_question ?></label>
+			<input
+				type		="text"
+				class		="form-control"
+				id			="antibot_reponse"
+				name		="antibot_reponse"
+				placeholder	="C'est pour vérifier que tu n'es pas un connard de bot"
+				value		= "<?php if (isset($retry['antibot_reponse'])) echo $retry['antibot_reponse']; ?>"
 				required
 			>
 		</div>

@@ -2,6 +2,9 @@
 
 class Login extends CI_Controller {
 
+	// Question antibot et sa réponse
+	const ANTIBOT_QUESTION = 'Que va-t-on faire, souvent à plusieurs, après avoir bu des bières ?';
+	const ANTIBOT_REPONSE = 'miossec';
 
 	public function __construct()	{
 		parent::__construct();
@@ -106,12 +109,14 @@ class Login extends CI_Controller {
 			redirect('/timeline', 'refresh');
 
 		$data['titre'] = 'Inscription';
+		$data['antibot_question'] = self::ANTIBOT_QUESTION;
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			$login = $this->input->post('login');
 			$pass = $this->input->post('pass');
 			$pass_check = $this->input->post('pass_check');
+			$antibot_reponse = $this->input->post('antibot_reponse');
 
 			// Vérif nom dispo
 			if ($this->profil_model->existNom($login)) {
@@ -122,6 +127,14 @@ class Login extends CI_Controller {
 			elseif ($pass != $pass_check) {
 				$data['errors']['pass'] = "Tu fais donc partie des gens pas doués, ton mot de passe est mal confirmé";
 				$data['retry']['login'] = $login;
+			}
+			// Vérif question antibot
+			elseif (strtolower($antibot_reponse) != self::ANTIBOT_REPONSE) {
+				$data['errors']['antibot_reponse'] = "C'est pas la bonne réponse, ça commence par un M";
+				$data['retry']['login'] = $login;
+				$data['retry']['pass'] = $pass;
+				$data['retry']['pass_check'] = $pass_check;
+				$data['retry']['antibot_reponse'] = $antibot_reponse;
 			}
 
 
