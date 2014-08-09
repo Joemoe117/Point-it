@@ -71,7 +71,7 @@ class Point_model extends CI_Model{
 	*	
 	*/
 	public function getAllPointsOf( $id, $nb=null, $limit=null) {
-		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_evenement, profil_id_donne, donne.profil_nom AS profil_nom_donne')
+		$allPoints =  $this->db->select('point_id, typept_id, typept_nom, point_description, point_date_crea, point_date_actualite, point_epique, profil_id_donne, donne.profil_nom AS profil_nom_donne')
 			->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
 			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
 			->where('recoit.profil_id', (int) $id)

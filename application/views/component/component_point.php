@@ -31,8 +31,8 @@
 		<span class="point_date pull-right">
 			<?= "Créé le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea)); ?>
 			<br>
-			<?php if (!is_null($point->point_date_evenement)): ?>
-				<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>	
+			<?php if (!is_null($point->point_date_actualite)): ?>
+				<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_actualite)); ?>	
 			<?php endif ?>
 		</span>
 

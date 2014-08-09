@@ -7,7 +7,7 @@
  *	Verifie seulement si la description est assez longue pour le moment 
  */
 
-$('form').submit(function () {
+$('#form_add_point').submit(function () {
 	var textarea = $.trim($('#textarea').val());
 
     // Check if description is larger than 20 characters and not empty

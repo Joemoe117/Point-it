@@ -27,7 +27,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
 			<div class="panel-body">
-				<form role="form" method="post" action="<?php echo site_url("timeline/add_point"); ?>">
+				<form role="form" id="form_add_point" method="post" action="<?php echo site_url("timeline/add_point"); ?>">
 					<div class="control-group">
 						<label for="multiple" class="control-label">Personne(s)</label>
 						<div class="controls">

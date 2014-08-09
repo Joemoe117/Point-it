@@ -169,7 +169,7 @@ class Login extends CI_Controller {
 	* @return Hashage du mot de passe
 	*
 	*/
-	private function hashpwd( $password ){
+	public function hashpwd( $password ){
 		$hashP = $this->password->create_hash($password);
 		echo $hashP;
 	}

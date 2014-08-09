@@ -11,19 +11,20 @@
         <title>Erreur</title>
 
         <!-- Bootstrap core CSS -->
-        <link href=" http://localhost/Point-it/assets/css/bootstrap.min.css    " rel="stylesheet">
-        <link href=" http://localhost/Point-it/assets/css/style.css    " rel="stylesheet">
+        <link href=" <?= base_url("/assets/css/bootstrap.min.css");  ?>    " rel="stylesheet">
+        <link href=" <?= base_url("/assets/css/style.css");  ?>    " rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="http://ivaynberg.github.io/select2/select2-3.4.1/select2.css"/>
 
         <!-- FONT -->
         <link href='http://fonts.googleapis.com/css?family=Sniglet' rel='stylesheet' type='text/css'>
 
 
-        <!-- Javascript Bootstrap, JQuery et Jquery UI -->
-        <script type="text/javascript" src="http://localhost/Point-it/assets/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://localhost/Point-it/assets/js/jquery-2.1.0.min.js"></script>
-        <script type="text/javascript" src="http://localhost/Point-it/assets/js/jquery-ui-1.10.4.custom.min.js"></script>
-        <script type="text/javascript" src="http://localhost/Point-it/assets/js/select2.min.js"></script>
+   		<!-- Javascript Bootstrap, JQuery et Jquery UI -->
+        <script type="text/javascript" src="<?= base_url("/assets/js/jquery-2.1.0.min.js");  ?>"></script>
+        <script type="text/javascript" src="<?= base_url("/assets/js/jquery-ui-1.10.4.custom.min.js");  ?>"></script>
+        <script type="text/javascript" src="<?= base_url("/assets/js/select2.min.js");  ?>"></script>
+        <script type="text/javascript" src="<?= base_url("/assets/js/bootstrap.min.js");  ?>"></script>
+
 
     </head>
 
