@@ -71,7 +71,7 @@
 					</div>
 
 					<label>Quelle est la date de l'évenement ? (facultatif)</label>
-					<input type="date" name="date" placeholder="aaaa-mm-jj">
+					<input id="date_point" type="text" name="date" placeholder="aaaa-mm-jj">
 
 					<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
 				</form>
@@ -101,7 +101,10 @@
 	</div>
 
 	<script type="text/javascript">
-		$("#select_nom").select2();
+		$(function() {
+			$("#select_nom").select2();
+			$( "#date_point").datepicker({ dateFormat: "yy-mm-dd" });
+		});
 	</script>
 	<script type="text/javascript">
 		// On déclare les variables globales ainsi que l'URL pour le script "get_points.js" pour que PHP interprete l'URL à appeler

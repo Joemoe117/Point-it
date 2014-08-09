@@ -12,8 +12,12 @@
 
         <!-- Bootstrap core CSS -->
         <link href=" <?= base_url("/assets/css/bootstrap.min.css");  ?>    " rel="stylesheet">
-        <link href=" <?= base_url("/assets/css/style.css");  ?>    " rel="stylesheet">
+        <link href=" <?= base_url("/assets/css/jquery-ui.min.css");  ?>    " rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="http://ivaynberg.github.io/select2/select2-3.4.1/select2.css"/>
+        <link href=" <?= base_url("/assets/css/jquery-ui.structure.min.css");  ?>    " rel="stylesheet">
+        <link href=" <?= base_url("/assets/css/jquery-ui.theme.min.css");  ?>    " rel="stylesheet">
+        <link href=" <?= base_url("/assets/css/style.css");  ?>    " rel="stylesheet">
+
 
         <!-- FONT -->
         <link href='http://fonts.googleapis.com/css?family=Sniglet' rel='stylesheet' type='text/css'>
