@@ -57,7 +57,7 @@
 						<div id="alert_form_add" class="alert alert-danger"><?=$error?></div>
 					<?php endif ?>
 
-					<label>Ce point est-il particulièrement épique ?</label><br>
+					<label>Point épique</label><br>
 					<div class="radio-inline">
 						<label>
 							<input type="radio" name="epique" value="false" checked required>
@@ -70,8 +70,8 @@
 							Oui
 						</label>
 					</div>
-
-					<label>Quelle est la date de l'évenement ? (facultatif)</label>
+					<br>
+					<label>Date (facultatif)</label><br>
 					<input id="date_point" type="text" name="date" placeholder="aaaa-mm-jj">
 
 					<button type="submit" class="btn btn-default pull-right">Prends-ça !</button>
@@ -98,6 +98,23 @@
 			</div>
 		<?php endif ?>
 		<div id="error_add" class="alert alert-danger" style="display:none">
+		</div>
+	</div>
+
+	<div class="col-md-5">
+		<div class="panel panel-primary"> 
+			<div class="panel-heading"><span class="glyphicon glyphicon-exclamation-sign"></span> Changelog</div>
+			<div class="panel-body">
+				<h6>11/08/2014</h6>
+				<ul>
+					<li>Ajout du changelog #captainObvious</li>
+					<li>Changement du message d'accueil pour les inscriptions</li>
+					<li>Certains éléments ne sont plus affichés sur mobile pour alléger la vue</li>
+					<li>Les pseudos ont désormais automatiquement une majuscule au début. je vais vous apprendre la grammaire moi ! #grammarNazi</li>
+					<li>Les sessions durent désormais plus longtemps !</li>
+					<li>Correction des ,/et dans la liste des points</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 

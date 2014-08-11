@@ -140,6 +140,10 @@ class Login extends CI_Controller {
 
 			// Formulaire bon
 			if (!isset($data['errors'])) {
+
+				// captitalizze first letter of login
+				$login = ucfirst($login);
+
 				$id = $this->profil_model->create($login, $this->password->create_hash($pass), false);
 
 				// Mise en place des sessions
@@ -177,7 +181,16 @@ class Login extends CI_Controller {
 		echo $hashP;
 	}
 
+
+	function exception_error_handler($errno, $errstr, $errfile, $errline ) {
+	    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+	}
+	
+	
+
 	public function testDirectory($name){
+
+		restore_error_handler();
 		if (mkdir(base_url("/assets/images/avatars")."/".$name, 0777, true)){
 			echo "true";
 		} else {

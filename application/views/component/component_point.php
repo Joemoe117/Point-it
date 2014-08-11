@@ -9,11 +9,15 @@
 		<!-- Affichage des noms -->
 		<span class="name">
 			<?php foreach ($point->recoit as $pointInfo): ?>
-				<a href="<?= site_url("profil/get/")."/".$pointInfo->profil_id ?>"><?=$pointInfo->profil_nom?></a>
-				<?php if ( $i < (count($point->recoit)-1) && $i !=(count($point->recoit)-1) ): ?>
-					et
+				<?php if ($i != 0): ?>			
+					<?php if ($i < (count($point->recoit))-1): ?>
+						,
+					<?php else: ?>
+						et
+					<?php endif ?>
 				<?php endif ?>
 				<?php $i++;	?>
+				<a class="hidden-xs" href="<?= site_url("profil/get/")."/".$pointInfo->profil_id ?>"><?=$pointInfo->profil_nom?></a>
 			<?php endforeach ?>
 		
 
@@ -28,7 +32,7 @@
 				 EPIQUE
 			<?php endif ?>
 		</span>
-		<span class="point_date pull-right">
+		<span class="point_date pull-right hidden-xs">
 			<?= "Créé le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea)); ?>
 			<br>
 			<?php if (!is_null($point->point_date_actualite)): ?>
