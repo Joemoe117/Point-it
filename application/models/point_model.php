@@ -41,7 +41,7 @@ class Point_model extends CI_Model{
 		$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
 			->from('points NATURAL JOIN types_point')
 			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
-			->order_by('point_date_actualite', 'desc');
+			->order_by('point_date_actualite', 'asc');
 
 		// Limit
 		if (isset($nb) AND isset($limit))
@@ -75,7 +75,7 @@ class Point_model extends CI_Model{
 			->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
 			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
 			->where('recoit.profil_id', (int) $id)
-			->order_by('point_date_actualite', 'desc');
+			->order_by('point_date_actualite', 'asc');
 
 		// Limit
 		if (isset($nb) AND isset($limit))

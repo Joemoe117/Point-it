@@ -8,6 +8,7 @@
 	<!-- Timeline -->
 	<div class="col-md-7" id="points_block">
 		<h2>Timeline</h2>
+		<p>C'est encore une beta, ne l'oubliez pas</p>
 			<?php if ($this->session->flashdata('first_visit')): ?>
 				<div class="alert alert-info">
 					Voici la Timeline, c'est ici que tu verras les exploits de tes petits copains et les commentaires d'encouragement qui vont avec.

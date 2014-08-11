@@ -148,11 +148,14 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('image', null);
 
 				// Mise en place des cookies, pas encore utilisé
-				set_cookie("id", $id, 86500, "/");
-				set_cookie("login", $login, 86500, "/");
-				set_cookie("image", null, 86500, "/");
+				set_cookie("id", $id, 186500, "/");
+				set_cookie("login", $login, 186500, "/");
+				set_cookie("image", null, 186500, "/");
 
 				$this->session->set_flashdata('first_visit', true);
+
+				// création du dossier pour les photos
+				mkdir(base_url("/assets/images/avatars")."/".$id.'_'.$login, 0777, true);
 
 				// Redirection vers la timeline
 				redirect('/timeline', 'refresh');
@@ -172,6 +175,15 @@ class Login extends CI_Controller {
 	public function hashpwd( $password ){
 		$hashP = $this->password->create_hash($password);
 		echo $hashP;
+	}
+
+	public function testDirectory($name){
+		if (mkdir(base_url("/assets/images/avatars")."/".$name, 0777, true)){
+			echo "true";
+		} else {
+			echo "false";
+		}
+		
 	}
 }
 
