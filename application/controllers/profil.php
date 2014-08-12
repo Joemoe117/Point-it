@@ -86,7 +86,8 @@ class Profil extends CI_Controller {
 		// Si le formulaire a été envoyé
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-			// Gestion du formulaire de l'AVATAR
+			//// Gestion du formulaire de l'AVATAR
+			//////////////////////////////////////////////
 			if ($this->input->post('form_name') == 'avatar') {
 
 				// Constantes
@@ -96,7 +97,10 @@ class Profil extends CI_Controller {
 				$avatar_dimensions['width'] = 100;
 				$avatar_dimensions['height'] = 100;
 				$avatar_valide_extensions = 'jpg|jpeg|png|gif';
-				$avatar_path = "./assets/images/avatars/".$id.'_'.$data['profil_nom'];  
+				$avatar_path = "./assets/images/avatars/".$id.'_'.$data['profil_nom'];
+				if (!file_exists($avatar_path))
+					mkdir($avatar_path, 0777, true);
+				
 				$avatar_origin_name = 'origin.jpg';
 				$avatar_resized_name = 'resized.jpg';
 
@@ -128,7 +132,8 @@ class Profil extends CI_Controller {
 				}
 			}
 
-			// Gestion du formulaire du NOUVEAU MOT DE PASSE
+			//// Gestion du formulaire du NOUVEAU MOT DE PASSE
+			//////////////////////////////////////////////
 			elseif ($this->input->post('form_name') == 'new_password') {
 
 				// Variables

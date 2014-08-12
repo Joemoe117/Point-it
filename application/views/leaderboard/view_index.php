@@ -6,7 +6,7 @@
 			<?php if (is_null($type_point)): ?>
 				général
 			<?php else: ?>
-				du point <?= $type_point ?>
+				du point <?= $type_point->typept_nom ?>
 			<?php endif ?>
 		</h2>
 
@@ -43,7 +43,7 @@
 		</a></div>
 		<?php foreach ($types_point as $key => $value): ?>
 			<div>
-				<a href="<?= site_url('leaderboard/index/'.$value->typept_id) ?>" class="btn btn-default btn-lg btn-block <? if($type_point == $value->typept_id) echo 'active' ?>">
+				<a href="<?= site_url('leaderboard/index/'.$value->typept_id) ?>" class="btn btn-default btn-lg btn-block <? if(!is_null($type_point) AND $type_point->typept_id == $value->typept_id) echo 'active' ?>">
 					<?= $value->typept_nom ?>
 				</a>
 			</div>

@@ -7,7 +7,7 @@
 class Timeline extends CI_Controller {
 
 	// Déclaration des constantes
-	const POINT_BY_PAGE = 5;
+	const POINT_BY_PAGE = 10;
 	const POINT_BY_PAGE_ADD = 10;
 
 	public function __construct()	{

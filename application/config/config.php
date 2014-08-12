@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/Point-it';
+$config['base_url']	= 'http://localhost/point-it/Point-it';
 
 /*
 |--------------------------------------------------------------------------

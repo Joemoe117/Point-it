@@ -52,7 +52,10 @@ class Leaderboard extends CI_Controller {
 		// Chargement de la vue
 		$data['titre'] 	= 'Leaderboard';
 		$data['menu']	= 'leaderboard';
-		$data['type_point']	= $type_point;
+		if (is_null($type_point))
+			$data['type_point']	= null;
+		else
+			$data['type_point']	= $this->point_model->getOneType($type_point);
 		$data['types_point'] = $this->point_model->getAllType();
 		$data['nb_elem_class'] = $nb_elem_class;
 

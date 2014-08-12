@@ -40,9 +40,6 @@
 	</div>
 	<div class="col-md-6">
 		<h2>Changer de photo de profil</h2>
-		<div class="alert alert-danger">
-			Ne fonctionne pas encore =)
-		</div>
 		<form method="post" enctype="multipart/form-data">
 
 			<input type="hidden" name="form_name" value="avatar">
