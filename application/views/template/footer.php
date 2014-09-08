@@ -1,3 +1,9 @@
+		
+		<!-- load les scripts écrits dans des fichiers a part d'une façon propre pas comme au dessus -->
+		<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
+		<script type="text/javascript" src="<?= base_url('/assets/js/form_valid_add.js') ?>"></script>
+		<script type="text/javascript" src="<?= base_url('/assets/js/perso/approuve.js') ?>"></script>
+
 		<div class="footer">
 			<div class="container">	
 				<div class="row">

@@ -34,9 +34,24 @@
 	</div>
 </div>
 
+<script type="text/javascript">
+	// On déclare les variables globales ainsi que l'URL pour que PHP interprete l'URL à appeler
+	var urlApprouve = {
+		url: '<?= site_url("ajax/addApprouve/") ?>'
+	}
+</script>
+
 <script>
-	$( ".point_haut" ).click(function() {
-		$(this).next(".zone_commentaire" ).toggle( "blind", 400 );
+	$( ".point_haut" ).click(function(e) {
+		// click sur le bouton approuver - on affiche pas la zone de commentaire
+		if($(e.target).is("#approuve")){
+            e.preventDefault();
+            return;
+
+        // sinon, on affiche la zone de commentaire
+  		} else {
+  			$(this).next(".zone_commentaire" ).toggle( "blind", 400 );
+  		}
 	});
 </script>
 

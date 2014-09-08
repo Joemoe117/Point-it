@@ -101,21 +101,10 @@
 		</div>
 	</div>
 
+
+	<!-- Changelog -->
 	<div class="col-md-5">
-		<div class="panel panel-primary"> 
-			<div class="panel-heading"><span class="glyphicon glyphicon-exclamation-sign"></span> Changelog</div>
-			<div class="panel-body">
-				<h6>11/08/2014</h6>
-				<ul>
-					<li>Ajout du changelog #captainObvious</li>
-					<li>Changement du message d'accueil pour les inscriptions</li>
-					<li>Certains éléments ne sont plus affichés sur mobile pour alléger la vue</li>
-					<li>Les pseudos ont désormais automatiquement une majuscule au début. je vais vous apprendre la grammaire moi ! #grammarNazi</li>
-					<li>Les sessions durent désormais plus longtemps !</li>
-					<li>Correction des ,/et dans la liste des points</li>
-				</ul>
-			</div>
-		</div>
+		<?php $this->load->view("component/component_changelog.php");?>
 	</div>
 
 
@@ -154,10 +143,4 @@
 	  		}
 		});
 	</script>
-
-	<!-- load les scripts écrits dans des fichiers a part d'une façon propre pas comme au dessus -->
-	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
-	<script type="text/javascript" src="<?= base_url('/assets/js/form_valid_add.js') ?>"></script>
-	<script type="text/javascript" src="<?= base_url('/assets/js/perso/approuve.js') ?>"></script>
-	
 </div>
