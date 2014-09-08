@@ -61,6 +61,15 @@ class Point_model extends CI_Model{
 											->result();
 		}
 
+		// recherche des personnes qui approuvent
+		foreach ($allPoints as $point) {
+			$point->approuve = $this->db->select('profil_id, profil_nom')
+				->from('approuve NATURAL JOIN profils NATURAL JOIN points')
+				->where('point_id', $point->point_id)
+				->get()
+				->result();
+		}
+
 		return $allPoints;
 	}
 
@@ -114,8 +123,6 @@ class Point_model extends CI_Model{
 		else
 			return true;
 	}
-
-
 
 
 
@@ -191,6 +198,6 @@ class Point_model extends CI_Model{
 			return false;
 		} else {
 			return true;
-		}
+		}	
 	}
 }

@@ -34,6 +34,39 @@ class Ajax extends CI_Controller {
 		echo "</div>";	
 		
 	}
+
+
+
+
+
+	/**
+	*	Méthode Ajax permettant à une personne d'approuver un point
+	*	
+	*
+	*/
+	public function addApprouve($idPoint) {
+
+		$this->load->model('approuve_model');
+
+		$idProfil 	= $this->session->userdata('id');
+
+		$res = $this->approuve_model->create( $idPoint, $idProfil);
+
+
+		if ($res == false)
+			$json['error'] = true;
+		else {
+			$data['approuve'] = $this->approuve_model->getApprouve($idPoint);
+			$json['value'] = $this->load->view('component/component_approuve', $data, true);
+		}
+
+		echo $json['value'];
+
+
+		// renvoyer la vue correspondante
+		// TODO
+
+	}
 }
 
 /* End of file welcome.php */

@@ -10,7 +10,7 @@
 
         <title><?=$titre?></title>
 
-        <!-- Bootstrap core CSS -->
+        <!-- CSS -->
         <link href=" <?= base_url("/assets/css/bootstrap.min.css");  ?>    " rel="stylesheet">
         <link href=" <?= base_url("/assets/css/jquery-ui.min.css");  ?>    " rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="http://ivaynberg.github.io/select2/select2-3.4.1/select2.css"/>
@@ -23,7 +23,7 @@
         <link href='http://fonts.googleapis.com/css?family=Sniglet' rel='stylesheet' type='text/css'>
 
 
-        <!-- Javascript Bootstrap, JQuery et Jquery UI -->
+        <!-- Javascript -->
         <script type="text/javascript" src="<?= base_url("/assets/js/jquery-2.1.0.min.js");  ?>"></script>
         <script type="text/javascript" src="<?= base_url("/assets/js/jquery-ui-1.10.4.custom.min.js");  ?>"></script>
         <script type="text/javascript" src="<?= base_url("/assets/js/select2.min.js");  ?>"></script>
@@ -37,14 +37,17 @@
 
     <div class="header">
         <div class="container">
+            <!-- menu timeline actif -->
             <?php if (strcmp($menu, 'timeline') == 0): ?>
                 <a class="menu active" href="<?= site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> <span class="hidden-xs"> Accueil</span></span></a>
                 <a class="menu" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span>  <span class="hidden-xs"> Profil</span></a>
                 <a class="menu" href="<?= site_url("leaderboard/"); ?>"><span class="glyphicon glyphicon-list-alt"></span>  <span class="hidden-xs"> Leaderborard</span></a>    
+            <!-- menu profil actif -->
             <?php elseif (strcmp($menu, 'profil') == 0): ?>
                 <a class="menu" href="<?= site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> <span class="hidden-xs"> Accueil</span></a>
                 <a class="menu active" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs"> Profil</span></a>
                 <a class="menu" href="<?= site_url("leaderboard/"); ?>"><span class="glyphicon glyphicon-list-alt"></span>  <span class="hidden-xs"> Leaderborard</span></a>    
+            <!-- menu leaderboard actif -->
             <?php else: ?>
                 <a class="menu" href="<?= site_url("timeline/"); ?>"><span class="glyphicon glyphicon-home"></span> <span class="hidden-xs"> Accueil</span></a>
                 <a class="menu" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs"> Profil</span></a>

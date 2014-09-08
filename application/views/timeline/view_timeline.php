@@ -118,6 +118,10 @@
 		</div>
 	</div>
 
+
+
+
+	<!-- Javascript déguelasse -->
 	<script type="text/javascript">
 		$(function() {
 			$("#select_nom").select2();
@@ -131,15 +135,29 @@
 			nb: <?= $point_by_page_add ?>,
 			limit: <?= $point_by_page ?>
 		};
-	</script>
-	
 
-	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
-	<script type="text/javascript" src="<?= base_url('/assets/js/form_valid_add.js') ?>"></script>
+		var urlApprouve = {
+			url: '<?= site_url("ajax/addApprouve/") ?>'
+		}
+	</script>
+
 	<script>
-		$( ".point_haut" ).click(function() {
-			$(this).next(".zone_commentaire" ).toggle( "blind", 400 );
+		$( ".point_haut" ).click(function(e) {
+			// click sur le bouton approuver - on affiche pas la zone de commentaire
+			if($(e.target).is("#approuve")){
+	            e.preventDefault();
+	            return;
+
+	        // sinon, on affiche la zone de commentaire
+	  		} else {
+	  			$(this).next(".zone_commentaire" ).toggle( "blind", 400 );
+	  		}
 		});
 	</script>
 
+	<!-- load les scripts écrits dans des fichiers a part d'une façon propre pas comme au dessus -->
+	<script type="text/javascript" src="<?= base_url('/assets/js/get_points.js') ?>"></script>
+	<script type="text/javascript" src="<?= base_url('/assets/js/form_valid_add.js') ?>"></script>
+	<script type="text/javascript" src="<?= base_url('/assets/js/perso/approuve.js') ?>"></script>
+	
 </div>

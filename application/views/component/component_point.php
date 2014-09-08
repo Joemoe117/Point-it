@@ -19,8 +19,6 @@
 				<?php $i++;	?>
 				<a class="hidden-xs" href="<?= site_url("profil/get/")."/".$pointInfo->profil_id ?>"><?=$pointInfo->profil_nom?></a>
 			<?php endforeach ?>
-		
-
 
 			<?php if ( (count($point->recoit) == 1 )): ?>
 				a
@@ -32,6 +30,8 @@
 				 EPIQUE
 			<?php endif ?>
 		</span>
+
+
 		<span class="point_date pull-right hidden-xs">
 			<?= "Créé le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea)); ?>
 			<br>
@@ -41,6 +41,12 @@
 		</span>
 
 		<div class="point_description"><?=$point->point_description?></div>
+
+		<!-- Partie approuve -->
+		<?php
+			$data["approuve"] = $point->approuve; 
+			$this->load->view("component/component_approuve.php", $data );
+		?>
 
 		<!-- Affichage du nombre de commentaire -->
 		<p class="nbCommentaire" style="text-align:right">

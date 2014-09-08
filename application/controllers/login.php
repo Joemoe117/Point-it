@@ -61,8 +61,8 @@ class Login extends CI_Controller {
 
 				// Mise en place des cookies, pas encore utilisé
 				set_cookie("id", $res->profil_id, 86500, "/");
-				set_cookie("login", $res->profil_id, 86500, "/");
-				set_cookie("image", $res->profil_id, 86500, "/");
+				set_cookie("login", $res->profil_nom, 86500, "/");
+				set_cookie("image", $res->profil_image, 86500, "/");
 
 				// Redirection vers la timeline
 				redirect('/timeline', 'refresh');
