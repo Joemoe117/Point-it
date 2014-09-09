@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
-
+/**
+ * Librairie externe permettant de gérer le chiffrage des MDP dans la BDD
+ */
 class Password {
 
 	/*

@@ -2,6 +2,12 @@
 	<div class="panel-heading"><span class="glyphicon glyphicon-exclamation-sign"></span> Changelog</div>
 	<div class="panel-body">
 
+	<h6>09/09/2014</h6>
+		<ul>
+			<li>Correction des noms qui s'affichaient mal sur Chrome. Mais franchement vous devriez pas utiliser ce navigateur #nazi</li>
+			<li>Correction d'un bug pour les "approuve" qui ne s'affichaient pas correctement</li>
+		</ul>
+
 		<h6>08/09/2014</h6>
 		<ul>
 			<li>Vous pouvez maintenant approuvez les points pour montrer que vos amis sont vraiment des gros tocards.</li>

@@ -1,12 +1,14 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Modèle qui gère l'accès à la BDD pour gérer l'accès au point et aux types de point */
-class Approuve_model extends CI_Model{
+class M_approuve extends CI_Model{
 
 	/**
-	*	Rajoute dans la BDD un approuve de point
-	*	
-	*/
+	 * [create description]
+	 * @param  [type] $idPoint
+	 * @param  [type] $idProfil
+	 * @return [type]
+	 */
 	public function create($idPoint, $idProfil){
 		$existe = $this->db->select('*')
 			->from('approuve')
@@ -26,9 +28,11 @@ class Approuve_model extends CI_Model{
 
 
 	/**
-	 * 
+	 * Recupère les personnes qui approuvent le point donné
+	 * @param  $idPoint
+	 * 			
+	 * @return 
 	 */
-
 	public function getApprouve($idPoint) {
 		return $this->db->select('profil_id, profil_nom')
 				->from('approuve NATURAL JOIN profils NATURAL JOIN points')

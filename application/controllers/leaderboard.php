@@ -1,5 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * Controlleur gérant la partie leaderboard du site
+ * @author gauvint
+ */
 class Leaderboard extends CI_Controller {
 
 	public function __construct() {
@@ -45,10 +48,6 @@ class Leaderboard extends CI_Controller {
 			$data['leader_limit'] = 3;
 
 		
-		// echo '<pre>';
-		// var_dump($data['classement']);
-		// echo '</pre>';
-
 		// Chargement de la vue
 		$data['titre'] 	= 'Leaderboard';
 		$data['menu']	= 'leaderboard';
@@ -59,6 +58,7 @@ class Leaderboard extends CI_Controller {
 		$data['types_point'] = $this->point_model->getAllType();
 		$data['nb_elem_class'] = $nb_elem_class;
 
+		// chargement des vues
 		$this->load->view('template/header.php', $data);
 		$this->load->view('leaderboard/view_index.php', $data);
 		$this->load->view('template/footer.php');

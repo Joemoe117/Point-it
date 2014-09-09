@@ -1,5 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * Controlleur permettant de gérer l'authentification et la déconnexion d'un utilisateur
+ */
 class Login extends CI_Controller {
 
 	// Question antibot et sa réponse
@@ -16,14 +18,18 @@ class Login extends CI_Controller {
 	}
 
 
-
+	/**
+	 * Route par défaut qui renvoie sur la page d'accueil
+	 * @return
+	 */
 	public function index()	{
 		$this->login();
 	}
 
 
 	/**
-	*	@return Affiche la page pour qu'un user se connecte
+	*	@return 
+	*				Affiche la page pour qu'un user se connecte
 	*
 	*/
 	public function login() {
@@ -89,7 +95,9 @@ class Login extends CI_Controller {
 
 
 	/**
-	*	@return 	Déconnecte l'utilisateur
+	* 	Déconnecte l'utilisateur connecté en détruisant la session
+	*	@return 	
+	*				Déconnecte l'utilisateur
 	*
 	*/
 	public function logout(){
@@ -99,9 +107,8 @@ class Login extends CI_Controller {
 
 
 	/**
-	 *	Inscription
-	 *
-	 *
+	 * Inscrit un utilisateur au site si les données fournies en paramètres sont correctes
+	 * @return [type]
 	 */
 	public function inscription() {
 		// Si l'utilisateur est déjà connecté le rediriger vers la timeline
@@ -179,24 +186,6 @@ class Login extends CI_Controller {
 	public function hashpwd( $password ){
 		$hashP = $this->password->create_hash($password);
 		echo $hashP;
-	}
-
-
-	function exception_error_handler($errno, $errstr, $errfile, $errline ) {
-	    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-	}
-	
-	
-
-	public function testDirectory($name){
-
-		restore_error_handler();
-		if (mkdir(base_url("/assets/images/avatars")."/".$name, 0777, true)){
-			echo "true";
-		} else {
-			echo "false";
-		}
-		
 	}
 }
 

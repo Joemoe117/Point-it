@@ -46,17 +46,17 @@ class Ajax extends CI_Controller {
 	*/
 	public function addApprouve($idPoint) {
 
-		$this->load->model('approuve_model');
+		$this->load->model("M_approuve", "approuveManager");
 
 		$idProfil 	= $this->session->userdata('id');
 
-		$res = $this->approuve_model->create( $idPoint, $idProfil);
+		$res = $this->approuveManager->create( $idPoint, $idProfil);
 
 
 		if ($res == false)
 			$json['error'] = true;
 		else {
-			$data['approuve'] = $this->approuve_model->getApprouve($idPoint);
+			$data['approuve'] = $this->approuveManager->getApprouve($idPoint);
 			$json['value'] = $this->load->view('component/component_approuve', $data, true);
 		}
 

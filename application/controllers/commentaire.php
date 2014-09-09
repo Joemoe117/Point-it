@@ -1,9 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Controleur gérant les commentaires
+ * @author ballanb
+ */
 class Commentaire extends CI_Controller {
 
 
-
+	/**
+	 * Constructeur
+	 */
 	public function __construct()	{
 		parent::__construct();
 		
@@ -20,37 +26,9 @@ class Commentaire extends CI_Controller {
 	}
 
 	/**
-	*	@return 	ajoute un commentaire à un point donné
-	*	@param 		id  	l'id du point auquel on veut ajouter un commentaire
-	*
-	*/
-	public function ajouterCommentaireAjax(){
-		if($_SERVER['REQUEST_METHOD'] == 'POST') {
-			
-			$profil_id = $this->session->userdata('id');
-			$point_id = $this->input->post('point_id');
-			$texte = nl2br($this->input->post('commentaire'));
-
-			// Vérification du post
-			if (isset($profil_id) AND is_int($profil_id))
-				$data['errors'][] = "Profil invalide";
-			if (isset($point_id) AND is_int($point_id))
-				$data['errors'][] = "Point invalide";
-			if (isset($texte) AND is_string($texte))
-				$data['errors'][] = "Commentaire invalide";
-
-			// Si pas d'erreur, créer le commentaire
-			if (!isset($data['errors'])) 
-				$res = $this->commentaire_model->create($point_id, $profil_id, $texte);
-
-			redirect('/timeline', 'location');
-		}
-	}
-
-
-
-
-
+	 * Ajoute un commentaire
+	 * @return 
+	 */
 	public function create(){
 		$profil_id 	= $this->session->userdata('id');
 		$point_id	= $this->input->post('point_id', TRUE);

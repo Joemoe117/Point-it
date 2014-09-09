@@ -17,7 +17,7 @@
 					<?php endif ?>
 				<?php endif ?>
 				<?php $i++;	?>
-				<a class="hidden-xs" href="<?= site_url("profil/get/")."/".$pointInfo->profil_id ?>"><?=$pointInfo->profil_nom?></a>
+				<a class="hidden-xs name" href="<?= site_url("profil/get/")."/".$pointInfo->profil_id ?>"><?=$pointInfo->profil_nom?></a>
 			<?php endforeach ?>
 
 			<?php if ( (count($point->recoit) == 1 )): ?>

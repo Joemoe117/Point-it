@@ -1,8 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+/**
+ * Controlleur permettant de gérer les membres et l'affichage des profils, ainsi que leur configuration
+ * @author ballanb
+ * @version 1.0
+ */
 class Profil extends CI_Controller {
 
-
+	/**
+	 * Constructeur
+	 */
 	public function __construct()	{
 		parent::__construct();
 
@@ -19,7 +25,10 @@ class Profil extends CI_Controller {
 
 	}
 
-
+	/**
+	 * Route qui renvoie par défaut sur le profil de la personne connecté
+	 * @return [type]
+	 */
 	public function index()	{
 		$this->get($this->session->userdata('id'));
 	}
@@ -32,10 +41,13 @@ class Profil extends CI_Controller {
 
 	
 	/**
-	*	Affiche la timeline d'une personne
-	*
-	*
-	*/
+	 * Affiche le profil de la personne donnée en paramètre
+	 * @param  $id 		
+	 * 				l'id de la personne à affiche
+	 * @return 
+	 * 				Affiche le profil de l'id donné en param
+	 * @author ballanb
+	 */
 	public function get($id){
 
 		// check si l'id existe bien dans la BDD
@@ -53,7 +65,7 @@ class Profil extends CI_Controller {
 		}
 
 		
-		// statistique
+		// statistique du profil
 		$data['nbPoint'] 		= $this->profil_model->getNbPoint($id);
 		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
 		$data['table_point']	= $this->profil_model->getNumberOfPointByType($id);
@@ -92,8 +104,6 @@ class Profil extends CI_Controller {
 
 				// Constantes
 				$avatar_max_size = '2000';
-				// $avatar_max_dimensions['width'] = '180';
-				// $avatar_max_dimensions['height'] = '180';
 				$avatar_dimensions['width'] = 100;
 				$avatar_dimensions['height'] = 100;
 				$avatar_valide_extensions = 'jpg|jpeg|png|gif';
@@ -101,6 +111,7 @@ class Profil extends CI_Controller {
 				if (!file_exists($avatar_path))
 					mkdir($avatar_path, 0777, true);
 				
+				// renomme les fichiers
 				$avatar_origin_name = 'origin.jpg';
 				$avatar_resized_name = 'resized.jpg';
 
@@ -111,8 +122,6 @@ class Profil extends CI_Controller {
 				$config['file_name'] = $avatar_origin_name;
 				$config['overwrite'] = true;
 				$config['max_size']	= $avatar_max_size;
-				// $config['max_width']  = $avatar_max_dimensions['width'];
-				// $config['max_height']  = $avatar_max_dimensions['height'];
 
 
 				$this->load->library('upload', $config);
