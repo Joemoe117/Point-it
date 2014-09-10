@@ -19,7 +19,7 @@ class Commentaire extends CI_Controller {
 		}
 
 		// Chargement des models
-		$this->load->model('commentaire_model');
+		$this->load->model('commentaire_model', "commentaireManager");
 
 		// Chargement header
 		$this->load->view('template/header.php');
@@ -35,8 +35,7 @@ class Commentaire extends CI_Controller {
 		$texte 		= $this->input->post('commentaire', TRUE);
 
 		// TODO vérifier les champs
-		echo now();
-		$res = $this->commentaire_model->create( $point_id, $profil_id, $texte);
+		$res = $this->commentaireManager->create( $point_id, $profil_id, $texte);
 
 		redirect('/timeline', 'location');
 	}
@@ -45,4 +44,4 @@ class Commentaire extends CI_Controller {
 }
 
 /* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* Location: ./application/controllers/commentaire.php */

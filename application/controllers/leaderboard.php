@@ -13,9 +13,8 @@ class Leaderboard extends CI_Controller {
 			redirect('/login', 'location');
 
 		// Chargement des models
-		$this->load->model('profil_model');
-		$this->load->model('point_model');
-		$this->load->model('classement_model');
+		$this->load->model('m_point', "pointManager");
+		$this->load->model('m_leaderboard', "leaderboardManager");
 
 	}
 
@@ -27,15 +26,15 @@ class Leaderboard extends CI_Controller {
 	public function index($type_point=null)	{
 
 		$NB_PERSONNES = 20;
-		$allTypePoint = $this->point_model->getAllType();
+		$allTypePoint = $this->pointManager->getAllType();
 
 		// Si aucun type de point n'est demandé
 		if (is_null($type_point))
-			$data['classement'] = $this->classement_model->general($NB_PERSONNES);
+			$data['classement'] = $this->leaderboardManager->general($NB_PERSONNES);
 
 		else {
-			if ($this->point_model->typePointExist($type_point))
-				$data['classement'] = $this->classement_model->byTypePoint($type_point, $NB_PERSONNES);
+			if ($this->pointManager->typePointExist($type_point))
+				$data['classement'] = $this->leaderboardManager->byTypePoint($type_point, $NB_PERSONNES);
 			else
 				redirect('leaderboard', 'refresh');
 		}
@@ -54,9 +53,9 @@ class Leaderboard extends CI_Controller {
 		if (is_null($type_point))
 			$data['type_point']	= null;
 		else
-			$data['type_point']	= $this->point_model->getOneType($type_point);
-		$data['types_point'] = $this->point_model->getAllType();
-		$data['nb_elem_class'] = $nb_elem_class;
+			$data['type_point']	= $this->pointManager->getOneType($type_point);
+		$data['types_point'] 	= $this->pointManager->getAllType();
+		$data['nb_elem_class'] 	= $nb_elem_class;
 
 		// chargement des vues
 		$this->load->view('template/header.php', $data);

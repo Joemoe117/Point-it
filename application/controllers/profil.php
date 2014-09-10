@@ -19,9 +19,9 @@ class Profil extends CI_Controller {
 		
 
 		// Chargement des models
-		$this->load->model('profil_model');
-		$this->load->model('point_model');
-		$this->load->model('commentaire_model');
+		$this->load->model('m_profil', "profilManager");
+		$this->load->model('m_commentaire', "commentaireManager");
+		$this->load->model('m_point', "pointManager");
 
 	}
 
@@ -51,24 +51,24 @@ class Profil extends CI_Controller {
 	public function get($id){
 
 		// check si l'id existe bien dans la BDD
-		if ( !$this->profil_model->exist($id) ){
+		if ( !$this->profilManager->exist($id) ){
 			show_404('page');
 		}
 
 		// général
-		$data['profil'] = $this->profil_model->getOne($id);
-		$data['points'] = $this->point_model->getAllPointsOf($id);
+		$data['profil'] = $this->profilManager->getOne($id);
+		$data['points'] = $this->pointManager->getAllPointsOf($id);
 
 		/* Récupération des commentaires de chaque point */
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id); 
 		}
 
 		
 		// statistique du profil
-		$data['nbPoint'] 		= $this->profil_model->getNbPoint($id);
-		$data['nbCommentaire'] 	= $this->profil_model->getNbCommentaire($id);
-		$data['table_point']	= $this->profil_model->getNumberOfPointByType($id);
+		$data['nbPoint'] 		= $this->profilManager->getNbPoint($id);
+		$data['nbCommentaire'] 	= $this->profilManager->getNbCommentaire($id);
+		$data['table_point']	= $this->profilManager->getNumberOfPointByType($id);
 
 		// données du header
 		$data['titre'] = "Profil de " . $data['profil']->profil_nom;
@@ -90,7 +90,7 @@ class Profil extends CI_Controller {
 	public function config() {
 		// Récupération des informations générales
 		$id = $this->session->userdata('id');
-		$data['profil_nom'] = $this->profil_model->getOne($id, 'profil_nom')->profil_nom;
+		$data['profil_nom'] = $this->profilManager->getOne($id, 'profil_nom')->profil_nom;
 		$data['titre'] = 'Configuration du profil';
 		$data['menu'] = 'profil';
 
@@ -130,14 +130,8 @@ class Profil extends CI_Controller {
 					$data['errors']['avatar'][] = "Erreur sur le fichier envoyé";
 					$data['errors']['avatar'][] = $this->upload->display_errors();
 				} else {
-					$this->profil_model->setImage($id, base_url("/assets/images/avatars")."/".$id.'_'.$data['profil_nom'].'/'.$avatar_origin_name);
+					$this->profilManager->setImage($id, base_url("/assets/images/avatars")."/".$id.'_'.$data['profil_nom'].'/'.$avatar_origin_name);
 					$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
-
-					// REDIMENSIONNAGE
-					// if ($this->_resizeImage($avatar_path.'/'.$avatar_origin_name, $avatar_dimensions['width'], $avatar_dimensions['height']))
-					// 	$data['success']['avatar'] = "Votre image de profil a bien été enregistrée";
-					// else
-					// 	$data['errors']['avatar'][] = "Erreur de création de l'image... Contactez l'administrateur";
 				}
 			}
 
@@ -151,7 +145,7 @@ class Profil extends CI_Controller {
 				$pass_new_check = $this->input->post('new_pass_check');
 				$pass_ok = true;
 
-				if (!$this->profil_model->checkPass($id, $pass_old)) {
+				if (!$this->profilManager->checkPass($id, $pass_old)) {
 					$pass_ok = false;
 					$data['errors']['new_password'][] = "Votre ancien mot de passe n'est pas correcte";
 				}
@@ -162,7 +156,7 @@ class Profil extends CI_Controller {
 
 				if ($pass_ok) {
 					// Hashage et enregistrement du nouveau mot de passe
-					$this->profil_model->setPass($id, $this->password->create_hash($pass_new));
+					$this->profilManager->setPass($id, $this->password->create_hash($pass_new));
 					$data['success']['new_password'] = "Votre nouveau mot de passe a été enregistré";
 				}
 

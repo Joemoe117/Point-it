@@ -19,9 +19,9 @@ class Timeline extends CI_Controller {
 		}
 
 		// Chargement des models
-		$this->load->model('profil_model');
-		$this->load->model('point_model');
-		$this->load->model('commentaire_model');
+		$this->load->model('m_profil', "profilManager");
+		$this->load->model('m_commentaire', "commentaireManager");
+		$this->load->model('m_point', "pointManager");
 
 	}
 
@@ -41,18 +41,14 @@ class Timeline extends CI_Controller {
 	public function retrieve() {
 
 		/* Génération des informations du formulaire */
-		$data['form_point'] = $this->point_model->getAllType();
-		$data['form_profil'] = $this->profil_model->getAll();
+		$data['form_point'] = $this->pointManager->getAllType();
+		$data['form_profil'] = $this->profilManager->getAll();
 			
 		/* Recupération des $initNbPoints derniers points et des commentaires de chaque point */
-		$data['points'] = $this->point_model->getAllPoints(self::POINT_BY_PAGE);
+		$data['points'] = $this->pointManager->getAllPoints(self::POINT_BY_PAGE);
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id); 
 		}
-		// echo "<pre>";
-		// var_dump($data['points']);
-		// echo "</pre>";
-
 		
 		// chargement des vues
 		$data['titre'] 	= "Timeline";
@@ -73,9 +69,9 @@ class Timeline extends CI_Controller {
 	 */
 	public function get_points($nb, $limit) {
 		/* Recupération des $nb points et des commentaires de chaque point */
-		$data['points'] = $this->point_model->getAllPoints($nb, $limit);
+		$data['points'] = $this->pointManager->getAllPoints($nb, $limit);
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][$value->point_id] = $this->commentaire_model->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id); 
 		}
 		$this->load->view('timeline/view_affiche_points.php', $data);
 	}
@@ -107,18 +103,18 @@ class Timeline extends CI_Controller {
 			if ($checkForm === 0) {
 				// Si il existe une date d'évenement, la convertir en timestamp et enregistrer le point
 				if (!(is_null($date) OR empty($date) OR !$date))
-					$point_id = $this->point_model->createPoint( $point, $donneur, $texte, $epique, $date);
+					$point_id = $this->pointManager->createPoint( $point, $donneur, $texte, $epique, $date);
 				// Sinon on crée juste le point
 				else
-					$point_id = $this->point_model->createPoint( $point, $donneur, $texte, $epique);
+					$point_id = $this->pointManager->createPoint( $point, $donneur, $texte, $epique);
 
 				// On ajoute ensuite les différentes personnes dans la distribution
 				foreach ($personnes as $personne) {
-					$this->point_model->createRecoit($point_id, $personne);
+					$this->pointManager->createRecoit($point_id, $personne);
 				}
 
 				// Envoie du message de succès
-				$type_point = $this->point_model->getOneType($point);
+				$type_point = $this->pointManager->getOneType($point);
 				$this->session->set_flashdata('add_point_success', 'Ajout d\'un point '.$type_point->typept_nom.'<br>'.$type_point->typept_success);
 			}
 			// Sinon transfère des erreurs
@@ -159,7 +155,7 @@ class Timeline extends CI_Controller {
 						$res[] = "Les personnes sélectionnées sont dans un mauvais format";
 						break;
 					}
-					elseif (!$this->profil_model->exist($personne)) {
+					elseif (!$this->pointManager->exist($personne)) {
 						$res[] = "Des personnes sélectionnées n'existent pas";
 						break;
 					}
@@ -172,7 +168,7 @@ class Timeline extends CI_Controller {
 		// Vérif du point
 		if (is_null($point) OR !$point)
 			$res[] = "Veuillez entrer un type de point";
-		elseif (!$this->point_model->typePointExist($point)) {
+		elseif (!$this->pointManager->typePointExist($point)) {
 			$res[] = "Ce type de point n'existe pas";
 		}
 
@@ -186,7 +182,7 @@ class Timeline extends CI_Controller {
 		// Vérif du donneur
 		if (is_null($donneur) OR
 				!$donneur OR
-				!$this->profil_model->exist($donneur)
+				!$this->pointManager->exist($donneur)
 		) {
 			$res[] = "Stope tes magouilles jeune branleur";
 		}
@@ -224,12 +220,12 @@ class Timeline extends CI_Controller {
 	private function _idExistInModel( $personnes = array(), $point = 0) {
 
 		foreach ($personnes as $value) {
-			if (!$this->profil_model->exist($value->profil_id)) {
+			if (!$this->profilManager->exist($value->profil_id)) {
 				return false;
 			}
 		}
 
-		if (!$this->point_model->exist($point->typept_id)) {
+		if (!$this->pointManager->exist($point->typept_id)) {
 			return false;
 		}
 

@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Modèle qui gère l'accès à la BDD pour gérer l'accès au point et aux types de point */
-class Point_model extends CI_Model{
+class M_Point extends CI_Model{
 
 	/**
 	*	function 	getAllType

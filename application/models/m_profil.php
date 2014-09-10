@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Modèle qui gère l'accès à la BDD pour obtenir les infos d'un membre */
-class Profil_model extends CI_Model{
+class M_Profil extends CI_Model{
 
 	/**
 	*	function 	getAllProfil

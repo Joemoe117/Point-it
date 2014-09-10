@@ -7,18 +7,21 @@ class M_approuve extends CI_Model{
 	 * [create description]
 	 * @param  [type] $idPoint
 	 * @param  [type] $idProfil
-	 * @return [type]
+	 * @return 
+	 * 			false si le point n'existe pas
+	 * 			true sinon
 	 */
 	public function create($idPoint, $idProfil){
+		// on vérifie que l'approuve n'existe pas déjà
 		$existe = $this->db->select('*')
 			->from('approuve')
 			->where('profil_id',$idProfil )
 			->where('point_id', $idPoint)
 			->count_all_results();
-
 		if ($existe > 0)
 			return false;
 
+		// si non, on l'ajoute
 		$this->db->set('point_id', 	$idPoint);
 		$this->db->set('profil_id', $idProfil);
 		$this->db->insert('approuve');

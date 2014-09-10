@@ -12,9 +12,9 @@ class Login extends CI_Controller {
 		parent::__construct();
 
 		// Chargement des models
-		$this->load->model('profil_model');
-		$this->load->model('commentaire_model');
-		$this->load->model('point_model');
+		$this->load->model('m_profil', "profilManager");
+		$this->load->model('m_commentaire', "commentaireManager");
+		$this->load->model('m_point', "pointManager");
 	}
 
 
@@ -53,7 +53,7 @@ class Login extends CI_Controller {
 
 			// Si validation ok
 			if ($this->form_validation->run() == TRUE)	{
-				$res = $this->profil_model->checkLogin( $login, $password );
+				$res = $this->profilManager->checkLogin( $login, $password );
 			}
 
 
@@ -82,9 +82,9 @@ class Login extends CI_Controller {
 		// Sinon afficher la page d'accueil
 
 		// Récupération des statistiques général
-		$data["nb_profil"] 		= $this->profil_model->count();
-		$data["nb_point"] 		= $this->point_model->count(); 
-		$data["nb_commentaire"] = $this->commentaire_model->count();
+		$data["nb_profil"] 		= $this->profilManager->count();
+		$data["nb_point"] 		= $this->pointManager->count(); 
+		$data["nb_commentaire"] = $this->commentaireManager->count();
 
 		// Chargement des vues
 		$data['titre'] = "Connexion";
@@ -126,7 +126,7 @@ class Login extends CI_Controller {
 			$antibot_reponse = $this->input->post('antibot_reponse');
 
 			// Vérif nom dispo
-			if ($this->profil_model->existNom($login)) {
+			if ($this->profilManager->existNom($login)) {
 				$data['errors']['login'] = "Quelqu'un a déjà pris ce nom ou t'as usurpé";
 				$data['retry']['login'] = $login;
 			}
@@ -151,7 +151,7 @@ class Login extends CI_Controller {
 				// captitalizze first letter of login
 				$login = ucfirst($login);
 
-				$id = $this->profil_model->create($login, $this->password->create_hash($pass), false);
+				$id = $this->profilManager->create($login, $this->password->create_hash($pass), false);
 
 				// Mise en place des sessions
 				$this->session->set_userdata('id', $id);
