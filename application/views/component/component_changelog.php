@@ -1,8 +1,15 @@
-<div class="panel panel-primary"> 
+<div class="panel panel-primary hidden-xs"> 
 	<div class="panel-heading"><span class="glyphicon glyphicon-exclamation-sign"></span> Changelog</div>
 	<div class="panel-body">
 
-	<h6>09/09/2014</h6>
+		<h6>11/09/2014</h6>
+		<ul>
+			<li>Les points devraient maintenant normalement s'afficher dans le bon ordre</li>
+			<li>Le changelog n'apparait plus sur les smartphones</li>
+			<li>Les "approuve" font maintenant remonter les points dans la timeline</li>
+		</ul>
+
+		<h6>09/09/2014</h6>
 		<ul>
 			<li>Correction des noms qui s'affichaient mal sur Chrome. Mais franchement vous devriez pas utiliser ce navigateur #nazi</li>
 			<li>Correction d'un bug pour les "approuve" qui ne s'affichaient pas correctement</li>
