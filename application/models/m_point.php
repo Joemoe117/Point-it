@@ -33,15 +33,29 @@ class M_Point extends CI_Model{
 
 
 	/**
-	*	function 	getAllPoints
-	*	@return		Recupere tous les points et les info associés ainsi que les profils qui ont reçu les points
-	*	
-	*/
-	public function getAllPoints ($nb=null, $limit=null) {
-		$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
-			->from('points NATURAL JOIN types_point')
-			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
-			->order_by('point_date_actualite', 'asc');
+	 * Recupère les n derniers points donnés.
+	 * @param  [type] $nb       Le nombre de point que l'on veut récupérer
+	 * @param  [type] $limit    index à partir duquel on veut récupérer les point(ie, la pagination)
+	 * @param  [type] $idProfil si null, on recupère de toute les personnes, sinon on recupère de cet id.
+	 * @return [type]           
+	 */
+	public function getAllPoints ($nb=null, $limit=null, $idProfil=null) {
+
+		// selon si l'id est défini ou non, on recupere les points de tout le 
+		// monde ou de la personne concernée
+		if (isset($idProfil)){
+			$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
+				->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
+				->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
+				->where('recoit.profil_id', (int) $idProfil)
+				->order_by('point_date_actualite', 'asc');
+		} else {
+			$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
+				->from('points NATURAL JOIN types_point')
+				->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
+				->order_by('point_date_actualite', 'desc');
+		}
+		
 
 		// Limit
 		if (isset($nb) AND isset($limit))
@@ -72,50 +86,6 @@ class M_Point extends CI_Model{
 
 		return $allPoints;
 	}
-
-
-	/**
-	*	function 	getAllPointsOf
-	*	@return		Recupere tous les points et les info associés d'un profil
-	*	
-	*/
-	public function getAllPointsOf( $id, $nb=null, $limit=null) {
-		$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
-			->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
-			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
-			->where('recoit.profil_id', (int) $id)
-			->order_by('point_date_actualite', 'asc');
-
-		// Limit
-		if (isset($nb) AND isset($limit))
-			$allPoints = $allPoints->limit($nb, $limit);
-		elseif (isset($nb))
-			$allPoints = $allPoints->limit($nb);
-		
-		$allPoints = $allPoints->get()
-			->result();
-
-		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points
-		foreach ($allPoints as $point) {
-			$point->recoit = $this->db->select('profil_id, profil_nom, profil_image')
-				->from('recoit NATURAL JOIN profils')
-				->where('point_id', $point->point_id)
-				->get()
-				->result();
-		}
-
-		// recherche des personnes qui approuvent
-		foreach ($allPoints as $point) {
-			$point->approuve = $this->db->select('profil_id, profil_nom')
-				->from('approuve NATURAL JOIN profils NATURAL JOIN points')
-				->where('point_id', $point->point_id)
-				->get()
-				->result();
-		}
-
-		return $allPoints;
-	}
-
 
 	/**
 	*	@param 		$id 	ID du point
@@ -157,6 +127,7 @@ class M_Point extends CI_Model{
 		$this->db->set('profil_id_donne', $profil_id_donne);
 		$this->db->set('point_description', $texte);
 		$this->db->set('point_epique', $epique);
+		$this->db->set('point_date_actualite', date('Y-m-d H:i:s', now()));
 		if ($date)
 			$this->db->set('point_date_evenement', $date);
 		$this->db->insert('points');

@@ -6,7 +6,7 @@ class M_Commentaire extends CI_Model{
 	protected $table = "commentaires";
 
 	public function count(){
-		return $this->db->count_all_results($table);
+		return $this->db->count_all_results($this->table);
 	}
 
 

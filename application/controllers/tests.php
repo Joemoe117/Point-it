@@ -2,12 +2,9 @@
 
 class Tests extends CI_Controller {
 
-	public function point_multi() {
-		$this->load->model('point_model');
+	public function index() {
 
-		echo "<pre>";
-		echo print_r($this->point_model->getAllPoints());
-		echo "</pre>";
+		echo date('Y-m-d H:i:s', now());
 	}
 
 }

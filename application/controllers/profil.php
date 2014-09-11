@@ -57,7 +57,7 @@ class Profil extends CI_Controller {
 
 		// général
 		$data['profil'] = $this->profilManager->getOne($id);
-		$data['points'] = $this->pointManager->getAllPointsOf($id);
+		$data['points'] = $this->pointManager->getAllPoints(null, null, $id);
 
 		/* Récupération des commentaires de chaque point */
 		foreach ($data['points'] as $value) {
@@ -82,11 +82,9 @@ class Profil extends CI_Controller {
 
 
 	/**
-	 *	Configurer son profil
-	 *
-	 *
+	 * [config description]
+	 * @return [type] [description]
 	 */
-
 	public function config() {
 		// Récupération des informations générales
 		$id = $this->session->userdata('id');

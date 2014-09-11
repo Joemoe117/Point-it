@@ -3,6 +3,8 @@
 /* Modèle qui gère l'accès à la BDD pour gérer l'accès au point et aux types de point */
 class M_approuve extends CI_Model{
 
+	protected $table = "approuve";
+
 	/**
 	 * [create description]
 	 * @param  [type] $idPoint
@@ -22,9 +24,14 @@ class M_approuve extends CI_Model{
 			return false;
 
 		// si non, on l'ajoute
-		$this->db->set('point_id', 	$idPoint);
-		$this->db->set('profil_id', $idProfil);
-		$this->db->insert('approuve');
+		$this->db->set('point_id',  (int) $idPoint);
+		$this->db->set('profil_id', (int) $idProfil);
+		$this->db->insert($this->table);
+
+		// on met à jour la date du point
+		$this->db->set('point_date_actualite', date('Y-m-d H:i:s', now()));
+		$this->db->where('point_id', (int) $idPoint);
+		$this->db->update("points");
 
 		return true;
 	}
