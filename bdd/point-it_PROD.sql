@@ -2,8 +2,7 @@
 -- version 4.1.9
 -- http://www.phpmyadmin.net
 --
--- Client :  pointitfrnpoul.mysql.db
--- Généré le :  Mar 12 Août 2014 à 20:31
+-- Généré le :  Mer 15 Octobre 2014 à 21:13
 -- Version du serveur :  5.1.73-1.1+squeeze+build0+1-log
 -- Version de PHP :  5.3.8
 
@@ -23,6 +22,79 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `approuve`
+--
+
+CREATE TABLE IF NOT EXISTS `approuve` (
+  `approuve_id` int(11) NOT NULL AUTO_INCREMENT,
+  `point_id` int(11) NOT NULL,
+  `profil_id` int(11) NOT NULL,
+  PRIMARY KEY (`approuve_id`),
+  KEY `point_id` (`point_id`),
+  KEY `point_id_2` (`point_id`),
+  KEY `point_id_3` (`point_id`),
+  KEY `profil_id` (`profil_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+
+--
+-- Contenu de la table `approuve`
+--
+
+INSERT INTO `approuve` (`approuve_id`, `point_id`, `profil_id`) VALUES
+(2, 10, 1),
+(3, 6, 1),
+(4, 11, 25),
+(5, 7, 25),
+(6, 5, 25),
+(7, 5, 1),
+(8, 9, 1),
+(9, 3, 13),
+(10, 9, 13),
+(11, 4, 13),
+(12, 11, 16),
+(13, 11, 18),
+(14, 3, 18),
+(15, 10, 26),
+(16, 7, 26),
+(17, 5, 26),
+(18, 3, 26),
+(19, 8, 26),
+(20, 9, 26),
+(21, 11, 7),
+(22, 5, 7),
+(23, 6, 7),
+(24, 3, 7),
+(25, 1, 1),
+(26, 3, 1),
+(27, 4, 1),
+(28, 11, 1),
+(29, 12, 23),
+(30, 1, 23),
+(31, 3, 23),
+(32, 12, 1),
+(33, 13, 1),
+(34, 12, 17),
+(35, 14, 17),
+(36, 10, 17),
+(37, 13, 17),
+(38, 1, 17),
+(39, 2, 17),
+(40, 5, 17),
+(41, 6, 17),
+(42, 14, 1),
+(43, 8, 1),
+(44, 9, 9),
+(45, 5, 9),
+(46, 11, 9),
+(47, 12, 9),
+(48, 14, 9),
+(49, 14, 6),
+(50, 15, 1),
+(51, 13, 13);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `commentaires`
 --
 
@@ -35,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   PRIMARY KEY (`com_id`),
   KEY `point_id` (`point_id`),
   KEY `profil_id` (`profil_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Contenu de la table `commentaires`
@@ -49,7 +121,21 @@ INSERT INTO `commentaires` (`com_id`, `point_id`, `profil_id`, `com_texte`, `com
 (6, 2, 1, 'C''est une drôle de façon de marquer son territoire quand même', '2014-08-11 17:16:21'),
 (10, 4, 13, 'Et moi D:', '2014-08-11 21:38:24'),
 (11, 3, 13, 'En attendant la fonction d''approbation, j''approuve ce point verbalement.', '2014-08-11 21:39:32'),
-(12, 4, 1, 'Je te rajoute ce soir coloc', '2014-08-12 13:08:33');
+(12, 4, 1, 'Je te rajoute ce soir coloc', '2014-08-12 13:08:33'),
+(13, 3, 1, 'Le système d''approbation est en cours mais ça va prendre une peu de temps', '2014-08-13 14:18:37'),
+(14, 4, 23, 'Je veux !', '2014-08-15 17:28:19'),
+(15, 3, 5, 'J''aurais aimé avoir un système d''approbation pour approuver l''avancement du système d''approbation.', '2014-08-19 21:15:20'),
+(16, 8, 1, 'C''est pour ça que je t''aime mon coloc !', '2014-08-19 21:49:18'),
+(17, 9, 1, 'C''est un point, mais c''est un bon point', '2014-08-26 22:45:22'),
+(18, 4, 1, 'Pas de glissade sur le ventre, pas de point !', '2014-09-02 16:32:06'),
+(19, 9, 13, 'Je lui aurais pas donné un point moustache pour ça. Il était cageot et il savait pas ce qu''il faisait >:C', '2014-09-08 22:29:29'),
+(20, 3, 6, 'Maintenant tu peux le faire ! Et du coup ça a donné quoi comme musique ?', '2014-09-12 11:10:26'),
+(21, 3, 1, 'Je veux voir ce film... je veux dire, écouter cette BO !', '2014-09-12 19:05:03'),
+(22, 15, 1, 'Tocard a casquette', '2014-09-12 23:33:49'),
+(23, 10, 13, '"foeutale"', '2014-09-13 18:23:55'),
+(24, 10, 1, 'Je me demande qui est le con qui ne sait pas écrire ', '2014-09-17 15:24:15'),
+(25, 9, 1, 'T''as pas besoin de te rendre compte que t''es swag pour être swag', '2014-09-17 15:25:03'),
+(26, 13, 1, 'J''aurai pour toujours cette image dans ma tête', '2014-10-14 12:18:19');
 
 -- --------------------------------------------------------
 
@@ -73,13 +159,13 @@ CREATE TABLE IF NOT EXISTS `points` (
   `profil_id_donne` int(11) NOT NULL,
   `point_description` text NOT NULL,
   `point_date_crea` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `point_date_actualite` timestamp NULL DEFAULT NULL,
+  `point_date_actualite` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `point_epique` tinyint(1) NOT NULL DEFAULT '0',
   `point_date_evenement` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`point_id`),
   KEY `typept_id` (`typept_id`),
   KEY `profil_id_donne` (`profil_id_donne`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Contenu de la table `points`
@@ -88,9 +174,19 @@ CREATE TABLE IF NOT EXISTS `points` (
 INSERT INTO `points` (`point_id`, `typept_id`, `profil_id_donne`, `point_description`, `point_date_crea`, `point_date_actualite`, `point_epique`, `point_date_evenement`) VALUES
 (1, 1, 2, 'Grenaaaaaaaaaaaaaaaaaaaaaaade !', '2014-08-10 11:49:31', '2014-08-10 11:49:31', 1, NULL),
 (2, 2, 1, 'Vomir ses frites devant sa tente au BDM.', '2014-08-11 17:13:03', '2014-08-11 17:13:03', 0, NULL),
-(3, 1, 1, 'Mixer le son d''un film porno ! La classe', '2014-08-11 21:39:32', '2014-08-11 21:39:32', 0, NULL),
-(4, 1, 1, 'Meilleur ventragliss au monde sur la terrasse de Romain', '2014-08-12 13:08:33', '2014-08-12 13:08:33', 1, '2014-08-09 22:00:00'),
-(5, 1, 1, 'Finir en dégrisement à Brest, faut quand même le faire quoi !', '2014-08-11 17:23:35', NULL, 1, NULL);
+(3, 1, 1, 'Mixer le son d''un film porno ! La classe', '2014-09-12 19:05:03', '2014-09-12 19:05:03', 0, NULL),
+(4, 1, 1, 'Meilleur ventragliss au monde sur la terrasse de Romain', '2014-09-02 16:32:06', '2014-09-02 16:32:06', 1, '2014-08-09 22:00:00'),
+(5, 1, 1, 'Finir en dégrisement à Brest, faut quand même le faire quoi !', '2014-09-12 07:20:43', '2014-09-12 07:20:43', 1, NULL),
+(6, 4, 1, 'Un samedi soir :<br />\nBaptiste : Bilou, tu viens ce soir, c''est Kergariou, ça va être grosse soirée !<br />\nBilou : Nan, je sors pas, j''ai déjà pris une cuite le week end dernier', '2014-08-18 20:59:12', '2014-08-19 11:00:47', 0, NULL),
+(7, 3, 2, '- 2h avant Afrikobendy - <br />\n<br />\n-Baptiste, c''est pour faire quoi les gateaux apéro?<br />\n-Pour le donner aux singes à Afrikobendy!', '2014-09-11 21:24:01', '2014-08-19 11:00:47', 0, NULL),
+(8, 3, 2, '"Je suis sûr qu''il existe une vente de nains nazis qui tendent le bras ou bien qui se promènent avec une brouette de juifs"', '2014-09-11 21:37:18', '2014-09-11 21:37:18', 0, '2014-08-17 22:00:00'),
+(9, 1, 6, 'C''est du carrelage, mais c''est du bon carrelage !', '2014-09-17 15:25:03', '2014-09-17 15:25:03', 1, '2013-07-13 22:00:00'),
+(10, 2, 1, 'Dormir en position foétale devant un bar de nuit à Montpellier juste à coté de son vomi pendant que tout l monde cherche Alan depuis une demi-heure', '2014-09-17 15:24:15', '2014-09-17 15:24:15', 0, NULL),
+(11, 1, 1, 'Parce que avoir créér Point-!t, ça mérite au moins un point moustache !', '2014-09-12 07:20:48', '2014-09-12 07:20:48', 1, NULL),
+(12, 1, 1, 'Se réveiller dans un champ avec des poneys après la désintégration de Lannion', '2014-09-12 07:20:54', '2014-09-12 07:20:54', 1, NULL),
+(13, 2, 1, 'Se mettre du Paprika sous les aisselles et se les lécher mutuellement ', '2014-10-14 12:18:19', '2014-10-14 12:18:19', 1, NULL),
+(14, 1, 1, 'Se faire casser le bras au BDM, se faire emmener aux urgences à Brest avec absolument rien sur soi, et revenir en faisant la manche le jour même.', '2014-09-12 11:07:00', '2014-09-12 11:07:00', 0, NULL),
+(15, 4, 1, 'Finir au SAMU au Bout Du monde à 18h30, c''est quand même vachement tata !', '2014-09-12 23:33:49', '2014-09-12 23:33:49', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -105,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `profils` (
   `profil_image` varchar(400) NOT NULL DEFAULT 'http://pointit.fr/assets/images/member.png',
   PRIMARY KEY (`profil_id`),
   UNIQUE KEY `profil_nom` (`profil_nom`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Contenu de la table `profils`
@@ -119,19 +215,24 @@ INSERT INTO `profils` (`profil_id`, `profil_nom`, `profil_pass`, `profil_image`)
 (5, 'B.I.Caban', 'sha256:1000:5OXo989v3nxfc7Np4UNi7ptfYb+9tQ/Y:RLA+naGK5Flxrva3Sfwyr9Ee4ztiUwBX', 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1780864_712949428725114_10107429_n.jpg'),
 (6, 'Thoumou', 'sha256:1000:QBfd1c4qzhMh/JCTzkbA6H7cSByDpdKa:ks2W8nd9r3vA5sh8slxxqN8QNNVQ4mRu', 'http://pointit.fr/assets/images/avatars/6_Thoumou/origin.jpg'),
 (7, 'PMO', 'sha256:1000:fowquNwJjyx5jHh9CujJ3HMpoK0hp35n:MGeQvW+N17Ko0HvWdIhmHbKkc9YS1lAS', 'http://pointit.fr/assets/images/member.png'),
-(8, 'GotBal', 'sha256:1000:0jJDHXOQbriuRf2vy/6oVFzUcww0Q3CV:9hrcHi04c4RcBqFv7Czw3HqfPgvD/40k', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/t1.0-1/c40.0.160.160/p160x160/1501750_10201654211530034_1044526030_n.jpg'),
-(9, 'Lu7', 'sha256:1000:VSSYW6SdooIY114wDoxV3t2SI5iSQvhN:eNo3Gsi94+FK7v73u4Ga6sj9dmRoGyr+', 'http://pointit.fr/assets/images/member.png'),
+(8, 'GotBal', 'sha256:1000:hTVByfr+pTOiNAneSzHS5BucrTQN56NX:gGzcR3bD1tihEOzFQjre4CVRbKafPzVp', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/t1.0-1/c40.0.160.160/p160x160/1501750_10201654211530034_1044526030_n.jpg'),
+(9, 'Lucas', 'sha256:1000:lb5iXlKr5zwBBV24BQuu/pQFRuvuwfZY:OWHZy+ZG/XRbx6WgfGFmv4lcVXCm4HHX', 'http://pointit.fr/assets/images/member.png'),
 (10, 'Youenn', 'sha256:1000:cgGVdywVigVRu47Du4dyq+c+CpOn929M:PuAhr0UA0qTPdLzQN16W94kjgWGncG+g', 'http://pointit.fr/assets/images/member.png'),
 (11, 'Beuloon', 'sha256:1000:XeTuwx+a/cvfNWMcgDnt6JLlxKj1ZHUt:uyKc7zm+GydXFUnppEXT9NwSOO8vTH+b', 'http://pointit.fr/assets/images/member.png'),
 (12, 'Bourou', 'sha256:1000:sn3pWac6UkXKiSwtlZBCQSOzUzhCv2yq:ZrtqcsuPuC6WFaEYafxzMShh4lMz7W3w', 'https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/t1.0-9/p417x417/993475_10201191183882843_2106121312_n.jpg'),
-(13, 'Colin', 'sha256:1000:M6u4lv7lX6fevQqfWeOdaLK7pQArNKm0:mID9FENh1DbvK4O4gXYXna+agK/Dmauk', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xpf1/t1.0-1/c1.0.520.520/s50x50/1375839_10202182328709402_1948752618_n.jpg'),
+(13, 'Colin', 'sha256:1000:M6u4lv7lX6fevQqfWeOdaLK7pQArNKm0:mID9FENh1DbvK4O4gXYXna+agK/Dmauk', 'http://pointit.fr/assets/images/avatars/13_Colin/origin.jpg'),
 (14, 'Paprika', 'sha256:1000:oyh3Zp/6Ei/YNLTlxOTCjbfmq3jfQ7AQ:HNyoWBqmPmgXOf51xBm3EVwM5lEjLA/w', 'http://pointit.fr/assets/images/member.png'),
 (15, 'Marine', 'sha256:1000:r9V59mvescHwY5u8/CubYAMNyIZhFzqv:ijR9+mPf41mMe93dXvdqeUtWBmVRc7kX', 'http://pointit.fr/assets/images/member.png'),
 (16, 'Marcel', 'sha256:1000:7fW+om/1snD8a7Vh/FeQrot2Pwq9Swvm:bgX7s9U8cK54Sj0oF7oVGXcCEgeuhC/V', 'http://pointit.fr/assets/images/member.png'),
 (17, 'Paul', 'sha256:1000:amKLc0irnqzM11TBEt4gH3uMozv3Jf/2:3R5fd0SsWU48dNypDhT/vxuqVLD6iuhC', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/t1.0-1/c2.0.50.50/p50x50/10401916_10202092960906569_853797424214182819_n.jpg'),
 (18, 'Gwenael', 'sha256:1000:90JM90LxlRdalNR6vQtLOeVVzTI7Zoqm:sUw9Ls4iG3dFHxYCpB3cYdnk8PuiXhvl', 'http://pointit.fr/assets/images/avatars/18_Gwenael/origin.jpg'),
 (19, 'Raoul', 'sha256:1000:Z2QXsC5Srjkyr3NcOvuf+wRAWNOGERiB:36AAnmN+8BrmCdSdIgXwpmd5QrxJj9wC', 'https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/394528_4416515460249_347034156_n.jpg'),
-(22, 'Solène', 'sha256:1000:cavNwpdJ9wc1Q1zGDNnH0FlnFrX2hBHh:D9lK/Z4tKS3CKQ4gIfgWTAVLOqsdM/Q3', 'http://pointit.fr/assets/images/member.png');
+(22, 'Solène', 'sha256:1000:cavNwpdJ9wc1Q1zGDNnH0FlnFrX2hBHh:D9lK/Z4tKS3CKQ4gIfgWTAVLOqsdM/Q3', 'http://pointit.fr/assets/images/member.png'),
+(23, 'Bilou', 'sha256:1000:WQJFW0aiEO+c7kcMEOL4VHDNZ5whJchw:As5Ie/OFEgm0ZoXTT4xpFa9ggnESjaeY', 'http://pointit.fr/assets/images/member.png'),
+(24, 'Camille', 'sha256:1000:2wNjX7RpGbfox79kOV30t/JbiUIbL8Fz:IO/bUciyfl56eXjg4Te1zFLBqxWgk2ky', 'http://pointit.fr/assets/images/member.png'),
+(25, 'Kévin ', 'sha256:1000:JXWAMXFfdyJYM4OXvtVVbrx6nxeSFRkv:wKTw0Usn5Z/wN/N9nciogVhd51qnv5JD', 'http://pointit.fr/assets/images/member.png'),
+(26, 'Debbite', 'sha256:1000:uw5vXMYvfgZBdDFbs2+553l+bCbEFJEj:ZxEW5HzQ7dC1bGmxNaBIf4I30hbOuT+0', 'http://pointit.fr/assets/images/member.png'),
+(27, 'Johanne', 'sha256:1000:+V5toTIIHlNN+AxwMQUU+UutLp1BNJ/O:E5U8Afb+PN3COMvTTR9pKakOfwF5qW9+', 'http://pointit.fr/assets/images/member.png');
 
 -- --------------------------------------------------------
 
@@ -152,16 +253,28 @@ CREATE TABLE IF NOT EXISTS `recoit` (
 
 INSERT INTO `recoit` (`point_id`, `profil_id`) VALUES
 (4, 1),
+(7, 1),
+(11, 1),
 (1, 2),
+(13, 2),
 (4, 3),
 (5, 3),
+(10, 3),
+(15, 3),
 (4, 4),
 (3, 5),
+(9, 6),
+(11, 6),
+(12, 6),
 (2, 8),
 (4, 13),
+(8, 13),
+(13, 14),
 (4, 17),
 (5, 17),
-(4, 19);
+(4, 19),
+(14, 19),
+(6, 23);
 
 -- --------------------------------------------------------
 
@@ -200,6 +313,13 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`pointitfrnpoul`@`%` SQL SECURITY DEFINER VIE
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `approuve`
+--
+ALTER TABLE `approuve`
+  ADD CONSTRAINT `fk_approuve_point` FOREIGN KEY (`point_id`) REFERENCES `points` (`point_id`),
+  ADD CONSTRAINT `fk_approuve_profil` FOREIGN KEY (`profil_id`) REFERENCES `profils` (`profil_id`);
 
 --
 -- Contraintes pour la table `points`
