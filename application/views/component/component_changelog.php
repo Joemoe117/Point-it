@@ -1,4 +1,4 @@
-<div class="panel panel-primary hidden-xs"> 
+<div class="panel panel-default hidden-xs"> 
 	<div class="panel-heading"><span class="glyphicon glyphicon-exclamation-sign"></span> Changelog</div>
 	<div class="panel-body">
 

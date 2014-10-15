@@ -6,9 +6,8 @@
 	<?php endif ?>
 
 	<!-- Timeline -->
-	<div class="col-md-7" id="points_block">
+	<div class="col-md-7 central" id="points_block">
 		<h2>Timeline</h2>
-		<p>C'est encore une beta, ne l'oubliez pas</p>
 			<?php if ($this->session->flashdata('first_visit')): ?>
 				<div class="alert alert-info">
 					Voici la Timeline, c'est ici que tu verras les exploits de tes petits copains et les commentaires d'encouragement qui vont avec.
@@ -24,9 +23,9 @@
 	</div>
 
 	<!-- Formulaire d'ajout de point -->
-	<div class="col-md-5">
-		<div class="panel panel-primary">
-			<div class="panel-heading"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
+	<div class="col-md-5 secondaire">
+		<div class="panel panel-default">
+			<div class="panel-heading bleu"><span class="glyphicon glyphicon-edit"></span>  Distribuer un point</div>
 			<div class="panel-body">
 				<form role="form" id="form_add_point" method="post" action="<?php echo site_url("timeline/add_point"); ?>">
 					<div class="control-group">

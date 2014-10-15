@@ -1,5 +1,5 @@
-<div class="container main">
-	<div class="col-md-7">
+<div class="container">
+	<div class="col-md-7 central">
 
 		<img src="<?=$profil->profil_image ?>" alt="..." class="img-circle"  width="200px" height="200px">
 		<h1 style="display:inline-block; vertical-align:bottom"><?=$profil->profil_nom ?></h1>	<br>
@@ -13,7 +13,7 @@
 
 	</div>
 
-	<div class="col-md-5">
+	<div class="col-md-5 secondaire">
 		<h2>Statistiques</h2>
 		<h3>Général</h3>
 		<h5>Nombre de points :</h5>

@@ -2,34 +2,33 @@
 /** GENERAL **/
 body{
 	/*background: rgb(7,105,173);*/
-	background-image:linear-gradient(rgb(7,105,173), white);
+	background: #3f51b5;
 }
 
 h1, h2, h3, h4, h5, h6{
-	color: rgb(7,105,173);
+	color: #3f51b5;
 	font-family: 'Sniglet', cursive;	
 }
 
 
 /** HEADER **/
 .header{
-	background-image:linear-gradient(rgb(38,38,38), rgb(10,10,10));
+	background: rgb(38,38,38);
 	border-bottom: 1px solid grey;
 	color: white;
-	padding: 16px;	
-	margin-bottom: 15px;
+	padding: 12px;	
+	margin-bottom: 12px;
 }
 
 .menu{
-	font-size: 1.4em;
+	font-size: 1.3em;
 	margin-right: 10px;
+	color: #304ffe;
 }
 
 .menu:hover{
 	border-bottom: 2px solid white;
 	color: white;
-	font-size: 1.4em;
-	margin-right: 10px;
 	text-decoration: none;
 }
 
@@ -37,7 +36,14 @@ h1, h2, h3, h4, h5, h6{
 	color: white;
 }
 
+.central{
+	background: white;
+	border: 1px solid grey;
+	border-radius: 3px;
+}
 
+.secondaire{
+}
 
 
 
@@ -47,22 +53,18 @@ h1, h2, h3, h4, h5, h6{
 /******************************* MAIN *******************************/
 /********************************************************************/
 /********************************************************************/
-.main{
-	background: white;
-	border: 1px solid grey;
-	border-radius: 7px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
 
 /* AFFICHAGE DES POINTS */
+
+
 .point{
 	border: 1px solid lightgrey;
-	border-radius: 7px;
+	border-radius: 2px;
 	padding: 10px;
 	margin-top: 10px;
 	vertical-align: top;
 	cursor: pointer;
+	box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.7); 
 }	
 	
 .point_date{
@@ -159,8 +161,12 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .bleu{
-	color: rgb(7,105,173);
+	color: #304ffe;
 }
+
+.bleu-background{
+	background:#304ffe;
+} 
 
 .icone{
 	color: rgb(7,105,173);
@@ -188,15 +194,16 @@ h1, h2, h3, h4, h5, h6{
 
 /** FOOTER **/
 .footer{
-	background-image:linear-gradient(rgb(38,38,38), rgb(10,10,10));
+	background:rgb(38,38,38);
 	color: white;
 	padding: 5px;
 	margin-top: 15px;
 	padding: 25px;
+	font-size: 0.9em;
 }
 
 .footer_titre{
 	font-family: 'Sniglet', cursive;
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 
