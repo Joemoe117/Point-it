@@ -1,4 +1,4 @@
-<div class="container main">
+<div class="container central">
 	<div class="col-md-6">
 		<h1>Bienvenue sur Point-it !</h1>
 		<p>Vous êtes bien arrivé sur le renouveau de Pointbook ! Pour profiter des nouvelles fonctionnalités de celui-ci, veuillez vous connecter</p>

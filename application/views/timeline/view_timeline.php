@@ -7,7 +7,9 @@
 
 	<!-- Timeline -->
 	<div class="col-md-7 central" id="points_block">
-		<h2>Timeline</h2>
+		<div class="bandeau">
+			<span class="bandeau-texte">Timeline</span>
+		</div>
 			<?php if ($this->session->flashdata('first_visit')): ?>
 				<div class="alert alert-info">
 					Voici la Timeline, c'est ici que tu verras les exploits de tes petits copains et les commentaires d'encouragement qui vont avec.
@@ -56,20 +58,11 @@
 						<div id="alert_form_add" class="alert alert-danger"><?=$error?></div>
 					<?php endif ?>
 
-					<label>Point épique</label><br>
-					<div class="radio-inline">
+					<div class="checkbox">
 						<label>
-							<input type="radio" name="epique" value="false" checked required>
-							Non
+							<input type="checkbox"> Epique
 						</label>
 					</div>
-					<div class="radio-inline">
-						<label>
-							<input type="radio" name="epique" value="true" required>
-							Oui
-						</label>
-					</div>
-					<br>
 					<label>Date (facultatif)</label><br>
 					<input id="date_point" type="text" name="date" placeholder="aaaa-mm-jj">
 

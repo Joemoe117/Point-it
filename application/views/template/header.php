@@ -53,7 +53,19 @@
                 <a class="menu" href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>"><span class="glyphicon glyphicon-user"></span> <span class="hidden-xs"> Profil</span></a>
                 <a class="menu active" href="<?= site_url("leaderboard/"); ?>"><span class="glyphicon glyphicon-list-alt"></span>  <span class="hidden-xs"> Leaderborard</span></a>
             <?php endif ?>
-            <a class="menu pull-right" href="<?= site_url("login/logout"); ?>"><span class="glyphicon glyphicon-off"></span>  <span class="hidden-xs"> Déconnexion</span></a>
-            <a class="menu hidden-xs pull-right" class="btn btn-primary btn-lg" href="<?= site_url("profil/config"); ?>"> <span class="glyphicon glyphicon-cog"></span></a>
+
+            <!-- Menu de configuration -->
+            <span class="pull-right">
+                <div class="dropdown">
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-cog dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation"><a href="<?= site_url("profil/config"); ?>"  role="menuitem" tabindex="-1" href="#">Configuration</a></li>
+                        <li role="presentation"><a href="<?= site_url("login/logout"); ?>" role="menuitem" tabindex="-1" href="#">Déconnexion</a></li>
+                    </ul>
+                </div>
+            </span>
         </div>
     </div>

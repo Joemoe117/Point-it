@@ -1,7 +1,7 @@
-<div class="container main">
-	<h1>Configuration du profil de <?= $profil_nom ?></h1>
-	<hr>
-
+<div class="container central">
+	<div class="bandeau">
+		<span class="bandeau-texte">Configuration du profil de <?= $profil_nom ?></span>
+	</div>
 	
 
 	<div class="col-md-6">
