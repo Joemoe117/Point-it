@@ -1,7 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Modèle qui gère l'accès à la BDD pour obtenir les infos d'un membre */
-class M_Profil extends CI_Model{
+class M_Profil extends MY_Model{
+
+	protected $table = "profils";
 
 	/**
 	*	function 	getAllProfil
@@ -162,12 +164,6 @@ class M_Profil extends CI_Model{
 				->from("commentaires")
 				->where('profil_id',  $id)
 				->count_all_results();
-	}
-
-
-	
-	public function count(){
-		return $this->db->count_all_results('profils');
 	}
 
 	/**

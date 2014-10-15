@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Modèle qui gère l'accès à la BDD pour gérer l'accès au point et aux types de point */
-class M_Commentaire extends CI_Model{
+class M_Commentaire extends MY_Model{
 
 	protected $table = "commentaires";
 

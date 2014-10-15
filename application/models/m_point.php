@@ -1,7 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /* Modèle qui gère l'accès à la BDD pour gérer l'accès au point et aux types de point */
-class M_Point extends CI_Model{
+class M_Point extends MY_Model{
+
+	protected $table = "points";
 
 	/**
 	*	function 	getAllType
@@ -160,14 +162,6 @@ class M_Point extends CI_Model{
 	//////////////////////////////
 	// 			UTILS 
 	//////////////////////////////
-
-	/**
-	*	@return recupere le nombre de points distribué sur le site
-	*
-	*/
-	public function count(){
-		return $this->db->count_all_results('points');
-	}
 
 	public function exist($id=0){
 		$nb = 	$this->db->from('types_point')
