@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6{
 .menu{
 	font-size: 1.3em;
 	margin-right: 10px;
-	color: #304ffe;
+	color: #3f51b5;
 }
 
 .menu:hover{
@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6{
 
 
 .point{
-	border-top: 1px solid rgb(38,38,38);
+	border-top: 1px solid lightgrey;
 	border-radius: 2px;
 	padding: 10px;
 	margin-left: -16px;
