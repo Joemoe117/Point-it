@@ -69,13 +69,13 @@ h1, h2, h3, h4, h5, h6{
 
 
 .point{
-	border: 1px solid lightgrey;
+	border-top: 1px solid rgb(38,38,38);
 	border-radius: 2px;
 	padding: 10px;
-	margin-top: 10px;
+	margin-left: -16px;
+	margin-right: -16px;
 	vertical-align: top;
-	cursor: pointer;
-	box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.7); 
+	cursor: pointer; 
 }	
 	
 .point_date{
@@ -125,7 +125,6 @@ h1, h2, h3, h4, h5, h6{
 /* AFFICHAGE DES COMMENTAIRE */
 
 .zone_commentaire{
-	border-top: 1px solid lightgrey;
 	padding-top: 5px;
 	display: none;
 }
