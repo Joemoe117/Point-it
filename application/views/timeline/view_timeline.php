@@ -8,7 +8,7 @@
 	<!-- Timeline -->
 	<div class="col-md-7 central" id="points_block">
 		<div class="bandeau">
-			<span class="bandeau-texte">Timeline</span>
+			<span class="bandeau-texte">Les derniers exploits</span>
 		</div>
 			<?php if ($this->session->flashdata('first_visit')): ?>
 				<div class="alert alert-info">

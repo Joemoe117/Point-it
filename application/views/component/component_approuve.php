@@ -15,8 +15,7 @@
 		<?php if (!$contains): ?>
 				<button id="approuve" class="btn btn-default btn-xs" onclick="approuve(<?= $point->point_id?>, this)">
 					<span class="glyphicon glyphicon-ok" style="vertical-align:middle"></span> Approuver
-				</button>
-			
+				</button>			
 			<br>
 		<?php endif ?>
 

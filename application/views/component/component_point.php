@@ -1,61 +1,74 @@
 <div class="point">
-	<div class="point_haut">
-		<!-- Affichage des avatars -->
-		<?php foreach ($point->recoit as $pointInfo): ?>
-			<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" ></a>	
-		<?php endforeach ?>
+	<div class="row point_haut">
+		<div class="col-xs-4 col-sm-3">
+			<div class="row">
+				<div class="col-xs-6">
+					<!-- plusieurs personnes -->
+					<?php if (count($point->recoit) > 1): ?>
+						<?php $i = 0 ?>
+						<?php foreach ($point->recoit as $pointInfo): ?>
+							<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_petite" ></a>	
+							
+							<?php if ($i > 2): ?>
+								<?php if ($i - 2 > 0): ?>
+									+<?=$i?>
+								<?php endif ?>
+								<?php break; ?>
+							<?php endif ?>
+							<?php $i++ ?>
+						<?php endforeach ?>
 
-		<?php $i = 0; ?>
-		<!-- Affichage des noms -->
-		<span class="name">
-			<?php foreach ($point->recoit as $pointInfo): ?>
-				<?php if ($i != 0): ?>			
-					<?php if ($i < (count($point->recoit))-1): ?>
-						,
+					<!-- une seule personne -->
 					<?php else: ?>
-						et
+						<?php foreach ($point->recoit as $pointInfo): ?>
+							<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" ></a>	
+						<?php endforeach ?>
 					<?php endif ?>
-				<?php endif ?>
-				<?php $i++;	?>
-				<a class="hidden-xs name" href="<?= site_url("profil/get/")."/".$pointInfo->profil_id ?>"><?=$pointInfo->profil_nom?></a>
-			<?php endforeach ?>
-
-			<?php if ( (count($point->recoit) == 1 )): ?>
-				a
-			<?php else: ?>
-				ont
-			<?php endif ?>
-			gagné un Point <?=$point->typept_nom?>
-			<?php if ($point->point_epique): ?>
-				 EPIQUE
-			<?php endif ?>
-		</span>
-
-
-		<span class="point_date pull-right hidden-xs">
-			<?= "Créé le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea)); ?>
-			<br>
-			<?php if (!is_null($point->point_date_evenement)): ?>
-				<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>	
-			<?php endif ?>
-		</span>
-
-		<div class="point_description"><?=$point->point_description?></div>
-
-		<!-- Partie approuve -->
-		<?php
-			$data["approuve"] = $point->approuve; 
-			$this->load->view("component/component_approuve.php", $data );
-		?>
-
-		<!-- Affichage du nombre de commentaire -->
-		<p class="nbCommentaire" style="text-align:right">
-			<?php printf(ngettext("%d commentaire", "%d commentaires", count($commentaires[$point->point_id])), count($commentaires[$point->point_id])) ?>
-		</p>
 		
+				</div>
+				<div class="col-xs-6">
+					<img src="http://cdns2.freepik.com/photos-libre/moustache-dans-un-cercle_318-56962.jpg" class="img-rounded image_point" alt="">
+				</div>
+			</div>			
+		
+			<span class="point_date hidden-xs">
+				<?= "le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea)); ?>
+				<br>
+				<?php if (!is_null($point->point_date_evenement)): ?>
+					<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>	
+				<?php endif ?>
+			</span>
 
-		<!-- COMMENTAIRE -->
-	</div>	
+
+		</div>
+
+		<!-- Partie droite -->
+		<div class="col-sm-9 ">
+			<span class="point_description">
+				<?=$point->point_description?>
+			</span>
+
+			<!-- Partie approuve -->
+			<?php
+				$data["approuve"] = $point->approuve; 
+				$this->load->view("component/component_approuve.php", $data );
+			?>
+				
+			<!-- Affichage du nombre de commentaire -->
+			<p class="nbCommentaire" style="text-align:right">
+				<?php printf(ngettext("%d commentaire", "%d commentaires", count($commentaires[$point->point_id])), count($commentaires[$point->point_id])) ?>
+			</p>
+	
+
+
+
+
+		</div>
+	</div>
+
+	
+
+	<!-- COMMENTAIRE -->
 	<div class="zone_commentaire">
 		
 		<?php foreach ($commentaires as $commentaire): ?>

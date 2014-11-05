@@ -77,25 +77,21 @@ h1, h2, h3, h4, h5, h6{
 	vertical-align: top;
 	cursor: pointer; 
 }	
-	
-.point_date{
-	font-size: 0.75em;
-	text-align: right;
-	color: grey;
-	display: none;
-}
 
 .point_description{
-	font-size: 1.2em;
-	margin-bottom: 5px;
-	padding-top: 7px;
-	padding-bottom: 10px;
+	display: block;
+	font-family: Segoe UI;
+	font-size: 1.3em;
+	margin-bottom: 30px; 
 }
 
-.name{
-	vertical-align: top;
+.point_date{
+	color: grey;
+	display: block;
+	font-size: 0.9em;
+	margin-top: 10px;
+	padding-top: 10px;
 }
-
 
 /* LEADERBOARD */
 .leader {
@@ -143,8 +139,13 @@ h1, h2, h3, h4, h5, h6{
 
 /* GESTION DES IMAGES */
 .image_point{
-	width: 38px;
-	height: 38px;
+	width: 100%;
+	height: 100%;
+}
+
+.image_petite{
+	width: 46%;
+	height: 46%;	
 }
 
 .image_commentaire{
@@ -185,7 +186,9 @@ h1, h2, h3, h4, h5, h6{
 	text-align: center;
 }
 
-
+.approuve_test{
+	font-size: 0.9em;
+}
 
 
 
