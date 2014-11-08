@@ -18,10 +18,10 @@
 					</div>
 					<div class="col-md-4">
 						<div class="footer_titre"> Technologies utilisées </div>
-						<img src="http://hypothesisinfolab.com/_include/img/profile/codeigniter_logo.png" alt="CodeIgniter, framework de qualité" width="80">
-						<img src="<?= base_url("/assets/images/jQuery.gif");  ?>" alt="Jquery, parce que sinon le JS c'est chiant" width="80">
-						<img src="http://marcmalignan.com/img/logos/bootstrap.png" alt="Boostrap, cause i'm not a webdesigner" width="80">
-						<img src="http://www.matthewfarmer.net/assets/github_logo-3a39ffd6fcf6f63f799b59e5aad34680.png" alt="Github, Parce que plus on de fous, plus on rit" width="80">
+						<img src="http://hypothesisinfolab.com/_include/img/profile/codeigniter_logo.png" alt="CodeIgniter, framework de qualité" class="footer-image">
+						<img src="<?= base_url("/assets/images/jQuery.gif");  ?>" alt="Jquery, parce que sinon le JS c'est chiant" class="footer-image">
+						<img src="http://marcmalignan.com/img/logos/bootstrap.png" alt="Boostrap, cause i'm not a webdesigner" class="footer-image">
+						<img src="http://www.matthewfarmer.net/assets/github_logo-3a39ffd6fcf6f63f799b59e5aad34680.png" alt="Github, Parce que plus on de fous, plus on rit" class="footer-image">
 					</div>
 				</div>
 			</div>

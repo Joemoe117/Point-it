@@ -2,7 +2,7 @@
 /** GENERAL **/
 body{
 	/*background: rgb(7,105,173);*/
-	background: #3f51b5;
+	background: #2196f3;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6{
 .menu{
 	font-size: 1.3em;
 	margin-right: 10px;
-	color: #3f51b5;
+	color: #2196f3;
 }
 
 .menu:hover{
@@ -40,6 +40,7 @@ h1, h2, h3, h4, h5, h6{
 .central{
 	background: white;
 	border: 1px solid white;
+	border-bottom: 2px solid rgb(38,38,38);
 	border-radius: 3px;
 	padding-bottom: 15px; 
 }
@@ -55,8 +56,14 @@ h1, h2, h3, h4, h5, h6{
 
 .bandeau-texte{
 	color: white;
-	font-family: 'Sniglet', cursive;
+	font-family: Segoe UI;
 	font-size: 2em;
+}
+
+.main{
+	background: rgb(235,235,235);
+	padding: 10px;
+	border-bottom: 3px solid rgb(38,38,38);
 }
 
 /********************************************************************/
@@ -81,14 +88,14 @@ h1, h2, h3, h4, h5, h6{
 .point_description{
 	display: block;
 	font-family: Segoe UI;
-	font-size: 1.3em;
+	font-size: 1.1em;
 	margin-bottom: 30px; 
 }
 
 .point_date{
 	color: grey;
 	display: block;
-	font-size: 0.9em;
+	font-size: 0.8em;
 	margin-top: 10px;
 	padding-top: 10px;
 }
@@ -131,7 +138,7 @@ h1, h2, h3, h4, h5, h6{
 
 .nbCommentaire{
 	color: rgb(7,105,173);
-	font-size: 0.8em;
+	font-size: 0.7em;
 }
 
 
@@ -187,7 +194,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .approuve_test{
-	font-size: 0.9em;
+	font-size: 0.8em;
 }
 
 
@@ -213,7 +220,7 @@ h1, h2, h3, h4, h5, h6{
 	padding: 5px;
 	margin-top: 15px;
 	padding: 25px;
-	font-size: 0.9em;
+	font-size: 0.85em;
 }
 
 .footer_titre{
@@ -221,10 +228,15 @@ h1, h2, h3, h4, h5, h6{
 	font-size: 1.1em;
 }
 
+.footer-image{
+	width: 50px;
+	height: 50px;
+}
+
 /*****************************************************************************/
 /*							OVERRIDE DE BOOTSTRAP
 /*****************************************************************************/
 
 .btn-primary{
-	background: #3f51b5;
+	background: #2196f3;
 }
