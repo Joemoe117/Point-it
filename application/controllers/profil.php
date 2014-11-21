@@ -12,17 +12,13 @@ class Profil extends CI_Controller {
 	public function __construct()	{
 		parent::__construct();
 
-		// Redirection si non connecté
+		// Redirect if no user is connected
 		if ( !$this->session->userdata('id')){
 			redirect('/login', 'location');
 		}
-		
 
 		// Chargement des models
-		$this->load->model('m_profil', "profilManager");
 		$this->load->model('m_commentaire', "commentaireManager");
-		$this->load->model('m_point', "pointManager");
-
 	}
 
 	/**
@@ -74,6 +70,10 @@ class Profil extends CI_Controller {
 		$data['titre'] = "Profil de " . $data['profil']->profil_nom;
 		$data['menu'] = "profil";
 
+		/* Génération des informations du formulaire */
+		$data['form_point'] = $this->dataFormPoint;
+		$data['form_profil'] = $this->dataFormProfil;
+
 		// chargement des vues
 		$this->load->view('template/header.php', $data);
 		$this->load->view('profil/view_profil.php', $data);
@@ -91,6 +91,11 @@ class Profil extends CI_Controller {
 		$data['profil_nom'] = $this->profilManager->getOne($id, 'profil_nom')->profil_nom;
 		$data['titre'] = 'Configuration du profil';
 		$data['menu'] = 'profil';
+
+
+		/* Génération des informations du formulaire */
+		$data['form_point'] = $this->dataFormPoint;
+		$data['form_profil'] = $this->dataFormProfil;
 
 
 		// Si le formulaire a été envoyé

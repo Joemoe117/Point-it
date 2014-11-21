@@ -27,7 +27,7 @@
 		
 				</div>
 				<div class="col-xs-6">
-					<img src="http://cdns2.freepik.com/photos-libre/moustache-dans-un-cercle_318-56962.jpg" class="img-rounded image_point" alt="">
+					<img src="<?= base_url("/assets/images/point/moustache.png");  ?>" class="img-rounded image_point" alt="">
 				</div>
 			</div>			
 		

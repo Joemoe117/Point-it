@@ -1,10 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.1.9
--- http://www.phpmyadmin.net
---
--- Généré le :  Mer 15 Octobre 2014 à 21:13
--- Version du serveur :  5.1.73-1.1+squeeze+build0+1-log
--- Version de PHP :  5.3.8
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -15,9 +9,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Base de données :  `pointitfrnpoul`
---
+
 
 -- --------------------------------------------------------
 
@@ -34,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `approuve` (
   KEY `point_id_2` (`point_id`),
   KEY `point_id_3` (`point_id`),
   KEY `profil_id` (`profil_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
 -- Contenu de la table `approuve`
@@ -90,7 +82,10 @@ INSERT INTO `approuve` (`approuve_id`, `point_id`, `profil_id`) VALUES
 (48, 14, 9),
 (49, 14, 6),
 (50, 15, 1),
-(51, 13, 13);
+(51, 13, 13),
+(52, 16, 1),
+(53, 17, 1),
+(54, 20, 5);
 
 -- --------------------------------------------------------
 
@@ -165,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `points` (
   PRIMARY KEY (`point_id`),
   KEY `typept_id` (`typept_id`),
   KEY `profil_id_donne` (`profil_id_donne`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Contenu de la table `points`
@@ -186,7 +181,12 @@ INSERT INTO `points` (`point_id`, `typept_id`, `profil_id_donne`, `point_descrip
 (12, 1, 1, 'Se réveiller dans un champ avec des poneys après la désintégration de Lannion', '2014-09-12 07:20:54', '2014-09-12 07:20:54', 1, NULL),
 (13, 2, 1, 'Se mettre du Paprika sous les aisselles et se les lécher mutuellement ', '2014-10-14 12:18:19', '2014-10-14 12:18:19', 1, NULL),
 (14, 1, 1, 'Se faire casser le bras au BDM, se faire emmener aux urgences à Brest avec absolument rien sur soi, et revenir en faisant la manche le jour même.', '2014-09-12 11:07:00', '2014-09-12 11:07:00', 0, NULL),
-(15, 4, 1, 'Finir au SAMU au Bout Du monde à 18h30, c''est quand même vachement tata !', '2014-09-12 23:33:49', '2014-09-12 23:33:49', 0, NULL);
+(15, 4, 1, 'Finir au SAMU au Bout Du monde à 18h30, c''est quand même vachement tata !', '2014-09-12 23:33:49', '2014-09-12 23:33:49', 0, NULL),
+(16, 4, 1, '"Mais j''avais les oreilles sous l''eau"', '2014-10-17 07:22:22', '2014-10-17 07:22:22', 0, NULL),
+(17, 2, 1, 'Thomas qui fait une soirée à la coloc, se vomit dessus et s''endort presque dans les toilettes', '2014-11-08 13:30:47', '2014-11-08 13:30:47', 1, NULL),
+(18, 1, 1, 'Le gros Jean des Vieilles Charrues 2012', '2014-11-08 13:24:54', '2014-11-08 13:24:54', 0, NULL),
+(19, 2, 1, 'Exploration anale des fesses de Vincent par l''Allemagne', '2014-11-08 13:27:52', '2014-11-08 13:27:33', 0, NULL),
+(20, 1, 1, 'les mangeurs de jambonneau, qui l''auront à peine fait tenir trois petites semaines alors qu''ils en annonçaient 8 sur la boite', '2014-11-11 10:00:41', '2014-11-11 10:00:41', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `profils` (
   `profil_image` varchar(400) NOT NULL DEFAULT 'http://pointit.fr/assets/images/member.png',
   PRIMARY KEY (`profil_id`),
   UNIQUE KEY `profil_nom` (`profil_nom`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Contenu de la table `profils`
@@ -211,13 +211,13 @@ INSERT INTO `profils` (`profil_id`, `profil_nom`, `profil_pass`, `profil_image`)
 (1, 'Baptiste', 'sha256:1000:nIJl24NE8by0NHYCygVMsFlYnSO8f8mv:vOHfKrjq6Dv8mFRH0O5Dm+ttkxwtNPTB', 'http://pointit.fr/assets/images/avatars/1_Baptiste/origin.jpg'),
 (2, 'Romain', 'sha256:1000:2YEfPQ6vl8Q81cZOVZBE89tLEulDelCL:3B6jUOdWVBRQnL3xbh1v4dBob4bXZD2J', 'http://www.heberger-image.fr/data/images/91016_1463201_10201085111990976_1474023803_n.jpg'),
 (3, 'Alan', 'sha256:1000:mRa2i0Jot79rGG25+Anec6bBDdKjoSvq:kAMrw/+jkq7w0+u1jr2fXzDRaKojyt4m', 'https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xpa1/t1.0-9/p417x417/60725_4795770578044_158236221_n.jpg'),
-(4, 'Vincent', 'sha256:1000:Ee6gBtpS+qBqRHe8VatrAIit+0UOg3kz:bzR3l9MeoD2FNJiYP4Cl8lWew4ECi/r8', 'https://scontent-a-lhr.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/40865_1596168906963_6266711_n.jpg?oh=66012030c41e06948dbfea74586f26f3&oe=547DA5B6'),
+(4, 'Vincent', 'sha256:1000:Ee6gBtpS+qBqRHe8VatrAIit+0UOg3kz:bzR3l9MeoD2FNJiYP4Cl8lWew4ECi/r8', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xaf1/v/t1.0-1/c112.0.160.160/p160x160/1459750_10203503693287279_1112175512914109227_n.jpg?oh=481b3146660e0bb0b14d8ade405b303a&oe=54F19DE2&__gda__=1425200009_e8fe363bbefe4fa9d5569bc875c366af'),
 (5, 'B.I.Caban', 'sha256:1000:5OXo989v3nxfc7Np4UNi7ptfYb+9tQ/Y:RLA+naGK5Flxrva3Sfwyr9Ee4ztiUwBX', 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/1780864_712949428725114_10107429_n.jpg'),
 (6, 'Thoumou', 'sha256:1000:QBfd1c4qzhMh/JCTzkbA6H7cSByDpdKa:ks2W8nd9r3vA5sh8slxxqN8QNNVQ4mRu', 'http://pointit.fr/assets/images/avatars/6_Thoumou/origin.jpg'),
 (7, 'PMO', 'sha256:1000:fowquNwJjyx5jHh9CujJ3HMpoK0hp35n:MGeQvW+N17Ko0HvWdIhmHbKkc9YS1lAS', 'http://pointit.fr/assets/images/member.png'),
 (8, 'GotBal', 'sha256:1000:hTVByfr+pTOiNAneSzHS5BucrTQN56NX:gGzcR3bD1tihEOzFQjre4CVRbKafPzVp', 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/t1.0-1/c40.0.160.160/p160x160/1501750_10201654211530034_1044526030_n.jpg'),
 (9, 'Lucas', 'sha256:1000:lb5iXlKr5zwBBV24BQuu/pQFRuvuwfZY:OWHZy+ZG/XRbx6WgfGFmv4lcVXCm4HHX', 'http://pointit.fr/assets/images/member.png'),
-(10, 'Youenn', 'sha256:1000:cgGVdywVigVRu47Du4dyq+c+CpOn929M:PuAhr0UA0qTPdLzQN16W94kjgWGncG+g', 'http://pointit.fr/assets/images/member.png'),
+(10, 'Youen', 'sha256:1000:s+xjX7bdhC9L7zAMpIlue7Me3WjHG9Jq:Xx2N8FVqz4PpS2Rp+U9nLRpLzySahuL+', 'http://pointit.fr/assets/images/avatars/10_Youen/origin.jpg'),
 (11, 'Beuloon', 'sha256:1000:XeTuwx+a/cvfNWMcgDnt6JLlxKj1ZHUt:uyKc7zm+GydXFUnppEXT9NwSOO8vTH+b', 'http://pointit.fr/assets/images/member.png'),
 (12, 'Bourou', 'sha256:1000:sn3pWac6UkXKiSwtlZBCQSOzUzhCv2yq:ZrtqcsuPuC6WFaEYafxzMShh4lMz7W3w', 'https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/t1.0-9/p417x417/993475_10201191183882843_2106121312_n.jpg'),
 (13, 'Colin', 'sha256:1000:M6u4lv7lX6fevQqfWeOdaLK7pQArNKm0:mID9FENh1DbvK4O4gXYXna+agK/Dmauk', 'http://pointit.fr/assets/images/avatars/13_Colin/origin.jpg'),
@@ -228,11 +228,13 @@ INSERT INTO `profils` (`profil_id`, `profil_nom`, `profil_pass`, `profil_image`)
 (18, 'Gwenael', 'sha256:1000:90JM90LxlRdalNR6vQtLOeVVzTI7Zoqm:sUw9Ls4iG3dFHxYCpB3cYdnk8PuiXhvl', 'http://pointit.fr/assets/images/avatars/18_Gwenael/origin.jpg'),
 (19, 'Raoul', 'sha256:1000:Z2QXsC5Srjkyr3NcOvuf+wRAWNOGERiB:36AAnmN+8BrmCdSdIgXwpmd5QrxJj9wC', 'https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xaf1/t1.0-9/394528_4416515460249_347034156_n.jpg'),
 (22, 'Solène', 'sha256:1000:cavNwpdJ9wc1Q1zGDNnH0FlnFrX2hBHh:D9lK/Z4tKS3CKQ4gIfgWTAVLOqsdM/Q3', 'http://pointit.fr/assets/images/member.png'),
-(23, 'Bilou', 'sha256:1000:WQJFW0aiEO+c7kcMEOL4VHDNZ5whJchw:As5Ie/OFEgm0ZoXTT4xpFa9ggnESjaeY', 'http://pointit.fr/assets/images/member.png'),
+(23, 'Bilou', 'sha256:1000:WQJFW0aiEO+c7kcMEOL4VHDNZ5whJchw:As5Ie/OFEgm0ZoXTT4xpFa9ggnESjaeY', 'https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/179020_193650443984786_3279780_n.jpg?oh=ce3b1de047f0e4cf93295a48de53b7af&oe=54E25F83&__gda__=1425325476_73a77008ec289b6e2bef77395f91bb57'),
 (24, 'Camille', 'sha256:1000:2wNjX7RpGbfox79kOV30t/JbiUIbL8Fz:IO/bUciyfl56eXjg4Te1zFLBqxWgk2ky', 'http://pointit.fr/assets/images/member.png'),
 (25, 'Kévin ', 'sha256:1000:JXWAMXFfdyJYM4OXvtVVbrx6nxeSFRkv:wKTw0Usn5Z/wN/N9nciogVhd51qnv5JD', 'http://pointit.fr/assets/images/member.png'),
 (26, 'Debbite', 'sha256:1000:uw5vXMYvfgZBdDFbs2+553l+bCbEFJEj:ZxEW5HzQ7dC1bGmxNaBIf4I30hbOuT+0', 'http://pointit.fr/assets/images/member.png'),
-(27, 'Johanne', 'sha256:1000:+V5toTIIHlNN+AxwMQUU+UutLp1BNJ/O:E5U8Afb+PN3COMvTTR9pKakOfwF5qW9+', 'http://pointit.fr/assets/images/member.png');
+(27, 'Johanne', 'sha256:1000:+V5toTIIHlNN+AxwMQUU+UutLp1BNJ/O:E5U8Afb+PN3COMvTTR9pKakOfwF5qW9+', 'http://pointit.fr/assets/images/member.png'),
+(28, 'Pataou', 'sha256:1000:pyJO44PN5HmUSIHLYUBmT5gzdW4HAu29:4Wt9lSRiAUvKz01CR6t8eDOEblVuyKEm', 'http://pointit.fr/assets/images/member.png'),
+(29, 'Oriane', 'sha256:1000:4nwTgurfBR2B6ItKhlcE4NstWO0cRXrP:pPX18mT1+ah8e6u5AxM1GLXBi1gGP8JQ', 'http://pointit.fr/assets/images/member.png');
 
 -- --------------------------------------------------------
 
@@ -255,26 +257,38 @@ INSERT INTO `recoit` (`point_id`, `profil_id`) VALUES
 (4, 1),
 (7, 1),
 (11, 1),
+(18, 1),
+(20, 1),
 (1, 2),
 (13, 2),
+(20, 2),
 (4, 3),
 (5, 3),
 (10, 3),
 (15, 3),
+(18, 3),
 (4, 4),
+(16, 4),
+(18, 4),
+(19, 4),
 (3, 5),
 (9, 6),
 (11, 6),
 (12, 6),
+(17, 6),
 (2, 8),
 (4, 13),
 (8, 13),
 (13, 14),
 (4, 17),
 (5, 17),
+(20, 17),
 (4, 19),
 (14, 19),
-(6, 23);
+(20, 19),
+(6, 23),
+(18, 23),
+(20, 23);
 
 -- --------------------------------------------------------
 
@@ -308,7 +322,7 @@ INSERT INTO `types_point` (`typept_id`, `typept_nom`, `typept_description`, `typ
 --
 DROP TABLE IF EXISTS `liste_points`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`pointitfrnpoul`@`%` SQL SECURITY DEFINER VIEW `liste_points` AS select `recoit`.`profil_id` AS `profil_id`,`recoit`.`point_id` AS `point_id`,`points`.`typept_id` AS `typept_id` from (((`recoit` join `profils` on((`recoit`.`profil_id` = `profils`.`profil_id`))) join `points` on((`recoit`.`point_id` = `points`.`point_id`))) join `types_point` on((`points`.`typept_id` = `types_point`.`typept_id`))) order by `recoit`.`profil_id`;
+CREATE VIEW `liste_points` AS select `recoit`.`profil_id` AS `profil_id`,`recoit`.`point_id` AS `point_id`,`points`.`typept_id` AS `typept_id` from (((`recoit` join `profils` on((`recoit`.`profil_id` = `profils`.`profil_id`))) join `points` on((`recoit`.`point_id` = `points`.`point_id`))) join `types_point` on((`points`.`typept_id` = `types_point`.`typept_id`))) order by `recoit`.`profil_id`;
 
 --
 -- Contraintes pour les tables exportées

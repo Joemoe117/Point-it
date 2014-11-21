@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container mPain">
 	<div class="col-md-7 central">
 		<div class="bandeau">
 			<span class="bandeau-texte"><?=$profil->profil_nom ?></span>
 		</div>
-		<div class="row">
-			<div class="col-md-3 central">
+		<div class="row" style="margin-bottom:10px;">
+			<div class="col-md-3">
 				<img src="<?=$profil->profil_image ?>" class="img-rounded" style="background:#3f51b5" width="100%" height="100%">
 			</div>
-			<div class="col-md-9 central">	
+			<div class="col-md-9" >	
 				<table class="table">
 					<th>Type de point</th>
 					<th>Nombre</th>

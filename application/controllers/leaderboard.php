@@ -57,6 +57,11 @@ class Leaderboard extends CI_Controller {
 		$data['types_point'] 	= $this->pointManager->getAllType();
 		$data['nb_elem_class'] 	= $nb_elem_class;
 
+		
+		/* Génération des informations du formulaire */
+		$data['form_point'] = $this->dataFormPoint;
+		$data['form_profil'] = $this->dataFormProfil;
+
 		// chargement des vues
 		$this->load->view('template/header.php', $data);
 		$this->load->view('leaderboard/view_index.php', $data);

@@ -86,15 +86,12 @@ class Timeline extends CI_Controller {
 			$texte	 		= nl2br($this->input->post('texte_point', true)); // Ajoute un <br> pour chaque retour à la ligne
 			$donneur 		= $this->session->userdata('id');
 			$date			= $this->input->post('date', true);
-			// Comme le typage en PHP c'est de la merde, je le fais à la main
 
+			// Comme le typage en PHP c'est de la merde, je le fais à la main
 			if ($this->input->post('epique', true) == 'true')
 				$epique 	= true;
 			else
 				$epique 	= false;
-				
-
-
 
 
 			$checkForm = $this->_checkFormAddPoint($personnes, $point, $texte, $epique, $donneur, $date);

@@ -30,6 +30,8 @@
 class CI_Controller {
 
 	private static $instance;
+	protected $dataFormProfil;
+	protected $dataFormPoint;
 
 	/**
 	 * Constructor
@@ -51,6 +53,12 @@ class CI_Controller {
 		$this->load->initialize();
 		
 		log_message('debug', "Controller Class Initialized");
+
+		$this->load->model('m_profil', "profilManager");
+		$this->load->model('m_point', "pointManager");
+
+		$this->dataFormPoint = $this->pointManager->getAllType();
+		$this->dataFormProfil = $this->profilManager->getAll();
 	}
 
 	public static function &get_instance()

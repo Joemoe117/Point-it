@@ -6,7 +6,7 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6{
-	color: #3f51b5;
+	color: #2196f3;
 	font-family: 'Sniglet', cursive;	
 }
 
@@ -21,19 +21,8 @@ h1, h2, h3, h4, h5, h6{
 	margin-bottom: 15px;
 }
 
-.menu{
-	font-size: 1.3em;
-	margin-right: 10px;
-	color: #2196f3;
-}
-
-.menu:hover{
-	border-bottom: 2px solid white;
-	color: white;
-	text-decoration: none;
-}
-
 .active{
+	font-size: 1.1em;
 	color: white;
 }
 
@@ -130,6 +119,10 @@ h1, h2, h3, h4, h5, h6{
 .zone_commentaire{
 	padding-top: 5px;
 	display: none;
+}
+
+.zone_commentaire:hover{
+	cursor: auto;
 }
 
 .commentaire_texte{
