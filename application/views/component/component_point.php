@@ -27,7 +27,7 @@
 		
 				</div>
 				<div class="col-xs-6">
-					<img src="<?= base_url("/assets/images/point/moustache.png");  ?>" class="img-rounded image_point" alt="">
+					<img src="<?= base_url("/assets/images/point/vietnam.png");  ?>" class="img-rounded image_point" alt="">
 				</div>
 			</div>			
 		
