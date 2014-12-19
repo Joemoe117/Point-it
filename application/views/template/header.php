@@ -59,13 +59,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal" style="margin-right: 10px; background: white; color:#2196f3">
+                    <button type="button" class="btn btn-primary navbar-btn button-navbar" data-toggle="modal" data-target="#myModal">
                         <span class="glyphicon glyphicon-plus"> Point </span>
                     </button>
                 </li>
                 <li>
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        <button class="btn btn-primary dropdown-toggle navbar-btn button-navbar" type="button" id="dropdownMenu1" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-cog dropdown-toggle" data-toggle="dropdown">
                         </button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">

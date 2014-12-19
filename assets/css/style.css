@@ -12,18 +12,30 @@ h1, h2, h3, h4, h5, h6{
 	/*font-family: 'Sniglet', cursive;*/	
 }
 
+.btn{
+	border-radius:2px;
+}
+
 @orange-dark : rgb(222, 140, 40);
 @orange-light: rgb(245, 205, 43);
 
-a
-{ color:rgb(222, 140, 40);
+a{
+	color:rgb(222, 140, 40);
 }
 
-a:hover
-{
+a:hover{
     color: rgb(245, 205, 43);
 }
 
+.nav>li>a:hover, .nav>li>a:focus{
+	background:rgb(222, 140, 40);
+	border-radius:2px;
+	color: white;
+}
+
+.button-navbar{
+	margin-right: 30px;
+}
 
 /** HEADER **/
 .header{
@@ -45,11 +57,11 @@ a:hover
 }
 
 .central{
-	/*background: white;
+	background: white;
 	border: 1px solid white;
 	border-bottom: 2px solid rgb(38,38,38);
 	border-radius: 3px;
-	*/
+
 	padding-bottom: 15px; 
 
 }

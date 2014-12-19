@@ -1,4 +1,4 @@
-<div class="container central">
+<div class="container main central">
 	<div class="bandeau">
 		<span class="bandeau-texte">Configuration du profil de <?= $profil_nom ?></span>
 	</div>
@@ -22,7 +22,7 @@
 				<input type="password" class="form-control" id="new_pass_check" name="new_pass_check" required placeholder="Confirmer votre nouveau mot de passe">
 			</div>
 
-			<button type="submit" class="btn btn-default">Envoyer</button>
+			<button type="submit" class="btn btn-default pull-right">Envoyer</button>
 
 		</form>
 
@@ -38,7 +38,7 @@
 			</div>
 		<?php endif ?>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-6 ">
 		<h2>Changer de photo de profil</h2>
 		<form method="post" enctype="multipart/form-data">
 
@@ -50,7 +50,7 @@
 				<p class="help-block">Image de moins de 2Mo</p>
 			</div>
 			
-			<button type="submit" class="btn btn-default">Envoyer</button>
+			<button type="submit" class="btn btn-default pull-right">Envoyer</button>
 
 		</form>
 

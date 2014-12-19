@@ -7,7 +7,7 @@
 					<?php if (count($point->recoit) > 1): ?>
 						<?php $i = 0 ?>
 						<?php foreach ($point->recoit as $pointInfo): ?>
-							<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_petite" ></a>	
+							<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_petite" ></a>
 							
 							<?php if ($i > 1): ?>
 								<?php if ($i - 1 > 0): ?>
