@@ -2,12 +2,26 @@
 /** GENERAL **/
 body{
 	/*background: rgb(7,105,173);*/
-	background: #2196f3;
+	/*background: #2196f3; */
+	background: rgb(235,235,235);
+	font-family: 'Open Sans', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6{
-	color: #2196f3;
-	font-family: 'Sniglet', cursive;	
+	color:   rgb(222, 140, 40);
+	/*font-family: 'Sniglet', cursive;*/	
+}
+
+@orange-dark : rgb(222, 140, 40);
+@orange-light: rgb(245, 205, 43);
+
+a
+{ color:rgb(222, 140, 40);
+}
+
+a:hover
+{
+    color: rgb(245, 205, 43);
 }
 
 
@@ -31,11 +45,13 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .central{
-	background: white;
+	/*background: white;
 	border: 1px solid white;
 	border-bottom: 2px solid rgb(38,38,38);
 	border-radius: 3px;
+	*/
 	padding-bottom: 15px; 
+
 }
 
 .bandeau{
@@ -49,14 +65,14 @@ h1, h2, h3, h4, h5, h6{
 
 .bandeau-texte{
 	color: white;
-	font-family: Segoe UI;
+	/*font-family: Segoe UI;*/
 	font-size: 2em;
 }
 
 .main{
-	background: rgb(235,235,235);
+	/*background: rgb(235,235,235);*/
 	padding: 10px;
-	border-bottom: 3px solid rgb(38,38,38);
+	/*border-bottom: 3px solid rgb(38,38,38);*/
 }
 
 /********************************************************************/
@@ -69,18 +85,20 @@ h1, h2, h3, h4, h5, h6{
 
 
 .point{
-	border-top: 1px solid lightgrey;
+	/*border-top: 1px solid lightgrey;*/
+	background: #FFFFFF;
 	border-radius: 2px;
 	padding: 10px;
 	margin-left: -16px;
 	margin-right: -16px;
 	vertical-align: top;
 	cursor: pointer; 
+	margin-bottom:10px;
 }	
 
 .point_description{
 	display: block;
-	font-family: Segoe UI;
+	/*font-family: Segoe UI;*/
 	font-size: 1.1em;
 	margin-bottom: 30px; 
 }
@@ -134,7 +152,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 .nbCommentaire{
-	color: rgb(7,105,173);
+	color: rgb(222, 140, 40);
 	font-size: 0.7em;
 }
 
@@ -185,7 +203,7 @@ h1, h2, h3, h4, h5, h6{
 } 
 
 .icone{
-	color: rgb(7,105,173);
+	color:  rgb(222, 140, 40);
 	font-size: 5.0em;
 	text-align: center;
 }
@@ -233,7 +251,44 @@ h1, h2, h3, h4, h5, h6{
 /*****************************************************************************/
 /*							OVERRIDE DE BOOTSTRAP
 /*****************************************************************************/
+.zone_commentaire textarea.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #CCC;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.zone_commentaire textarea.form-control {
+   
+    border-radius: 4px 4px 0px 0px;
+}
+
+.zone_commentaire input.form-control {
+   
+    border-radius: 0px 0px 4px 4px;
+}
+
+
+.form-control:focus {
+    border-color:rgb(222, 140, 40);
+    outline: 0px none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
 
 .btn-primary{
-	background: #2196f3;
+	background: rgb(222, 140, 40);
+	border:none;
+}
+
+.btn-primary:hover{
+	background: rgb(245, 205, 43);
 }
