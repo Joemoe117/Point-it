@@ -1,4 +1,4 @@
-<div class="container main">
+<div class="container">
 	<?php if ($this->session->flashdata('first_visit')): ?>
 		<div class="alert alert-info">
 			Tu es maintenant inscrit et connecté. Bravo !!!
@@ -6,7 +6,7 @@
 	<?php endif ?>
 
 	<!-- Timeline -->
-	<div class="col-md-7 central" id="points_block">
+	<div class="col-md-7" id="points_block">
 		<div class="bandeau">
 			<span class="bandeau-texte">Les derniers exploits</span>
 		</div>

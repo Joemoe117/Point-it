@@ -32,7 +32,7 @@
 
 <header class="navbar navbar-static-top bs-docs-nav header">
     <div class="container">
-        <a class="navbar-brand" href="#">Point-it</a>
+        <a class="navbar-brand" href="<?= site_url("timeline/"); ?>">Point-!t</a>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li>
