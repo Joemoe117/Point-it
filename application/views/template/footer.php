@@ -14,7 +14,7 @@
 					<div class="col-md-4">
 						<div class="footer_titre"> Crédits </div>
 						Ce site a été codé par <b>Baptiste</b> et <b>Thomas</b>, deux développeurs alcooliques de qualité! <br>
-						Le design sera fait par quelqu'un qui sera suffisament gentil pour vouloir nous aider
+						<p>Merci à Gwenael pour son aide au design et Youenn pour les logo des points ! Mort au social-traitres Solène !</p>
 					</div>
 					<div class="col-md-4">
 						<div class="footer_titre"> Technologies utilisées </div>

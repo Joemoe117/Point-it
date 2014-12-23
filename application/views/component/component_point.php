@@ -8,14 +8,6 @@
 						<?php $i = 0 ?>
 						<?php foreach ($point->recoit as $pointInfo): ?>
 							<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_petite" ></a>
-							
-							<?php if ($i > 1): ?>
-								<?php if ($i - 1 > 0): ?>
-									+<?=$i?>
-								<?php endif ?>
-								<?php break; ?>
-							<?php endif ?>
-							<?php $i++ ?>
 						<?php endforeach ?>
 
 					<!-- une seule personne -->
@@ -27,7 +19,22 @@
 		
 				</div>
 				<div class="col-xs-6">
-					<img src="<?= base_url("/assets/images/point/vietnam.png");  ?>" class="img-rounded image_point" alt="">
+					<?php if ($point->typept_id == 1): ?>
+						<img src="<?= base_url("/assets/images/point/moustache.png");  ?>" class="img-rounded image_point" alt="">
+					<?php endif ?>
+
+					<?php if ($point->typept_id == 2): ?>
+						<img src="<?= base_url("/assets/images/point/vietnam.png");  ?>" class="img-rounded image_point" alt="">
+					<?php endif ?>
+
+					<?php if ($point->typept_id == 3): ?>
+						<img src="<?= base_url("/assets/images/point/nazi.png");  ?>" class="img-rounded image_point" alt="">
+					<?php endif ?>
+
+					<?php if ($point->typept_id == 4): ?>
+						<img src="<?= base_url("/assets/images/point/princesse.png");  ?>" class="img-rounded image_point" alt="">
+					<?php endif ?>
+					
 				</div>
 			</div>			
 		

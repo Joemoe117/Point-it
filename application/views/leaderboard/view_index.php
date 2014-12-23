@@ -44,9 +44,10 @@
 
 	<!-- Barre à droite -->
 	<div class="col-md-5 secondaire">
-		<h3>Par type de point</h3>
-
-		<div><a href="<?= site_url('leaderboard') ?>" class="btn btn-default btn-lg btn-block <? if(is_null($type_point)) echo 'active' ?>">
+		<div class="panel panel-default">
+			<div class="panel-heading bleu"><span class="glyphicon glyphicon-check"></span> Type de point</div>
+			<div class="panel-body">
+				<div><a href="<?= site_url('leaderboard') ?>" class="btn btn-default btn-lg btn-block <? if(is_null($type_point)) echo 'active' ?>">
 			Classement général
 		</a></div>
 		<?php foreach ($types_point as $key => $value): ?>
@@ -56,5 +57,8 @@
 				</a>
 			</div>
 		<?php endforeach ?>
+
+			</div>
+		</div>
 	</div>
 </div>

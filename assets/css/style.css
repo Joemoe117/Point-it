@@ -37,6 +37,10 @@ a:hover{
 	margin-right: 30px;
 }
 
+.approuve-link{
+	color:rgb(222, 140, 40);
+}
+
 /** HEADER **/
 .header{
 	background: rgb(38,38,38);

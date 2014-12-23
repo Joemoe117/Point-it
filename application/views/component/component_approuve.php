@@ -13,9 +13,7 @@
 	
 		<!-- Si le profil n'approuve pas le point, alors on affiche le bouon pour approuver-->
 		<?php if (!$contains): ?>
-				<button id="approuve" class="btn btn-default btn-xs" onclick="approuve(<?= $point->point_id?>, this)">
-					<span class="glyphicon glyphicon-ok" style="vertical-align:middle"></span> Approuver
-				</button>			
+			<span class="glyphicon glyphicon-ok approuve-link" style="vertical-align:middle" onclick="approuve(<?= $point->point_id?>, this)">Approuver</span> 		
 			<br>
 		<?php endif ?>
 
