@@ -13,7 +13,7 @@
     <!-- CSS -->
     <link href=" <?= base_url("/assets/css/bootstrap.min.css");  ?>    " rel="stylesheet">
     <link href=" <?= base_url("/assets/css/jquery-ui.min.css");  ?>    " rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://ivaynberg.github.io/select2/select2-3.4.1/select2.css"/>
+    <link rel="stylesheet" href=" <?= base_url("/assets/css/select2.min.css");  ?>    "/>
     <link href=" <?= base_url("/assets/css/jquery-ui.structure.min.css");  ?>    " rel="stylesheet">
     <link href=" <?= base_url("/assets/css/jquery-ui.theme.min.css");  ?>    " rel="stylesheet">
     <link href=" <?= base_url("/assets/css/style.css");  ?>    " rel="stylesheet">
@@ -93,7 +93,7 @@
                     <div class="control-group">
                         <label for="multiple" class="control-label">Personne(s)</label>
                         <div class="controls">
-                            <select id="select_nom" class="select2" multiple name="personnes[]" style="width:100%;" minlengt="20" required>
+                            <select id="select_nom" class="js-example-basic-multiple" multiple name="personnes[]" style="width:100%;" required>
                                 <?php foreach ($form_profil as $value): ?>
                                     <option value="<?=$value->profil_id?>"> <?=$value->profil_nom?> </option>
                                 <?php endforeach ?>
@@ -136,10 +136,10 @@
 </div>
 
 
-<!-- Javascript déguelasse -->
+<!-- Javascript dégueulasse -->
 <script type="text/javascript">
     $(function() {
         $("#select_nom").select2();
-        $( "#date_point").datepicker({ dateFormat: "yy-mm-dd" });
+        $("#date_point").datepicker({ dateFormat: "yy-mm-dd" });
     });
 </script>

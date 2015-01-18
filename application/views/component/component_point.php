@@ -44,6 +44,18 @@
 				<?php if (!is_null($point->point_date_evenement)): ?>
 					<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>	
 				<?php endif ?>
+
+				<?php if ($point->profil_id_donne == 1): ?>
+					<a href="<?= site_url("point/set"); ?>">
+						<span class="glyphicon glyphicon-pencil">Modifier</span>
+					</a>
+					<br/>
+					<a href="">
+						<span class="glyphicon glyphicon-remove">Supprimer</span>
+					</a>
+
+					
+				<?php endif ?>
 			</span>
 
 
