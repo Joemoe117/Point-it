@@ -32,7 +32,25 @@ class Point extends CI_Controller {
 			redirect('/timeline', 'location');
 		}
 
-		$res = $this->pointManager->read($id);
+		$res = $this->pointManager->getOnePoint($id);
+
+		if ($res[0]->profil_id != $this->session->userdata('id')){
+			redirect('/timeline', 'location');
+		}
+
+		/* Génération des informations du formulaire */
+		$data['form_point'] = $this->pointManager->getAllType();
+		$data['form_profil'] = $this->profilManager->getAll();
+
+		$data['point'] = $res[0];
+
+		// chargement des vues
+		$data['titre'] 	= "Timeline";
+		$data['menu']	= "timeline";
+		$this->load->view('template/header.php', $data);
+		$this->load->view('point/set.php', $data);
+		$this->load->view('template/footer.php');
+		
 	}
 
 }

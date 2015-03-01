@@ -46,12 +46,8 @@
 				<?php endif ?>
 
 				<?php if ($point->profil_id_donne == 1): ?>
-					<a href="<?= site_url("point/set"); ?>">
+					<a href="<?php echo site_url("point/set/"); echo "/".$point->point_id; ?>">
 						<span class="glyphicon glyphicon-pencil">Modifier</span>
-					</a>
-					<br/>
-					<a href="">
-						<span class="glyphicon glyphicon-remove">Supprimer</span>
 					</a>
 
 					
