@@ -55,15 +55,13 @@
 					<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>	
 				<?php endif ?>
 
-				<?php if ($point->profil_id_donne == 1): ?>
-					<a href="<?php echo site_url("point/set/"); echo "/".$point->point_id; ?>">
-						<span class="glyphicon glyphicon-pencil">Modifier</span>
-					</a>
-				<?php endif ?>
+                <?php if ($point->profil_id_donne == 1): ?>
+                    <a href="<?php echo site_url("point/set/"); echo "/".$point->point_id; ?>">
+                        <span class="glyphicon glyphicon-pencil">Modifier</span>
+                    </a>
+                <?php endif ?>
 			</span>
-
-
-		</div>
+        </div>
 
 		<!-- Partie droite -->
 		<div class="col-sm-9 ">

@@ -11,10 +11,16 @@
                     <label for="multiple" class="control-label">Personne(s)</label>
                     <div class="controls">
                         <select id="select_nom_anex" class="js-example-basic-multiple" multiple name="personnes[]" style="width:100%;" required>
+                            <?php $i = 0 ?>
                             <?php foreach ($form_profil as $value): ?>
-                                <option value="<?=$value->profil_id?>" <?php if ($value->profil_id == $point->recoit[0]->profil_id){ echo "selected";}?> > 
+                                <option value="<?=$value->profil_id?>"
+                                    <?php foreach ($point->recoit as $r): ?>
+                                        <?php if ($value->profil_id == $r->profil_id){ echo "selected";}?>
+                                    <?php endforeach ?>
+                                    >
                                 	<?=$value->profil_nom?>
                                 </option>
+                                <?php $i++; ?>
                             <?php endforeach ?>
                         </select>
                     </div>

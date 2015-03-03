@@ -21,10 +21,10 @@ class Point extends CI_Controller {
 		$this->load->model('point_model', "pointManager");
 	}
 
-	/**
-	 * Route qui renvoie par défaut sur le profil de la personne connecté
-	 * @return [type]
-	 */
+    /**
+     * @param int $id
+     *      id of the point to modify
+     */
 	public function set($id = 0) {
 
 		// if no point is given in argument
