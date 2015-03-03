@@ -27,18 +27,17 @@ class M_Profil extends MY_Model{
 					->get()
 					->result()[0];
 	}
-	
 
 	/**
 	 *	Ajouter un compte
 	 *
-	 *	@param 		$nom 	Nom du profil	
-	 *	@param 		$pass 	Mot de passe du profil
-	 *	@param 		$image 	Avatar du profil (optionel)
+	 *	@param 		$nom 	name
+	 *	@param 		$pass 	password
+	 *	@param 		$image 	picture
 	 *	
 	 *	@return 	ID du profil ou false pour un échec
 	 */
-	public function create($nom, $pass, $image=false) {
+	public function create($nom, $pass, $image = false) {
 		$data['profil_nom'] = $nom;
 		$data['profil_pass'] = $pass;
 		if ($image)
@@ -216,4 +215,16 @@ class M_Profil extends MY_Model{
 			->get()
 			->result();
 	}
+
+    /**
+     * Set the last connection of the user.
+     * Called on login.
+     * @param int $id
+     *      id of the user
+     */
+    public function setLastConnection( $id = 0 ){
+        $this->db->set('profil_last_connection', 'NOW()', FALSE);
+        $this->db->where('profil_id', $id);
+        $this->db->update($this->table);
+    }
 }
