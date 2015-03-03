@@ -64,9 +64,14 @@ class M_Profil extends MY_Model{
 
 
 	/**
-	*
-	*
-	*
+	* Check if a user with the given credentials exists.
+    * @param login
+     *      the login of the user
+	* @param password
+     *      the password of the user
+	* @return
+    *       null if the user does not exist
+    *       a user object with all the informations
 	*/
 	public function checkLogin($login, $password) {
 
