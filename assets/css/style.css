@@ -172,18 +172,11 @@ a:hover{
 	font-size: 0.7em;
 }
 
-
-
-
 /* GESTION DES IMAGES */
 .image_point{
 	width: 100%;
 	height: 100%;
-}
-
-.image_petite{
-	width: 46%;
-	height: 46%;	
+    margin-bottom: 1px;
 }
 
 .image_commentaire{
@@ -267,31 +260,6 @@ a:hover{
 /*****************************************************************************/
 /*							OVERRIDE DE BOOTSTRAP
 /*****************************************************************************/
-.zone_commentaire textarea.form-control {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857;
-    color: #555;
-    background-color: #FFF;
-    background-image: none;
-    border: 1px solid #CCC;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
-    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-}
-
-.zone_commentaire textarea.form-control {
-   
-    border-radius: 4px 4px 0px 0px;
-}
-
-.zone_commentaire input.form-control {
-   
-    border-radius: 0px 0px 4px 4px;
-}
-
 
 .form-control:focus {
     border-color:rgb(222, 140, 40);

@@ -1,6 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 /**
- * Controlleur permettant de gérer l'authentification et la déconnexion d'un utilisateur
+ * Class Login
+ * Manage login/logout/creating new user
  */
 class Login extends CI_Controller {
 
@@ -46,7 +48,7 @@ class Login extends CI_Controller {
 			$res = FALSE;
 
 
-			// Mise en place des règles de validation
+			// Validation rules
 			$this->form_validation->set_rules('login', 'Login', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
