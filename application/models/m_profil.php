@@ -11,7 +11,7 @@ class M_Profil extends MY_Model{
 	*	
 	*/
 	public function getAll(){
-		return $this->db->select('profil_id, profil_nom')
+		return $this->db->select('profil_id, profil_nom, profil_image')
 					->from("profils")
 					->order_by("profil_nom")
 					->get()

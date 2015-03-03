@@ -69,6 +69,7 @@
                             <span class="glyphicon glyphicon-cog dropdown-toggle" data-toggle="dropdown">
                         </button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a href="<?= site_url("profil/all"); ?>"  role="menuitem" tabindex="-1" href="#">Liste des membres</a></li>
                             <li role="presentation"><a href="<?= site_url("profil/config"); ?>"  role="menuitem" tabindex="-1" href="#">Configuration</a></li>
                             <li role="presentation"><a href="<?= site_url("login/logout"); ?>" role="menuitem" tabindex="-1" href="#">Déconnexion</a></li>
                         </ul>

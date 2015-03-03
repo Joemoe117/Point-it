@@ -1,11 +1,11 @@
-<div class="container mPain">
+<div class="container">
 	<div class="col-md-7">
 		<div class="bandeau">
 			<span class="bandeau-texte"><?=$profil->profil_nom ?></span>
 		</div>
 		<div class="row" style="background:white; margin-bottom: 10px;">
 			<div class="col-md-3">
-				<img src="<?=$profil->profil_image ?>" class="img-rounded" style="background:#3f51b5" width="100%" height="100%">
+				<img src="<?=$profil->profil_image ?>" class="img-rounded" width="100%" height="100%">
 			</div>
 			<div class="col-md-9" >	
 				<table class="table">

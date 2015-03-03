@@ -172,7 +172,21 @@ class Profil extends CI_Controller {
 		$this->load->view('template/footer.php');
 	}
 
-	
+    /**
+     * Display all users
+     */
+    public function all(){
+
+        // Config
+        $data['profils'] = $this->profilManager->getAll();
+        $data['titre'] = 'Liste des membres';
+        $data['menu'] = 'profil';
+
+        // Chargement des vues
+        $this->load->view('template/header.php', $data);
+        $this->load->view('profil/view_profil_all.php', $data);
+        $this->load->view('template/footer.php');
+    }
 
 
 
@@ -240,5 +254,5 @@ class Profil extends CI_Controller {
 		if($delete == true) {
 			rmdir("$dossier/$file");
 		}
-}
+    }
 }

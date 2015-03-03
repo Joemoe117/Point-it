@@ -2,6 +2,7 @@
 	<div class="row point_haut">
 		<div class="col-xs-3 col-sm-3">
 			<div class="row">
+                <!-- Display the type of point first for small device -->
                 <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
                     <?php if ($point->typept_id == 1): ?>
                         <img src="<?= base_url("/assets/images/point/moustache.png");  ?>" class="img-rounded image_point" alt="">
@@ -19,11 +20,15 @@
                         <img src="<?= base_url("/assets/images/point/princesse.png");  ?>" class="img-rounded image_point" alt="">
                     <?php endif ?>
                 </div>
+
+                <!-- Display the list of persons -->
 				<div class="col-xs-12 col-sm-6 col-lg-6">
 					<?php foreach ($point->recoit as $pointInfo): ?>
                         <a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=$pointInfo->profil_image ?>" class="img-rounded image_point" ></a>
                     <?php endforeach ?>
 				</div>
+
+                <!-- Type of point for big screen -->
                 <div class="hidden-xs col-sm-6 col-lg-6">
                     <?php if ($point->typept_id == 1): ?>
                         <img src="<?= base_url("/assets/images/point/moustache.png");  ?>" class="img-rounded image_point" alt="">
@@ -54,8 +59,6 @@
 					<a href="<?php echo site_url("point/set/"); echo "/".$point->point_id; ?>">
 						<span class="glyphicon glyphicon-pencil">Modifier</span>
 					</a>
-
-					
 				<?php endif ?>
 			</span>
 
@@ -120,7 +123,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-9 col-lg-9">
-                            <textarea id="textarea<?php echo $point->point_id?>" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="5" required></textarea>
+                            <textarea id="textarea<?php echo $point->point_id?>" name="commentaire" placeholder="Ajouter un commentaire..." class="form-control" rows="3" required></textarea>
                         </div>
                         <div class="col-xs-12 col-sm-3 col-lg-3">
                             <input class="btn btn-primary form-control pull-right" value="Poster" type="submit">
