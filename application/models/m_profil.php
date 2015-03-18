@@ -11,14 +11,12 @@ class M_Profil extends MY_Model{
 	*	
 	*/
 	public function getAll(){
-		return $this->db->select('*')
+		return $this->db->select('profil_id, profil_nom, profil_image')
 					->from("profils")
 					->order_by("profil_nom")
 					->get()
 					->result();
 	}
-
-
 
 	/* Récupère le profil complet d'un membre ou juste un attribut si demandé */
 	public function getOne($id, $attr='*') {
@@ -29,18 +27,17 @@ class M_Profil extends MY_Model{
 					->get()
 					->result()[0];
 	}
-	
 
 	/**
 	 *	Ajouter un compte
 	 *
-	 *	@param 		$nom 	Nom du profil	
-	 *	@param 		$pass 	Mot de passe du profil
-	 *	@param 		$image 	Avatar du profil (optionel)
+	 *	@param 		$nom 	name
+	 *	@param 		$pass 	password
+	 *	@param 		$image 	picture
 	 *	
 	 *	@return 	ID du profil ou false pour un échec
 	 */
-	public function create($nom, $pass, $image=false) {
+	public function create($nom, $pass, $image = false) {
 		$data['profil_nom'] = $nom;
 		$data['profil_pass'] = $pass;
 		if ($image)
@@ -64,9 +61,14 @@ class M_Profil extends MY_Model{
 
 
 	/**
-	*
-	*
-	*
+	* Check if a user with the given credentials exists.
+    * @param login
+     *      the login of the user
+	* @param password
+     *      the password of the user
+	* @return
+    *       null if the user does not exist
+    *       a user object with all the informations
 	*/
 	public function checkLogin($login, $password) {
 
@@ -89,30 +91,13 @@ class M_Profil extends MY_Model{
 		}
 	}
 
-
-	/**
-	*	Vérifie si le mdp d'un profil_id est correcte
-	*
-	*	@return bool 	true si bon, false si faux
-	*/
-	public function checkPass($id, $password) {
-
-		$this->db->select();
-		$this->db->where('profil_id', $id);
-		$query = $this->db->get('profils');
-		$row = $query->row();
-
-		if (!empty($row) && $this->password->validate_password($password, $row->profil_pass))
-			return true;
-		else
-			return false;
-	}
-
-
-	/**
-	*	Change l'avatar
-	*
-	*/
+    /**
+     * Set a new image for the given user
+     * @param $id
+     *      id of the user
+     * @param $avatar
+     *      new avatar of the user
+     */
 	public function setImage($id, $avatar) {
 
 		$data['profil_image'] = $avatar;
@@ -124,8 +109,11 @@ class M_Profil extends MY_Model{
 
 	/**
 	*	Change le mot de passe
-	*
-	*/
+	* @param id
+    *       the id of the user to modify
+    * @param password
+    *       the new password
+    */
 	public function setPass($id, $password) {
 
 		$data['profil_pass'] = $password;
@@ -142,11 +130,13 @@ class M_Profil extends MY_Model{
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
 
-
-	/**
-	* @return 		retourne le nombre de point possédé par une personne
-	*
-	*/
+    /**
+     * Return the number of points given to the given user
+     * @param $id
+     *      the id of the user
+     * @return int
+     *      the number of point given to this user
+     */
 	public function getNbPoint($id){
 		return 	$this->db->select('*')
 			->from("recoit")
@@ -155,10 +145,13 @@ class M_Profil extends MY_Model{
 	}
 
 
-	/**
-	* @return 		retourne le nombre de commentaire posté par une personne
-	*
-	*/
+    /**
+     * Return the number of comments of this user
+     * @param $id
+     *      the id of the user
+     * @return int
+     *      the number of comments of this user
+     */
 	public function getNbCommentaire($id){
 		return 	$this->db->select('*')
 				->from("commentaires")
@@ -166,10 +159,14 @@ class M_Profil extends MY_Model{
 				->count_all_results();
 	}
 
-	/**
-	*	@return 	Verifie qu'un profil existe vraiment dans la BDD
-	*
-	*/
+    /**
+     * Check if a user exists with the given id
+     * @param int $id
+     *      the id of the user
+     * @return bool
+     *      true if this id exists
+     *      false otherwise
+     */
 	public function exist($id=0){
 		$nb = $this->db->from("profils")
 				->where('profil_id',  $id)
@@ -183,13 +180,17 @@ class M_Profil extends MY_Model{
 	}
 
 
-	/**
-	*	@return 	Verifie que le nom d'un profil existe déjà dans la BDD
-	*
-	*/
-	public function existNom($nom) {
+    /**
+     * Cechk if a user exists with the given name.
+     * @param $name
+     *      name to check
+     * @return bool
+     *      true if this name exists
+     *      false otherwise
+     */
+	public function existNom($name) {
 		$nb = $this->db->from("profils")
-				->where('profil_nom', $nom)
+				->where('profil_nom', $name)
 				->count_all_results();
 
 		if ($nb == 0)
@@ -199,11 +200,13 @@ class M_Profil extends MY_Model{
 	}
 
 
-	/**
-	 * [getNumberOfPointByType description]
-	 * @param  integer $id [description]
-	 * @return [type]      [description]
-	 */
+    /**
+     * Return an array with the number of points by type of point
+     * @param int $id
+     *      the id of the user
+     * @return mixed
+     *      an array
+     */
 	public function getNumberOfPointByType( $id=0 ){
 		return $this->db->select('profil_nom, typept_nom, count(typept_nom) AS nombre')
 			->from('recoit NATURAL JOIN profils NATURAL JOIN points NATURAL JOIN types_point')
@@ -212,4 +215,16 @@ class M_Profil extends MY_Model{
 			->get()
 			->result();
 	}
+
+    /**
+     * Set the last connection of the user.
+     * Called on login.
+     * @param int $id
+     *      id of the user
+     */
+    public function setLastConnection( $id = 0 ){
+        $this->db->set('profil_last_connection', 'NOW()', FALSE);
+        $this->db->where('profil_id', $id);
+        $this->db->update($this->table);
+    }
 }

@@ -40,8 +40,10 @@ class M_approuve extends CI_Model{
 	/**
 	 * Recupère les personnes qui approuvent le point donné
 	 * @param  $idPoint
+     *          L'id du point dont on veut retrouver les personnes
 	 * 			
-	 * @return 
+	 * @return
+     *      Une liste de personnes contenant les id et les nom des personnes
 	 */
 	public function getApprouve($idPoint) {
 		return $this->db->select('profil_id, profil_nom')

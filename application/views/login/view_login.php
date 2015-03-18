@@ -1,8 +1,8 @@
-<div class="container main">
+<div class="container central">
 	<div class="col-md-6">
 		<h1>Bienvenue sur Point-it !</h1>
 		<p>Vous êtes bien arrivé sur le renouveau de Pointbook ! Pour profiter des nouvelles fonctionnalités de celui-ci, veuillez vous connecter</p>
-		<p style="color:red">Les inscriptions sont ouvertes. il n'est pas nécéssaire de demander de l'aide à un administrateur</p>
+		<p style="color:red">Si vous ne connaissez plus votre mot de passe, contacter le grand manitou !</p>
 
 		<div class="form_connexion">
 			<h2 class="blanc">Formulaire de connexion</h2>

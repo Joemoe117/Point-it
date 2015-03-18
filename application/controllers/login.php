@@ -1,6 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 /**
- * Controlleur permettant de gérer l'authentification et la déconnexion d'un utilisateur
+ * Class Login
+ * Manage login/logout/creating new user
  */
 class Login extends CI_Controller {
 
@@ -8,6 +10,9 @@ class Login extends CI_Controller {
 	const ANTIBOT_QUESTION = 'Que va-t-on faire, souvent à plusieurs, après avoir bu des bières ?';
 	const ANTIBOT_REPONSE = 'miossec';
 
+    /**
+     * Constructor
+     */
 	public function __construct()	{
 		parent::__construct();
 
@@ -18,20 +23,17 @@ class Login extends CI_Controller {
 	}
 
 
-	/**
-	 * Route par défaut qui renvoie sur la page d'accueil
-	 * @return
-	 */
+    /**
+     * Default route
+     */
 	public function index()	{
 		$this->login();
 	}
 
 
-	/**
-	*	@return 
-	*				Affiche la page pour qu'un user se connecte
-	*
-	*/
+    /**
+     * Connect a user to the website
+     */
 	public function login() {
 		// Si l'utilisateur est déjà connecté le rediriger vers la timeline
 		if ($this->session->userdata('id'))
@@ -46,7 +48,7 @@ class Login extends CI_Controller {
 			$res = FALSE;
 
 
-			// Mise en place des règles de validation
+			// Validation rules
 			$this->form_validation->set_rules('login', 'Login', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -59,6 +61,9 @@ class Login extends CI_Controller {
 
 			// Vérification du login, renvoie true si la connexion a réussie
 			if ($res) {
+
+                // set the last connection of the user
+                $this->profilManager->setLastConnection($res->profil_id);
 
 				// Mise en place des sessions
 				$this->session->set_userdata('id', $res->profil_id);
@@ -94,12 +99,9 @@ class Login extends CI_Controller {
 	}
 
 
-	/**
-	* 	Déconnecte l'utilisateur connecté en détruisant la session
-	*	@return 	
-	*				Déconnecte l'utilisateur
-	*
-	*/
+    /**
+     * Disconnect a user from the website
+     */
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect('/login', 'location');
@@ -179,10 +181,11 @@ class Login extends CI_Controller {
 	}
 
 
-	/**
-	* @return Hashage du mot de passe
-	*
-	*/
+    /**
+     * return a hashed password
+     * Only use for debug or changing the password of a user
+     * @param $password
+     */
 	public function hashpwd( $password ){
 		$hashP = $this->password->create_hash($password);
 		echo $hashP;

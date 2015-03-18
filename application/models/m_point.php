@@ -108,7 +108,35 @@ class M_Point extends MY_Model{
 
 
 
+		/**
+	 * Recupère les n derniers points donnés.
+	 * @param  [type] $nb       Le nombre de point que l'on veut récupérer
+	 * @param  [type] $limit    index à partir duquel on veut récupérer les point(ie, la pagination)
+	 * @param  [type] $idProfil si null, on recupère de toute les personnes, sinon on recupère de cet id.
+	 * @return [type]           
+	 */
+	public function getOnePoint ($idPoint=null) {
 
+
+		$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
+			->from('points NATURAL JOIN types_point NATURAL JOIN recoit')
+			->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
+			->where('points.point_id', (int) $idPoint)
+			->order_by('point_date_actualite', 'asc');
+
+		$allPoints = $allPoints->get()->result();
+
+		// Recherche des profils qui ont reçu les points et ils seront stockés dans le champs recoit de chaque points
+		foreach ($allPoints as $point) {
+			$point->recoit = $this->db->select('profil_id, profil_nom, profil_image')
+											->from('recoit NATURAL JOIN profils')
+											->where('point_id', $point->point_id)
+											->get()
+											->result();
+		}
+
+		return $allPoints;
+	}
 
 
 
