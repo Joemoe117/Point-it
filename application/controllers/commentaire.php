@@ -19,7 +19,7 @@ class Commentaire extends CI_Controller {
 		}
 
 		// Chargement des models
-		$this->load->model('commentaire_model', "commentaireManager");
+		$this->load->model('m_commentaire', "commentaireManager");
 
 		// Chargement header
 		$this->load->view('template/header.php');
