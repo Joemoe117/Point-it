@@ -46,13 +46,13 @@
                         <img src="<?= base_url("/assets/images/point/princesse.png");  ?>" class="img-rounded image_point" alt="">
                     <?php endif ?>
                 </div>
-			</div>			
-		
+			</div>
+
 			<span class="point_date hidden-xs">
 				<?= "le ".date("d/m/y à H:i", mysql_to_unix($point->point_date_crea)); ?>
 				<br>
 				<?php if (!is_null($point->point_date_evenement)): ?>
-					<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>	
+					<?= "Passé le ".date("d/m/y", mysql_to_unix($point->point_date_evenement)); ?>
 				<?php endif ?>
 
                 <?php if ($point->profil_id_donne == 1): ?>
@@ -71,19 +71,19 @@
 
 			<!-- Partie approuve -->
 			<?php
-				$data["approuve"] = $point->approuve; 
+				$data["approuve"] = $point->approuve;
 				$this->load->view("component/component_approuve.php", $data );
 			?>
-				
+
 			<!-- Affichage du nombre de commentaire -->
 			<p class="nbCommentaire" style="text-align:right">
-				<?php printf(ngettext("%d commentaire", "%d commentaires", count($commentaires[$point->point_id])), count($commentaires[$point->point_id])) ?>
+				<span class="badge"><?=  count($commentaires[$point->point_id]) ?></span>
 			</p>
 
 		</div>
 	</div>
 
-	
+
 
 	<!-- COMMENTAIRE -->
 

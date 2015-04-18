@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `approuve` (
   KEY `point_id_2` (`point_id`),
   KEY `point_id_3` (`point_id`),
   KEY `profil_id` (`profil_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=96 ;
 
 --
 -- Contenu de la table `approuve`
@@ -119,80 +119,23 @@ INSERT INTO `approuve` (`approuve_id`, `point_id`, `profil_id`) VALUES
 (76, 2, 6),
 (77, 14, 19),
 (78, 12, 19),
-(79, 23, 19);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `approuve`
---
-
-CREATE TABLE IF NOT EXISTS `approuve` (
-  `approuve_id` int(11) NOT NULL AUTO_INCREMENT,
-  `point_id` int(11) NOT NULL,
-  `profil_id` int(11) NOT NULL,
-  PRIMARY KEY (`approuve_id`),
-  KEY `point_id` (`point_id`),
-  KEY `point_id_2` (`point_id`),
-  KEY `point_id_3` (`point_id`),
-  KEY `profil_id` (`profil_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
-
---
--- Contenu de la table `approuve`
---
-
-INSERT INTO `approuve` (`approuve_id`, `point_id`, `profil_id`) VALUES
-(2, 10, 1),
-(3, 6, 1),
-(4, 11, 25),
-(5, 7, 25),
-(6, 5, 25),
-(7, 5, 1),
-(8, 9, 1),
-(9, 3, 13),
-(10, 9, 13),
-(11, 4, 13),
-(12, 11, 16),
-(13, 11, 18),
-(14, 3, 18),
-(15, 10, 26),
-(16, 7, 26),
-(17, 5, 26),
-(18, 3, 26),
-(19, 8, 26),
-(20, 9, 26),
-(21, 11, 7),
-(22, 5, 7),
-(23, 6, 7),
-(24, 3, 7),
-(25, 1, 1),
-(26, 3, 1),
-(27, 4, 1),
-(28, 11, 1),
-(29, 12, 23),
-(30, 1, 23),
-(31, 3, 23),
-(32, 12, 1),
-(33, 13, 1),
-(34, 12, 17),
-(35, 14, 17),
-(36, 10, 17),
-(37, 13, 17),
-(38, 1, 17),
-(39, 2, 17),
-(40, 5, 17),
-(41, 6, 17),
-(42, 14, 1),
-(43, 8, 1),
-(44, 9, 9),
-(45, 5, 9),
-(46, 11, 9),
-(47, 12, 9),
-(48, 14, 9),
-(49, 14, 6),
-(50, 15, 1),
-(51, 13, 13);
+(79, 23, 19),
+(80, 25, 12),
+(81, 23, 7),
+(82, 20, 7),
+(83, 25, 3),
+(84, 12, 3),
+(85, 14, 3),
+(86, 4, 3),
+(87, 23, 17),
+(88, 26, 17),
+(89, 17, 17),
+(90, 14, 10),
+(91, 12, 10),
+(92, 9, 10),
+(93, 11, 10),
+(94, 10, 34),
+(95, 10, 35);
 
 -- --------------------------------------------------------
 
