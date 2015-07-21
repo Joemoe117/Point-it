@@ -3,11 +3,11 @@
 		<div class="bandeau">
 			<span class="bandeau-texte"><?=$profil->profil_nom ?></span>
 		</div>
-		<div class="row" style="background:white; margin-bottom: 10px;  padding: 10px;">
+		<div class="row" style="background:white; margin-bottom: 10px;">
 			<div class="col-md-3">
 				<img src="<?=$profil->profil_image ?>" class="img-rounded" width="100%" height="100%">
 			</div>
-			<div class="col-md-9" >
+			<div class="col-md-9" >	
 				<table class="table">
 					<th>Type de point</th>
 					<th>Nombre</th>
@@ -29,30 +29,17 @@
 
 	<div class="col-md-5">
 		<div class="panel panel-default">
-			<div class="panel-heading"><span class="glyphicon glyphicon-stats"></span>   Statistique</div>
-			<div class="panel-body secondaire">
+			<div class="panel-heading bleu"><span class="glyphicon glyphicon-stats"></span>   Statistique</div>
+			<div class="panel-body">
+				<h3>Général</h3>
 				<h5>Nombre de points :</h5>
 				<?=$nbPoint?>
 				<h5>Nombre de commentaires :</h5>
 				<?=$nbCommentaire?>
 			</div>
 		</div>
+		
 	</div>
-
-	<?php if ($citations): ?>
-		<div class="col-md-5">
-			<div class="panel panel-default">
-				<div class="panel-heading"><span class="glyphicon glyphicon-book"></span> Ses plus belles citations</div>
-				<div class="panel-body secondaire">
-					<?php foreach ($citations as $citation): ?>
-						<span class="citation">
-							<?php echo $citation->text ?>
-						</span>
-					<?php endforeach; ?>
-				</div>
-			</div>
-		</div>
-	<?php endif; ?>
 </div>
 
 <script type="text/javascript">
@@ -75,3 +62,5 @@
   		}
 	});
 </script>
+
+

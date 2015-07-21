@@ -8,7 +8,7 @@ class M_Point extends MY_Model{
 	/**
 	*	function 	getAllType
 	*	@return		Recupere tous les types de point
-	*
+	*	
 	*/
 	public function getAllType(){
 		return $this->db->select('*')
@@ -22,10 +22,10 @@ class M_Point extends MY_Model{
 	/**
 	*	function 	getOneType
 	*	@return		Recupere un type de point
-	*
+	*	
 	*/
-	public function getOne($id) {
-		return $this->db->select()
+	public function getOneType($id, $attr='*') {
+		return $this->db->select($attr)
 					->from('types_point')
 					->where('typept_id', $id)
 					->order_by('typept_nom')
@@ -39,11 +39,11 @@ class M_Point extends MY_Model{
 	 * @param  [type] $nb       Le nombre de point que l'on veut récupérer
 	 * @param  [type] $limit    index à partir duquel on veut récupérer les point(ie, la pagination)
 	 * @param  [type] $idProfil si null, on recupère de toute les personnes, sinon on recupère de cet id.
-	 * @return [type]
+	 * @return [type]           
 	 */
 	public function getAllPoints ($nb=null, $limit=null, $idProfil=null) {
 
-		// selon si l'id est défini ou non, on recupere les points de tout le
+		// selon si l'id est défini ou non, on recupere les points de tout le 
 		// monde ou de la personne concernée
 		if (isset($idProfil)){
 			$allPoints =  $this->db->select('*, donne.profil_nom AS profil_nom_donne')
@@ -57,14 +57,14 @@ class M_Point extends MY_Model{
 				->join('profils AS donne', 'donne.profil_id = profil_id_donne', 'inner')
 				->order_by('point_date_actualite', 'desc');
 		}
-
+		
 
 		// Limit
 		if (isset($nb) AND isset($limit))
 			$allPoints = $allPoints->limit($nb, $limit);
 		elseif (isset($nb))
 			$allPoints = $allPoints->limit($nb);
-
+						
 		$allPoints = $allPoints->get()
 			->result();
 
@@ -113,7 +113,7 @@ class M_Point extends MY_Model{
 	 * @param  [type] $nb       Le nombre de point que l'on veut récupérer
 	 * @param  [type] $limit    index à partir duquel on veut récupérer les point(ie, la pagination)
 	 * @param  [type] $idProfil si null, on recupère de toute les personnes, sinon on recupère de cet id.
-	 * @return [type]
+	 * @return [type]           
 	 */
 	public function getOnePoint ($idPoint=null) {
 
@@ -168,7 +168,7 @@ class M_Point extends MY_Model{
 
 
 	/**
-	*	@return
+	*	@return  	
 	*	TODO
 	*
 	*/
@@ -188,7 +188,7 @@ class M_Point extends MY_Model{
 
 
 	//////////////////////////////
-	// 			UTILS
+	// 			UTILS 
 	//////////////////////////////
 
 	public function exist($id=0){
@@ -200,6 +200,6 @@ class M_Point extends MY_Model{
 			return false;
 		} else {
 			return true;
-		}
+		}	
 	}
 }

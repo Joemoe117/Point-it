@@ -7,7 +7,7 @@ class Leaderboard extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-
+		
 		// Redirection si non connecté
 		if (!$this->session->userdata('id'))
 			redirect('/login', 'location');
@@ -20,7 +20,7 @@ class Leaderboard extends CI_Controller {
 
 
 	/**
-	 *	Page qui affichera les personnes qui ont le plus de points et sélectionner le classement par type de points
+	 *	Page qui affichera les personnes qui ont le plus de points et sélectionner le classement par type de points 
 	 *
 	 */
 	public function index($type_point=null)	{
@@ -46,7 +46,7 @@ class Leaderboard extends CI_Controller {
 		else
 			$data['leader_limit'] = 3;
 
-
+		
 		// Chargement de la vue
 		$data['titre'] 	= 'Leaderboard';
 		$data['menu']	= 'leaderboard';
@@ -57,7 +57,7 @@ class Leaderboard extends CI_Controller {
 		$data['types_point'] 	= $this->pointManager->getAllType();
 		$data['nb_elem_class'] 	= $nb_elem_class;
 
-
+		
 		/* Génération des informations du formulaire */
 		$data['form_point'] = $this->dataFormPoint;
 		$data['form_profil'] = $this->dataFormProfil;
@@ -67,4 +67,11 @@ class Leaderboard extends CI_Controller {
 		$this->load->view('leaderboard/view_index.php', $data);
 		$this->load->view('template/footer.php');
 	}
+
+	/**
+	 * 	 
+	 *
+	 */
+
+
 }

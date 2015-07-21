@@ -25,7 +25,7 @@
 	</div>
 
 	<!-- Formulaire d'ajout de point -->
-	<div class="col-md-5">
+	<div class="col-md-5 secondaire">
 		<?php $this->load->view("component/component_changelog.php");?>
 	</div>
 

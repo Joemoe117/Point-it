@@ -23,9 +23,9 @@ class Login extends CI_Controller {
 	}
 
 
-  /**
-   * Default route
-   */
+    /**
+     * Default route
+     */
 	public function index()	{
 		$this->login();
 	}
@@ -45,7 +45,7 @@ class Login extends CI_Controller {
 			// Récupération des posts
 			$login 		= $this->input->post('login');
 			$password 	= $this->input->post('password');
-			$valid = FALSE;
+			$res = FALSE;
 
 
 			// Validation rules
@@ -55,21 +55,29 @@ class Login extends CI_Controller {
 
 			// Si validation ok
 			if ($this->form_validation->run() == TRUE)	{
-				$valid = $this->profilManager->checkLogin( $login, $password );
+				$res = $this->profilManager->checkLogin( $login, $password );
 			}
 
+
 			// Vérification du login, renvoie true si la connexion a réussie
-			if ($valid) {
-		        // set the last connection of the user
-		        $this->profilManager->setLastConnection($valid->profil_id);
+			if ($res) {
+
+                // set the last connection of the user
+                $this->profilManager->setLastConnection($res->profil_id);
 
 				// Mise en place des sessions
-				$this->session->set_userdata('id', $valid->profil_id);
-				$this->session->set_userdata('login', $valid->profil_nom);
-				$this->session->set_userdata('image', $valid->profil_image);
+				$this->session->set_userdata('id', $res->profil_id);
+				$this->session->set_userdata('login', $res->profil_nom);
+				$this->session->set_userdata('image', $res->profil_image);
+
+				// Mise en place des cookies, pas encore utilisé
+				set_cookie("id", $res->profil_id, 86500, "/");
+				set_cookie("login", $res->profil_nom, 86500, "/");
+				set_cookie("image", $res->profil_image, 86500, "/");
 
 				// Redirection vers la timeline
 				redirect('/timeline', 'refresh');
+
 
 			} else {
 				$data['errors'][] = "Votre mot de passe ou votre login est invalide";
@@ -80,14 +88,14 @@ class Login extends CI_Controller {
 
 		// Récupération des statistiques général
 		$data["nb_profil"] 		= $this->profilManager->count();
-		$data["nb_point"] 		= $this->pointManager->count();
+		$data["nb_point"] 		= $this->pointManager->count(); 
 		$data["nb_commentaire"] = $this->commentaireManager->count();
 
 		// Chargement des vues
 		$data['titre'] = "Connexion";
 		$this->load->view('template/header_logout.php', $data);
 		$this->load->view('login/view_login.php', $data);
-		$this->load->view('template/footer.php');
+		$this->load->view('template/footer.php');	
 	}
 
 
@@ -153,9 +161,9 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('image', null);
 
 				// Mise en place des cookies, pas encore utilisé
-				set_cookie("id", $id, 9986500, "/");
-				set_cookie("login", $login, 9986500, "/");
-				set_cookie("image", null, 9986500, "/");
+				set_cookie("id", $id, 186500, "/");
+				set_cookie("login", $login, 186500, "/");
+				set_cookie("image", null, 186500, "/");
 
 				$this->session->set_flashdata('first_visit', true);
 

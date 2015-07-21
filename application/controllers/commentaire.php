@@ -12,7 +12,7 @@ class Commentaire extends CI_Controller {
 	 */
 	public function __construct()	{
 		parent::__construct();
-
+		
 		// Redirection si non connecté
 		if ( !$this->session->userdata('id')){
 			redirect('/login', 'location');
@@ -27,13 +27,14 @@ class Commentaire extends CI_Controller {
 
 	/**
 	 * Ajoute un commentaire
-	 * @return
+	 * @return 
 	 */
 	public function create(){
 		$profil_id 	= $this->session->userdata('id');
 		$point_id	= $this->input->post('point_id', TRUE);
 		$texte 		= $this->input->post('commentaire', TRUE);
 
+		// TODO vérifier les champs
 		$res = $this->commentaireManager->create( $point_id, $profil_id, $texte);
 
 		redirect('/timeline', 'location');
