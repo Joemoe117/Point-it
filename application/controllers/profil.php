@@ -19,30 +19,28 @@ class Profil extends CI_Controller {
 
 		// Chargement des models
 		$this->load->model('m_commentaire', "commentaireManager");
+		$this->load->model('m_citation', "citationManager");
 	}
 
 	/**
-	 * Route qui renvoie par défaut sur le profil de la personne connecté
-	 * @return [type]
-	 */
+	* Default route. Return to the profil of the connectec user
+	*/
 	public function index()	{
 		$this->get($this->session->userdata('id'));
 	}
 
 
-
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
 
-	
+
 	/**
 	 * Affiche le profil de la personne donnée en paramètre
-	 * @param  $id 		
-	 * 				l'id de la personne à affiche
-	 * @return 
-	 * 				Affiche le profil de l'id donné en param
-	 * @author ballanb
+	 * @param  $id
+	 * 		l'id de la personne à affiche
+	 * @return
+	 * 		Affiche le profil de l'id donné en param
 	 */
 	public function get($id){
 
@@ -57,10 +55,12 @@ class Profil extends CI_Controller {
 
 		/* Récupération des commentaires de chaque point */
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id);
 		}
 
-		
+		// citations
+		$data['citations'] = $this->citationManager->getOne($id);
+
 		// statistique du profil
 		$data['nbPoint'] 		= $this->profilManager->getNbPoint($id);
 		$data['nbCommentaire'] 	= $this->profilManager->getNbCommentaire($id);
@@ -113,7 +113,7 @@ class Profil extends CI_Controller {
 				$avatar_path = "./assets/images/avatars/".$id.'_'.$data['profil_nom'];
 				if (!file_exists($avatar_path))
 					mkdir($avatar_path, 0777, true);
-				
+
 				// renomme les fichiers
 				$avatar_origin_name = 'origin.jpg';
 				$avatar_resized_name = 'resized.jpg';
@@ -219,7 +219,7 @@ class Profil extends CI_Controller {
 		if($width > $height && $new_height < $height)
 			$new_height = $height / ($width / $new_width);
 		else if ($width < $height && $new_width < $width)
-			$new_width = $width / ($height / $new_height);   
+			$new_width = $width / ($height / $new_height);
 		else {
 			$new_width = $width;
 			$new_height = $height;
@@ -250,7 +250,7 @@ class Profil extends CI_Controller {
 			}
 		}
 		closedir($dir);
-		
+
 		if($delete == true) {
 			rmdir("$dossier/$file");
 		}
