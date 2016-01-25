@@ -10,19 +10,20 @@
 
 	<!-- contenu réinitialisé lors du clic sur le approuve -->
 	<span class="approuve_test">
-	
+
 		<!-- Si le profil n'approuve pas le point, alors on affiche le bouon pour approuver-->
 		<?php if (!$contains): ?>
-			<span class="glyphicon glyphicon-ok approuve-link" onclick="approuve(<?= $point->point_id?>, this)">Approuver</span>
-			<br>
+			<button class="btn btn-primary btn-sm pull-right" onclick="approuve(<?= $point->point_id?>, this)"><span class="glyphicon glyphicon-thumbs-up"> Approuver</span></button>
 		<?php endif ?>
+
+
 
 		<!-- Affichage de la liste des personnes qui approuvent -->
 		<?php $i = 0; ?>
 		<?php if (count($approuve) >= 1): ?>
 		<?php foreach ($approuve as $key => $value): ?>
-				
-				<?php if ($i != 0): ?>			
+
+				<?php if ($i != 0): ?>
 					<?php if ($i < (count($approuve))-1): ?>
 						,
 					<?php else: ?>

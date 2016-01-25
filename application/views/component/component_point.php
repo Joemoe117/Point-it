@@ -39,12 +39,6 @@
 				<?=$point->point_description?>
 			</span>
 
-
-			<div class="btn-group" role="group" aria-label="...">
-				<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-ok" aria-hidden="true"> Approuver</span></button>
-				<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment" aria-hidden="true"> Commenter</span></button>
-			</div>
-
 			<!-- Partie approuve -->
 			<?php
 				$data["approuve"] = $point->approuve;
