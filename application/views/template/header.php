@@ -43,9 +43,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url("profil/get/"); echo "/".$this->session->userdata('id'); ?>">
+                    <a href="<?php echo site_url("profil/all/"); echo "/".$this->session->userdata('id'); ?>">
                             <span class="glyphicon glyphicon-user <?php if (strcmp($menu, 'profil') == 0) { echo "active";}?>">
-                                Profil
+                                Membres
                             </span>
                     </a>
                 </li>
@@ -69,9 +69,9 @@
                             <span class="glyphicon glyphicon-cog dropdown-toggle" data-toggle="dropdown">
                         </button>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                            <li role="presentation"><a href="<?= site_url("profil/all"); ?>"  role="menuitem" tabindex="-1" href="#">Liste des membres</a></li>
-                            <li role="presentation"><a href="<?= site_url("profil/config"); ?>"  role="menuitem" tabindex="-1" href="#">Configuration</a></li>
-                            <li role="presentation"><a href="<?= site_url("login/logout"); ?>" role="menuitem" tabindex="-1" href="#">Déconnexion</a></li>
+                            <li role="presentation"><a href="<?= site_url("profil/get/".$this->session->userdata('id')); ?>"  role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+                            <li role="presentation"><a href="<?= site_url("profil/config"); ?>"  role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-cog"></span> Paramètres</a></li>
+                            <li role="presentation"><a href="<?= site_url("login/logout"); ?>" role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
                         </ul>
                     </div>
                 </li>
@@ -124,8 +124,6 @@
                             <input type="checkbox"> Epique
                         </label>
                     </div>
-                    <label>Date (facultatif)</label><br>
-                    <input id="date_point" type="text" name="date" placeholder="aaaa-mm-jj">
                 </div>
 
                 <div class="modal-footer">

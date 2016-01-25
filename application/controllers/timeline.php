@@ -12,7 +12,7 @@ class Timeline extends CI_Controller {
 
 	public function __construct()	{
 		parent::__construct();
-		
+
 		// Redirection si non connecté
 		if (!$this->session->userdata('id')){
 			redirect('/login', 'location');
@@ -43,13 +43,13 @@ class Timeline extends CI_Controller {
 		/* Génération des informations du formulaire */
 		$data['form_point'] = $this->pointManager->getAllType();
 		$data['form_profil'] = $this->profilManager->getAll();
-			
+
 		/* Recupération des $initNbPoints derniers points et des commentaires de chaque point */
 		$data['points'] = $this->pointManager->getAllPoints(self::POINT_BY_PAGE);
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id);
 		}
-		
+
 		// chargement des vues
 		$data['titre'] 	= "Timeline";
 		$data['menu']	= "timeline";
@@ -71,7 +71,7 @@ class Timeline extends CI_Controller {
 		/* Recupération des $nb points et des commentaires de chaque point */
 		$data['points'] = $this->pointManager->getAllPoints($nb, $limit);
 		foreach ($data['points'] as $value) {
-			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id); 
+			$data['commentaires'][$value->point_id] = $this->commentaireManager->getCommentairePoint($value->point_id);
 		}
 		$this->load->view('timeline/view_affiche_points.php', $data);
 	}
@@ -98,12 +98,8 @@ class Timeline extends CI_Controller {
 
 			// Si $checkForm vaut 0 Alors le formulaire est bon
 			if ($checkForm === 0) {
-				// Si il existe une date d'évenement, la convertir en timestamp et enregistrer le point
-				if (!(is_null($date) OR empty($date) OR !$date))
-					$point_id = $this->pointManager->createPoint( $point, $donneur, $texte, $epique, $date);
-				// Sinon on crée juste le point
-				else
-					$point_id = $this->pointManager->createPoint( $point, $donneur, $texte, $epique);
+
+				$point_id = $this->pointManager->createPoint( $point, $donneur, $texte, $epique);
 
 				// On ajoute ensuite les différentes personnes dans la distribution
 				foreach ($personnes as $personne) {
@@ -118,7 +114,7 @@ class Timeline extends CI_Controller {
 			elseif (is_array($checkForm))
 				$this->session->set_flashdata('add_point_errors', $checkForm);
 		}
-		
+
 
 		redirect('/timeline', 'refresh');
 	}
@@ -137,7 +133,7 @@ class Timeline extends CI_Controller {
 	 *	@param 	$point 		ID du type_point
 	 *	@param 	$texte 		Description point
 	 *	@param 	$donneur 	ID du profil qui donne le point
-	 *	
+	 *
 	 * 	@return $res 		Retourne 0 si formualaire OK sinon le tableau d'erreurs
 	 */
 	private function _checkFormAddPoint($personnes=false, $point=false, $texte=false, $epique=false, $donneur=false, $date=false) {
@@ -184,29 +180,12 @@ class Timeline extends CI_Controller {
 			$res[] = "Stope tes magouilles jeune branleur";
 		}
 
-		// Vérif de la date de l'évenement
-		if (!(is_null($date) OR empty($date) OR !$date)) {
-			if (!$this->_validateDate($date))
-				$res[] = "La date n'est pas dans le bon format";
-		}
-
-
-
 		// Si pas d'erreurs on envoie 0 valeur de réussite
 		if (!isset($res))
 			$res = 0;
 
 		return $res;
 	}
-
-	private function _validateDate($date) {
-		// On regarde si le format est bien en aaaa-mm-jj et que la date existe
-		if (preg_match('#^([0-9]{4})-([0-9]{2})-([0-9]{2})$#', $date, $checkDate) AND checkdate($checkDate[2], $checkDate[3], $checkDate[1])) 
-			return true;
-		else
-			return false;
-	}
-
 
 	/**
 	*	Verifie que les id données existent bien dans la BDD avant d'ajouter les points
