@@ -10,14 +10,19 @@
 				<!-- Display the list of persons -->
 				<div class="col-xs-12 col-sm-6 col-lg-6">
 					<?php foreach ($point->recoit as $pointInfo): ?>
-						<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=base_url($pointInfo->profil_image) ?>" class="img-rounded image_point" ></a>
+						<a href="<?php echo site_url("profil/get/"); echo "/".$pointInfo->profil_id; ?>"><img src="<?=base_url($pointInfo->profil_image) ?>"  title="<?= $pointInfo->profil_nom ?>" class="img-rounded image_point" ></a>
 					<?php endforeach ?>
 				</div>
 
 				<!-- Type of point for big screen -->
 				<div class="hidden-xs col-sm-6 col-lg-6">
-					<img src="<?= base_url($point->typept_image);  ?>" class="img-rounded image_point" alt="">
+					<img src="<?= base_url($point->typept_image);  ?>" title="Point <?= $point->typept_nom ?>" class="img-rounded image_point" alt="">
 				</div>
+			</div>
+
+			<div class="btn-group" role="group" aria-label="...">
+			  <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+			  <button type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
 			</div>
 
 			<span class="point_date hidden-xs">
